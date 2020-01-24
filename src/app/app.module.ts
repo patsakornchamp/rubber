@@ -22,7 +22,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 //map
 import {AgmCoreModule} from '@agm/core';
 import { StatisticsComponent } from './components/statistics/statistics.component';
-import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component'
+import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
+import { TabsModule } from 'ngx-bootstrap/tabs'
 
 //ส่วนเรียกใช้หน้าเพจ
 const routes: Routes = [
@@ -59,7 +60,8 @@ const routes: Routes = [
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyC9XocvE-nxGymaM7eTzkwZ02KwlBLHXTY'
-    })
+    }),
+    TabsModule.forRoot()
 
   ],
   providers: [],
