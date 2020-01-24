@@ -1,0 +1,19 @@
+<app-appheader-farmer></app-appheader-farmer>
+<app-appmenu-farmer></app-appmenu-farmer>
+<div class="content-wrapper">
+  
+
+  <!-- Main content -->
+
+  <!-- /.content -->
+  <div #mapContainer id="map"></div>
+  <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+    <agm-marker [latitude]="latitude" [longitude]="longitude" *ngIf="locationChosen">
+    </agm-marker>
+  </agm-map>
+</div>
+
+
+
+<!-- <app-appfooter></app-appfooter>
+<app-appsetting></app-appsetting> -->

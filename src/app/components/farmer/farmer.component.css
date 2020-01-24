@@ -1,0 +1,13 @@
+#map {
+
+  height: 500px;
+  width: 800px;
+  display: block;
+  margin: auto;
+}
+
+agm-map {
+    height: 400px;
+    width: 800px;
+
+}
