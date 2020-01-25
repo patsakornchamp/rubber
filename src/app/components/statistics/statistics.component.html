@@ -1,41 +1,57 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
 <div class="content-wrapper">
-  <!-- Main content -->
-  
-  <!-- /.content -->
-  <tabset style="font-size: 20px;">
-    <tab heading="ข้อมูลย้อนหลัง">
-     
-    </tab>
-    <tab heading="ข้อมูลปัจจุบัน" (click)="ngAfterViewInit2()">
-      <section class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- AREA CHART -->
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Area Chart</h3>
+    <!-- Main content -->
 
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                      class="fa fa-times"></i></button>
+    <!-- /.content -->
+    <tabset style="font-size: 20px;">
+        <tab heading="ข้อมูลย้อนหลัง" id="tab1">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- AREA CHART -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Area Chart</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="chart">
+                                    <canvas id="areaChart" style="height:250px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="box-body">
-                <div class="chart">
-                  <canvas id="areaChart" style="height:250px"></canvas>
+            </section>
+        </tab>
+        <tab heading="ข้อมูลปัจจุบัน" id="tab2">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- AREA CHART -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Area Chart</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="chart">
+                                    <canvas id="areaChart" style="height:250px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </tab>
-    <tab heading="Basic Title 2">Basic content 2</tab>
-  </tabset>
-
-
+            </section>
+        </tab>
+        <tab heading="Basic Title 2" id="tab3">Basic content 2</tab>
+    </tabset>
 </div>
