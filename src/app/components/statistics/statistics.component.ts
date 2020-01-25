@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { TemplateRef, ViewChild } from '@angular/core';
+import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-statistics',
@@ -7,11 +9,11 @@ import { Component, OnInit, AfterViewInit} from '@angular/core';
 })
 export class StatisticsComponent implements AfterViewInit, OnInit{
 
+  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   constructor() { }
 
   ngOnInit() {
-  this.ngAfterViewInit();
- }
+  }
 
 
   ngAfterViewInit(): void {
@@ -20,7 +22,16 @@ export class StatisticsComponent implements AfterViewInit, OnInit{
     const script = document.createElement('script');
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
-
+  }
+  SelectNext2(tabId: number){ 
+    this.staticTabs.tabs[tabId].disabled = false;
+    this.staticTabs.tabs[tabId].active = true;
+    if(tabId == 0){
+      this.ngAfterViewInit();
+    }
+    this.staticTabs.tabs[0].disabled = true;
+    this.staticTabs.tabs[1].disabled = true;
+    this.staticTabs.tabs[2].disabled = true;
   }
 
 }
