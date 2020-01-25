@@ -1,0 +1,9 @@
+#area{
+    display: block;
+    margin: auto;
+}
+#search{
+    width: 90px;
+    margin-top: 20px;
+    font-size: 17px;
+}

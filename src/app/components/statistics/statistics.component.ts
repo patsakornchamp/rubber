@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
 
@@ -7,11 +7,11 @@ import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
-export class StatisticsComponent implements AfterViewInit, OnInit{
+export class StatisticsComponent implements AfterViewInit, OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   constructor() { }
-
+  test = ["แปลงA", "แปลงB", "แปลงC"];
   ngOnInit() {
   }
 
@@ -23,15 +23,21 @@ export class StatisticsComponent implements AfterViewInit, OnInit{
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
   }
-  SelectNext2(tabId: number){ 
+  SelectNext2(tabId: number) {
     this.staticTabs.tabs[tabId].disabled = false;
     this.staticTabs.tabs[tabId].active = true;
-    if(tabId == 0){
+    if (tabId == 0) {
       this.ngAfterViewInit();
     }
     this.staticTabs.tabs[0].disabled = true;
     this.staticTabs.tabs[1].disabled = true;
     this.staticTabs.tabs[2].disabled = true;
+  }
+  next(e, id) {
+    console.log('0000000')
+    if (e.key == 'Enter') {
+      document.getElementById(id).focus();
+    }
   }
 
 }

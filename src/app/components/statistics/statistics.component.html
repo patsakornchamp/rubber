@@ -1,60 +1,109 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
 <div class="content-wrapper">
-    <!-- /.content -->
-    <button class="button" (click)="SelectNext2(0)">ข้อมูลย้อนหลัง</button>
-    <button class="button" (click)="SelectNext2(1)">ข้อมูลปัจจุบัน</button>
-    <button class="button" (click)="SelectNext2(2)">Basic Title 2</button>
-    <tabset style="font-size: 20px;" #staticTabs>
-        <tab heading="" id="1">
-            <section class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- AREA CHART -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Area Chart</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div class="chart">
-                                    <canvas id="areaChart" style="height:250px"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </tab>
-        <tab heading="" id="2">
-            <section class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- AREA CHART -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Area Chart2</h3>
+  <section class="content-header">
+    <h1>
+      สถิติ
+      <small>ข้อมูลย้อนหลัง</small>
+    </h1>
+  </section>
+  <!-- /.content -->
+  <!-- <button class="button" (click)="SelectNext2(0)">ข้อมูลย้อนหลัง</button>
+  <button class="button" (click)="SelectNext2(1)">ข้อมูลปัจจุบัน</button>
+  <button class="button" (click)="SelectNext2(2)">Basic Title 2</button> -->
+  <tabset #staticTabs style="font-size:15px;">
+    <tab heading="รายแปลง" id="1">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+            <label>เลือกแปลง</label>
+            <select class="form-control select2" style="width: 100%;font-size: 13px;">
+              <option selected="selected">---เลือก---</option>
+              <option *ngFor="let item of test">{{item}}</option>
+              <!-- <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option> -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group" style="font-size: 15px;">
+            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
+              (click)="searchPic()">
+              <span class="md-ripple"></span>ค้นหา
+            </button>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="รายต้น" id="2">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+            <label>เลือกแปลง</label>
+            <select class="form-control select2" style="width: 100%;font-size: 13px;">
+              <option selected="selected">--->>>เลือก---</option>
+              <option *ngFor="let item of test">{{item}}</option>
+              <!-- <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option> -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group" style="font-size: 15px;">
+            <label>กรอกแถว</label>
+            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001" style="text-align:right"
+              (keyup)="next($event,'002')">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group" style="font-size: 15px;">
+            <label>กรอกหลัก</label>
+            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right" id="002"
+              (keyup)="next($event,'search')">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group" style="font-size: 15px;">
+            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
+              (click)="searchPic()">
+              <span class="md-ripple"></span>ค้นหา
+            </button>
+          </div>
+        </div>
+      </div>
 
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div class="chart">
-                                    <canvas id="areaChart" style="height:250px"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </tab>
-        <tab heading="" id="3">
-
-        </tab>
-    </tabset>
+    </tab>
+    <tab heading="" id="3">
+    </tab>
+  </tabset>
+  <!-- กราฟ -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-11" id="area">
+        <!-- AREA CHART -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Area Chart</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="chart" style="font-size: 25px;">
+              <canvas id="areaChart" style="height:250px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
