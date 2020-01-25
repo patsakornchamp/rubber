@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppmenuFarmerComponent implements OnInit {
 
   constructor(private router: Router) { }
-
+  name:string="Patsakorn"
   ngOnInit() {
   }
   Click_statistics(){

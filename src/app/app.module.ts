@@ -23,7 +23,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import {AgmCoreModule} from '@agm/core';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
-import { TabsModule } from 'ngx-bootstrap/tabs'
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { StatisticsNowComponent } from './components/statistics-now/statistics-now.component'
 
 //ส่วนเรียกใช้หน้าเพจ
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:'farmer',component:FarmerComponent},
   {path:'register',component:RegisterComponent},
   {path:'statistics',component:StatisticsComponent},
+  {path:'statistics-now',component:StatisticsNowComponent},
   {path:'manage-rubber-farmer',component:ManageRubberFarmerComponent},
 
   {path:'**',redirectTo: '/login'}
@@ -50,6 +52,7 @@ const routes: Routes = [
     AppheaderFarmerComponent,
     StatisticsComponent,
     ManageRubberFarmerComponent,
+    StatisticsNowComponent,
     
   ],
   imports: [
