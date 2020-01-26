@@ -8,4 +8,77 @@
         <small>ข้อมูลปัจจุบัน</small>
       </h1>
     </section>
+    <tabset #staticTabs style="font-size:15px;">
+        <tab heading="รายแปลง" id="1">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+                <label>เลือกแปลง</label>
+                <select class="form-control select2" style="width: 100%;font-size: 13px;">
+                  <option selected="selected">---เลือก---</option>
+                  <option *ngFor="let item of test">{{item}}</option>
+                  <!-- <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option> -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group" style="font-size: 15px;">
+                <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
+                  (click)="searchPic()">
+                  <span class="md-ripple"></span>ค้นหา
+                </button>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="รายต้น" id="2">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+                <label>เลือกแปลง</label>
+                <select class="form-control select2" style="width: 100%;font-size: 13px;">
+                  <option selected="selected">---เลือก---</option>
+                  <option *ngFor="let item of test">{{item}}</option>
+                  <!-- <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option> -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group" style="font-size: 15px;">
+                <label>กรอกแถว</label><br>
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001" style="text-align:right"
+                  (keyup)="next($event,'002')">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group" style="font-size: 15px;">
+                <label>กรอกหลัก</label><br>
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right" id="002"
+                  (keyup)="next($event,'search')">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group" style="font-size: 15px;">
+                <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
+                  (click)="searchPic()">
+                  <span class="md-ripple"></span>ค้นหา
+                </button>
+              </div>
+            </div>
+          </div>
+    
+        </tab>
+        <tab heading="" id="3">
+        </tab>
+      </tabset>
 </div>

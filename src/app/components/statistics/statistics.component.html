@@ -58,14 +58,14 @@
         </div>
         <div class="col-md-2">
           <div class="form-group" style="font-size: 15px;">
-            <label>กรอกแถว</label>
+            <label>กรอกแถว</label><br>
             <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001" style="text-align:right"
               (keyup)="next($event,'002')">
           </div>
         </div>
         <div class="col-md-2">
           <div class="form-group" style="font-size: 15px;">
-            <label>กรอกหลัก</label>
+            <label>กรอกหลัก</label><br>
             <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right" id="002"
               (keyup)="next($event,'search')">
           </div>

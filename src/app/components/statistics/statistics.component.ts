@@ -39,5 +39,9 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       document.getElementById(id).focus();
     }
   }
+  searchPic(){
+    console.log("22222222222222222");
+    this.ngAfterViewInit();
+  }
 
 }
