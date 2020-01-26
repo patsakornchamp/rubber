@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-statistics',
@@ -41,7 +42,14 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   }
   searchPic(){
     console.log("22222222222222222");
+    // Swal.fire({
+    //   icon: 'error',
+    //   title: 'Oops...',
+    //   text: 'Something went wrong!',
+    //   footer: '<a href>Why do I have this issue?</a>'
+    // })
     this.ngAfterViewInit();
+
   }
 
 }
