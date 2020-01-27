@@ -15,8 +15,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   test = ["แปลงA", "แปลงB", "แปลงC"];
   ngOnInit() {
   }
-
-
+  
   ngAfterViewInit(): void {
     //กราฟ
     console.log("55555555555");
