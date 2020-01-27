@@ -15,7 +15,10 @@ export class AuthService {
 
   public isLoggedIn(){
     return localStorage.getItem(this.accesskey) !== null;
+  }
 
+  public getLoggedIn(){
+    return localStorage.getItem(this.accesskey);
   }
 
   public logout(){
