@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-statistics',
