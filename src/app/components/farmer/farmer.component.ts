@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { AccountService } from '../services/account_services';
 @Component({
   selector: 'app-farmer',
   templateUrl: './farmer.component.html',
@@ -7,9 +8,10 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 
 export class FarmerComponent implements AfterViewInit, OnInit {
   //mapสามารถเลือกจุดบนแผนที่ได้
-latitude = 14.020740;
-longitude = 99.991194;
-locationChosen =false;
+  
+  latitude = 14.020740;
+  longitude = 99.991194;
+  locationChosen =false;
 
   A= [14.020740,];
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
@@ -41,9 +43,16 @@ locationChosen =false;
     //googlemapp
     this.mapInitializer();
   }
-  constructor() { }
+
+  dataUser: any;
+  name: String;
+  constructor(
+    private data_User: AccountService
+    ) { }
 
   ngOnInit() {
+    this.dataUser = this.data_User.getUser();
+    this.name = this.dataUser['name'];
   }
 
   mapInitializer() {

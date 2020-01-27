@@ -1,42 +1,41 @@
 <ng-template #Profile>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Profile</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Profile</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    This is a modal.
-  </div>
+    </div>
+    <div class="modal-body">
+        This is a modal.
+    </div>
 </ng-template>
 <header class="main-header">
 
-  <!-- Logo -->
-  <a href="index2.html" class="logo">
-    <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>R</b>BT</span>
-    <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Rubber </b>Tree</span>
-  </a>
-
-  <!-- Header Navbar: style can be found in header.less -->
-  <nav class="navbar navbar-static-top" style="height: 10px;">
-    <!-- Sidebar toggle button-->
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"
-      style=" margin-left: -3%; margin-right: 90%;margin-top: -4px;">
-      <span class="sr-only">Toggle navigation</span>
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>R</b>BT</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Rubber </b>Tree</span>
     </a>
-    <!-- Navbar Right Menu -->
-    <div class="navbar-custom-menu">
-      <!-- User Account: style can be found in dropdown.less -->
-      <a href="#">
-        <div class="pull-right">
-          <a href="#" class="btn btn-block btn-danger">Sign out</a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" style="height: 10px;">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style=" margin-left: -3%; margin-right: 90%;margin-top: -4px;">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <!-- User Account: style can be found in dropdown.less -->
+            <a href="#">
+                <div class="pull-right">
+                    <a (click)="logout()" class="btn btn-block btn-danger">Sign out</a>
+                </div>
+                <span class="hidden-xs">{{name}}</span>
+            </a>
         </div>
-        <span class="hidden-xs">{{name}}</span>
-      </a>
-    </div>
 
 
-  </nav>
+    </nav>
 </header>

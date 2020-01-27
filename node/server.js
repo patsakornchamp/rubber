@@ -3,6 +3,10 @@ const app = express()
 
 const mongo = require('mongodb').MongoClient
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
 let url = "mongodb://localhost:27017/rubberDB";
 
 app.use(function(req, res, next) {
@@ -12,58 +16,20 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-
-app.get('/api/get', (req, res) => {
+//login
+app.post('/api/get/login', (req, res) => {
     mongo.connect(url, { useUnifiedTopology: true }, function(err, data) {
         if (err) throw err
         else {
-            let db = data.db("rubberDB")
+            let username = String(req.body.username);
+            let password = String(req.body.password);
             let infoma = {
-                SerialNumber: 3,
-                id: 4
+                username: username,
+                password: password
             }
             console.log(infoma);
-            db.collection("rfid").insertOne(infoma, function(err, res) {
-                if (err) throw err;
-                data.close();
-            });
-        }
-        res.end()
-    })
-});
-app.get('/api/get/rfid', (req, res) => {
-    mongo.connect(url, { useUnifiedTopology: true }, function(err, data) {
-        if (err) throw err
-        else {
-            let db = data.db("rubberDB")
-            db.collection("rfid").findOne({}, function(err, doc) {
-                if (err) throw err;
-                console.log(doc);
-                res.json({ result: "success", data: doc });
-            });
-        }
-    })
-});
-app.get('/api/get/rfidAll', (req, res) => {
-    mongo.connect(url, { useUnifiedTopology: true }, function(err, data) {
-        if (err) throw err
-        else {
-            let db = data.db("rubberDB")
-            db.collection("rfid").find({}).toArray(function(err, doc) {
-                if (err) throw err;
-                console.log(doc);
-                res.json({ result: "success", data: doc });
-            });
-        }
-    })
-});
-app.get('/api/get/rfid/id', (req, res) => {
-    mongo.connect(url, { useUnifiedTopology: true }, function(err, data) {
-        if (err) throw err
-        else {
             let db = data.db("rubberDB");
-            let xid = 2;
-            db.collection("rfid").findOne({ id: xid }, function(err, doc) {
+            db.collection('users').findOne({ username: username, password: password }, function(err, doc) {
                 if (err) throw err;
                 console.log(doc);
                 res.json({ result: "success", data: doc });
@@ -71,17 +37,47 @@ app.get('/api/get/rfid/id', (req, res) => {
         }
     })
 });
-app.get('/api/get/rfid/idName', (req, res) => {
+//register
+app.post('/api/get/register', (req, res) => {
     mongo.connect(url, { useUnifiedTopology: true }, function(err, data) {
         if (err) throw err
         else {
+            console.log(req.body);
+            let username = req.body.username;
+            let password = req.body.password;
+            let name = req.body.name;
+            let address = req.body.address;
+            let phone = req.body.phone;
+            let statusUser = req.body.statusUser;
+            let infoma = {
+                username: username,
+                password: password,
+                name: name,
+                address: address,
+                statusUser: statusUser,
+                phone: phone
+            }
             let db = data.db("rubberDB");
-            let xid = 2;
-            let SerialNumber = 4;
-            db.collection("rfid").find({ id: xid, SerialNumber: SerialNumber }).toArray(function(err, doc) {
+            db.collection("users").insertOne(infoma, function(err, res) {
+                if (err) throw err;
+                return { result: "success" };
+            });
+        }
+    })
+});
+//getUser
+app.post('/api/get/user', (req, res) => {
+    mongo.connect(url, { useUnifiedTopology: true }, function(err, data) {
+        if (err) throw err
+        else {
+            let id = String(req.body.id);
+            console.log("id");
+            console.log(id);
+            let db = data.db("rubberDB");
+            db.collection('users').findOne({ _id: id }, function(err, doc) {
                 if (err) throw err;
                 console.log(doc);
-                res.json({ result: "success", data: doc });
+                res.json({ data: doc });
             });
         }
     })

@@ -10,15 +10,15 @@ export class AuthService {
   constructor() { }
 
   public login(access_token: string){
-    localStorage.setItem('ACCESS_TOKEN', "access_token");
+    localStorage.setItem(this.accesskey, access_token);
   }
 
   public isLoggedIn(){
-    return localStorage.getItem('ACCESS_TOKEN') !== null;
+    return localStorage.getItem(this.accesskey) !== null;
 
   }
 
   public logout(){
-    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem(this.accesskey);
   }
 }

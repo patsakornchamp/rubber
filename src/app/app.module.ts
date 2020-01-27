@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppfooterComponent } from './components/appfooter/appfooter.component';
 import { AppsettingComponent } from './components/appsetting/appsetting.component';
@@ -13,7 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 //Routerเรียกใช้หน้าเพจ
 import { Routes,RouterModule } from '@angular/router';
 //ng-model
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FarmerComponent } from './components/farmer/farmer.component';
 import { AppmenuFarmerComponent } from './components/appmenu-farmer/appmenu-farmer.component';
 import { AppheaderFarmerComponent } from './components/appheader-farmer/appheader-farmer.component';
@@ -26,18 +27,19 @@ import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/m
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { StatisticsNowComponent } from './components/statistics-now/statistics-now.component'
 
-//ส่วนเรียกใช้หน้าเพจ
-const routes: Routes = [
-  {path: '' ,redirectTo:'/login', pathMatch: 'full'},
-  {path:'login',component:LoginComponent},
-  {path:'farmer',component:FarmerComponent},
-  {path:'register',component:RegisterComponent},
-  {path:'statistics',component:StatisticsComponent},
-  {path:'statistics-now',component:StatisticsNowComponent},
-  {path:'manage-rubber-farmer',component:ManageRubberFarmerComponent},
+import { AccountService } from './components/services/account_services';
 
-  {path:'**',redirectTo: '/login'}
-];
+//ส่วนเรียกใช้หน้าเพจ
+// const routes: Routes = [
+//   {path: '' ,redirectTo:'/login', pathMatch: 'full'},
+//   {path:'login',component:LoginComponent},
+//   {path:'farmer',component:FarmerComponent},
+//   {path:'register',component:RegisterComponent},
+//   {path:'statistics',component:StatisticsComponent},
+//   {path:'statistics-now',component:StatisticsNowComponent},
+//   {path:'manage-rubber-farmer',component:ManageRubberFarmerComponent},
+//   {path:'**',redirectTo: '/login'}
+// ];
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    HttpClientModule,
+    ReactiveFormsModule,
+    // RouterModule.forRoot(routes),
     FormsModule,
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
@@ -67,7 +71,7 @@ const routes: Routes = [
     TabsModule.forRoot()
 
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

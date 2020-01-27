@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from  '../../auth.service';
+import { AccountService } from '../services/account_services';
 
 @Component({
   selector: 'app-login',
@@ -7,27 +11,68 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  dataUser: any;
   Musername: string = "";
   Mpassword: string = "";
-  constructor(private router: Router) { }
+  constructor(
+    private http : HttpClient,
+    private authService: AuthService, 
+    private router: Router, 
+    private formBuilder: FormBuilder,
+    private data_User: AccountService
+    ) { }
+    loginForm: any;
+    isSubmitted  =  false;
+    get formControls() { return this.loginForm.controls; }
 
   ngOnInit() {
-
+    // this.loginForm  =  this.formBuilder.group({
+    //   username: ['', Validators.required],
+    //   password: ['', Validators.required]
+    // });
   }
   Click_sign_In() {
-    // console.log('5555555+');
-    if (this.Musername == "b5920502045" && this.Mpassword == "1234") {
-      this.router.navigate(["/farmer"]);
+    // if (this.Musername == "b5920502045" && this.Mpassword == "1234") {
+    //   this.router.navigate(["/farmer"]);
+    // }
+    // else {
+    //   window.alert("รหัสผ่านไม่ถูกต้อง");
+    // }
+    this.loginForm  =  {
+      username: this.Musername,
+      password: this.Mpassword
+    };
+    console.log(this.loginForm);
+    this.isSubmitted = true;
+    if(this.loginForm.invalid){
+      return;
     }
-    else {
-      window.alert("รหัสผ่านไม่ถูกต้อง");
-    }
+    this.loginDB(this.loginForm);
   }
+
+
   Click_Register(){
-    // console.log('555555555')
-    this.router.navigate(["/register"]);
-
+    this.router.navigateByUrl('/register');
   }
 
+
+  loginDB(loginForm){
+    let data = { 
+      username: loginForm.username,
+      password: loginForm.password
+    };
+    console.log(data);
+    this.http.post<any>('http://localhost:3000/api/get/login/', data).subscribe(result=>{
+      console.log(result);
+      this.dataUser = result['data'];
+      this.data_User.setUser(this.dataUser);
+      if(this.dataUser != null && this.dataUser['statusUser'] == 1){
+        this.authService.login(result['data']['_id']); // setToken
+        this.router.navigateByUrl('/farmer');
+      }
+      else{
+        this.router.navigateByUrl('/login');
+      }
+    });
+  }
 }
