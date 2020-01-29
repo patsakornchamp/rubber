@@ -75,7 +75,8 @@ export class RegisterComponent implements OnInit {
       password: registerData.password,
       name:     registerData.name,
       address:  registerData.address,
-      statusUser: 0,
+      statusUser: registerData.statusUser,
+      statusConfirm : 0,
       phone:    registerData.phone
     };
     console.log(data);

@@ -66,12 +66,25 @@ export class LoginComponent implements OnInit {
       console.log(result);
       this.dataUser = result['data'];
       this.data_User.setUser(this.dataUser);
-      if (this.dataUser != null && this.dataUser['statusUser'] == 1) {
-        this.authService.login(result['data']['_id']); // setToken
-        // this.router.navigateByUrl('/farmer');
-        this.router.navigate(['/farmer']);
-
-
+      if(this.dataUser != null && this.dataUser['statusUser'] == 1){
+        if (this.dataUser['statusUser'] == 1) {
+          this.authService.login(result['data']['_id']); // setToken
+          // this.router.navigateByUrl('/farmer');
+          this.router.navigate(['/farmer']);
+        }
+        else if (this.dataUser['statusUser'] == 2) {
+          this.authService.login(result['data']['_id']); // setToken
+          // this.router.navigateByUrl('/cooperative');
+          this.router.navigate(['/cooperative']);
+        }else if (this.dataUser['statusUser'] == 3) {
+          this.authService.login(result['data']['_id']); // setToken
+          // this.router.navigateByUrl('/guestuser');
+          this.router.navigate(['/guestuser']);
+        }else if (this.dataUser['statusUser'] == 4) {
+          this.authService.login(result['data']['_id']); // setToken
+          // this.router.navigateByUrl('/admin');
+          this.router.navigate(['/admin']);
+        }
       }
       else {
         this.router.navigateByUrl('/login');
