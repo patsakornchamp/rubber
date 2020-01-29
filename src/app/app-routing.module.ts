@@ -13,7 +13,6 @@ import { AppmenuComponent } from './components/appmenu/appmenu.component';
 import { AppheaderComponent } from './components/appheader/appheader.component';
 import { AppmenuFarmerComponent } from './components/appmenu-farmer/appmenu-farmer.component';
 import { AppheaderAdminComponent } from './components/appheader-admin/appheader-admin.component';
-import { AppheaderAdmincooperativeComponent } from './components/appheader-cooperative/appheader-admincooperative.component';
 import { AppheaderGuestUserComponent } from './components/appheader-guest-user/appheader-guest-user.component';
 import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.component';
 import { AppmenuCooperativeComponent } from './components/appmenu-cooperative/appmenu-cooperative.component';
@@ -36,7 +35,7 @@ const routes: Routes = [
   { path: 'appmenu-farmer', component: AppmenuFarmerComponent, canActivate: [AuthGuard] },
   
   { path: 'appheader-admin', component: AppheaderAdminComponent, canActivate: [AuthGuard] },
-  { path: 'appheader-cooperative', component: AppheaderAdmincooperativeComponent, canActivate: [AuthGuard] },
+  // { path: 'appheader-cooperative', component: AppheaderAdmincooperativeComponent, canActivate: [AuthGuard] },
   { path: 'appheader-guset-user', component: AppheaderGuestUserComponent, canActivate: [AuthGuard] },
   { path: 'appmenu-admin', component: AppmenuAdminComponent, canActivate: [AuthGuard] },
   { path: 'appmenu-cooperative', component: AppmenuCooperativeComponent, canActivate: [AuthGuard] },

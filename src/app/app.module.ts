@@ -32,11 +32,11 @@ import { CooperativePageComponent } from './components/page-cooperative/cooperat
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AdminPageComponent } from './components/page-admin/admin-page.component';
 import { AppheaderAdminComponent } from './components/appheader-admin/appheader-admin.component';
-import { AppheaderAdmincooperativeComponent } from './components/appheader-cooperative/appheader-admincooperative.component';
 import { AppheaderGuestUserComponent } from './components/appheader-guest-user/appheader-guest-user.component';
 import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appmenu-guest-user.component';
 import { AppmenuCooperativeComponent } from './components/appmenu-cooperative/appmenu-cooperative.component';
 import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.component';
+import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
@@ -68,11 +68,12 @@ import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.
     GuestUserPageComponent,
     AdminPageComponent,
     AppheaderAdminComponent,
-    AppheaderAdmincooperativeComponent,
+    
     AppheaderGuestUserComponent,
     AppmenuGuestUserComponent,
     AppmenuCooperativeComponent,
     AppmenuAdminComponent,
+    AppheaderCooperativeComponent,
     
   ],
   imports: [
