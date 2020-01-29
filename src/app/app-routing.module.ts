@@ -12,6 +12,15 @@ import { AppheaderFarmerComponent } from './components/appheader-farmer/appheade
 import { AppmenuComponent } from './components/appmenu/appmenu.component';
 import { AppheaderComponent } from './components/appheader/appheader.component';
 import { AppmenuFarmerComponent } from './components/appmenu-farmer/appmenu-farmer.component';
+import { AppheaderAdminComponent } from './components/appheader-admin/appheader-admin.component';
+import { AppheaderAdmincooperativeComponent } from './components/appheader-cooperative/appheader-admincooperative.component';
+import { AppheaderGuestUserComponent } from './components/appheader-guest-user/appheader-guest-user.component';
+import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.component';
+import { AppmenuCooperativeComponent } from './components/appmenu-cooperative/appmenu-cooperative.component';
+import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appmenu-guest-user.component';
+import { AdminPageComponent } from './components/page-admin/admin-page.component';
+import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
+import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -24,7 +33,18 @@ const routes: Routes = [
   { path: 'appheader-farmer', component: AppheaderFarmerComponent, canActivate: [AuthGuard] },
   { path: 'appmenu', component: AppmenuComponent, canActivate: [AuthGuard] },
   { path: 'appheader', component: AppheaderComponent, canActivate: [AuthGuard] },
-  { path: 'appmenu-farmer', component: AppmenuFarmerComponent, canActivate: [AuthGuard] }
+  { path: 'appmenu-farmer', component: AppmenuFarmerComponent, canActivate: [AuthGuard] },
+  
+  { path: 'appheader-admin', component: AppheaderAdminComponent, canActivate: [AuthGuard] },
+  { path: 'appheader-cooperative', component: AppheaderAdmincooperativeComponent, canActivate: [AuthGuard] },
+  { path: 'appheader-guset-user', component: AppheaderGuestUserComponent, canActivate: [AuthGuard] },
+  { path: 'appmenu-admin', component: AppmenuAdminComponent, canActivate: [AuthGuard] },
+  { path: 'appmenu-cooperative', component: AppmenuCooperativeComponent, canActivate: [AuthGuard] },
+  { path: 'appmenu-guset-user', component: AppmenuGuestUserComponent, canActivate: [AuthGuard] },
+  
+  { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
+  { path: 'cooperative', component: CooperativePageComponent, canActivate: [AuthGuard] },
+  { path: 'guset-user', component: GuestUserPageComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

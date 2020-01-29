@@ -78,8 +78,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/cooperative']);
         }else if (this.dataUser['statusUser'] == 3) {
           this.authService.login(result['data']['_id']); // setToken
-          // this.router.navigateByUrl('/guestuser');
-          this.router.navigate(['/guestuser']);
+          // this.router.navigateByUrl('/guset-user');
+          this.router.navigate(['/guset-user']);
         }else if (this.dataUser['statusUser'] == 4) {
           this.authService.login(result['data']['_id']); // setToken
           // this.router.navigateByUrl('/admin');
