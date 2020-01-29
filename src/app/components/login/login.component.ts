@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
         }else if (this.dataUser['statusUser'] == 4) {
           this.authService.login(result['data']['_id']); // setToken
           // this.router.navigateByUrl('/admin');
-          this.router.navigate(['/page-admin']);
+          this.router.navigate(['/admin']);
         }
       }
       else {

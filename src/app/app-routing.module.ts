@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'appmenu-cooperative', component: AppmenuCooperativeComponent, canActivate: [AuthGuard] },
   { path: 'appmenu-guset-user', component: AppmenuGuestUserComponent, canActivate: [AuthGuard] },
   
-  { path: 'page-admin', component: AdminPageComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: 'cooperative', component: CooperativePageComponent, canActivate: [AuthGuard] },
   { path: 'guset-user', component: GuestUserPageComponent, canActivate: [AuthGuard] },
 ];
