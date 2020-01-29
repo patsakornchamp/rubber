@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
       console.log(result);
       this.dataUser = result['data'];
       this.data_User.setUser(this.dataUser);
-      if(this.dataUser != null && this.dataUser['statusUser'] == 1){
+      if(this.dataUser != null && this.dataUser['statusConfirm'] == 1){
         if (this.dataUser['statusUser'] == 1) {
           this.authService.login(result['data']['_id']); // setToken
           // this.router.navigateByUrl('/farmer');
