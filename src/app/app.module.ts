@@ -28,6 +28,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { StatisticsNowComponent } from './components/statistics-now/statistics-now.component'
 
 import { AccountService } from './components/services/account_services';
+import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
+import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
+import { AdminPageComponent } from './components/page-admin/admin-page.component';
 
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
@@ -55,6 +58,9 @@ import { AccountService } from './components/services/account_services';
     StatisticsComponent,
     ManageRubberFarmerComponent,
     StatisticsNowComponent,
+    CooperativePageComponent,
+    GuestUserPageComponent,
+    AdminPageComponent,
     
   ],
   imports: [
