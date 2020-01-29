@@ -74,16 +74,16 @@ export class LoginComponent implements OnInit {
         }
         else if (this.dataUser['statusUser'] == 2) {
           this.authService.login(result['data']['_id']); // setToken
-          // this.router.navigateByUrl('/cooperative');
-          this.router.navigate(['/cooperative']);
+          // this.router.navigateByUrl('/page-cooperative');
+          this.router.navigate(['/page-cooperative']);
         }else if (this.dataUser['statusUser'] == 3) {
           this.authService.login(result['data']['_id']); // setToken
-          // this.router.navigateByUrl('/guset-user');
-          this.router.navigate(['/guset-user']);
+          // this.router.navigateByUrl('/page-guset-user');
+          this.router.navigate(['/page-guset-user']);
         }else if (this.dataUser['statusUser'] == 4) {
           this.authService.login(result['data']['_id']); // setToken
-          // this.router.navigateByUrl('/admin');
-          this.router.navigate(['/admin']);
+          // this.router.navigateByUrl('/page-admin');
+          this.router.navigate(['/page-admin']);
         }
       }
       else {
