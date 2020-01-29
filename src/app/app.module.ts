@@ -29,7 +29,7 @@ import { StatisticsNowComponent } from './components/statistics-now/statistics-n
 
 import { AccountService } from './components/services/account_services';
 
-//ส่วนเรียกใช้หน้าเพจ
+// ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
 //   {path: '' ,redirectTo:'/login', pathMatch: 'full'},
 //   {path:'login',component:LoginComponent},

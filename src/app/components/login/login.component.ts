@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from  '../../auth.service';
+import { AuthService } from '../../auth.service';
 import { AccountService } from '../services/account_services';
 
 @Component({
@@ -15,15 +15,15 @@ export class LoginComponent implements OnInit {
   Musername: string = "";
   Mpassword: string = "";
   constructor(
-    private http : HttpClient,
-    private authService: AuthService, 
-    private router: Router, 
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router,
     private formBuilder: FormBuilder,
     private data_User: AccountService
-    ) { }
-    loginForm: any;
-    isSubmitted  =  false;
-    get formControls() { return this.loginForm.controls; }
+  ) { }
+  loginForm: any;
+  isSubmitted = false;
+  get formControls() { return this.loginForm.controls; }
 
   ngOnInit() {
     // this.loginForm  =  this.formBuilder.group({
@@ -38,39 +38,42 @@ export class LoginComponent implements OnInit {
     // else {
     //   window.alert("รหัสผ่านไม่ถูกต้อง");
     // }
-    this.loginForm  =  {
+    this.loginForm = {
       username: this.Musername,
       password: this.Mpassword
     };
     console.log(this.loginForm);
     this.isSubmitted = true;
-    if(this.loginForm.invalid){
+    if (this.loginForm.invalid) {
       return;
     }
     this.loginDB(this.loginForm);
   }
 
 
-  Click_Register(){
+  Click_Register() {
     this.router.navigateByUrl('/register');
   }
 
 
-  loginDB(loginForm){
-    let data = { 
+  loginDB(loginForm) {
+    let data = {
       username: loginForm.username,
       password: loginForm.password
     };
     console.log(data);
-    this.http.post<any>('http://localhost:3000/api/get/login/', data).subscribe(result=>{
+    this.http.post<any>('http://localhost:3000/api/get/login/', data).subscribe(result => {
       console.log(result);
       this.dataUser = result['data'];
       this.data_User.setUser(this.dataUser);
-      if(this.dataUser != null && this.dataUser['statusUser'] == 1){
+      if (this.dataUser != null && this.dataUser['statusUser'] == 1) {
         this.authService.login(result['data']['_id']); // setToken
-        this.router.navigateByUrl('/farmer');
+        // this.router.navigateByUrl('/farmer');
+        this.router.navigate(['/farmer']);
+
+
       }
-      else{
+      else {
         this.router.navigateByUrl('/login');
       }
     });

@@ -45,14 +45,21 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   }
 
   dataUser: any;
-  name: String;
+  name: any;
+  test = ["แปลงA", "แปลงB", "แปลงC"];
+
   constructor(
     private data_User: AccountService
     ) { }
 
   ngOnInit() {
-    this.dataUser = this.data_User.getUser();
-    this.name = this.dataUser['name'];
+    // if(this.data_User.getUser() != null){
+    //   this.dataUser = this.data_User.getUser();
+    //   this.name = this.dataUser['name'];
+    // }
+    // else{
+    //   this.name = "null";
+    // }
   }
 
   mapInitializer() {
