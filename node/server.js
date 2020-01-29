@@ -49,12 +49,14 @@ app.post('/api/get/register', (req, res) => {
             let address = req.body.address;
             let phone = req.body.phone;
             let statusUser = req.body.statusUser;
+            let statusConfirm = req.body.statusConfirm;
             let infoma = {
                 username: username,
                 password: password,
                 name: name,
                 address: address,
                 statusUser: statusUser,
+                statusConfirm: statusConfirm,
                 phone: phone
             }
             let db = data.db("rubberDB");
