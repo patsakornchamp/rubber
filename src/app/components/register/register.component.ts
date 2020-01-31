@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { MustMatch } from '../_helper/must-match.validator';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-register',
@@ -13,12 +14,13 @@ export class RegisterComponent implements OnInit {
   registerForm: any;
   name: string = "";
   username: string = "";
-  password: string = "";
+  password: any ;
+  Repassword: any ;
   address: string = "";
   phone: string = "";
   statusUser: string = "";
   constructor(
-    private http : HttpClient,
+    private http: HttpClient,
     private router: Router,
     private formBuilder: FormBuilder
   ) { }
@@ -43,14 +45,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registerForm  =  {
+    this.registerForm = {
       name: this.name,
       username: this.username,
       password: this.password,
       address: this.address,
       phone: this.phone,
       statusUser: this.statusUser,
-      statusConfirm : 0,
+      statusConfirm: 0,
     };
     if (
       this.name == null || this.name == "" ||
@@ -59,30 +61,43 @@ export class RegisterComponent implements OnInit {
       this.address == null || this.address == "" ||
       this.phone == null || this.phone == "" ||
       this.statusUser == null || this.statusUser == ""
-      ) {
-        alert('กรูณากรอกข้อมูลให้ครบ')
-        return;
-      }
-      else{
-        this.register(this.registerForm)
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm))
-        this.router.navigateByUrl('/login');
-      }
+    ) {
+      alert('กรูณากรอกข้อมูลให้ครบ')
+      return;
+    }
+    else {
+      this.register(this.registerForm)
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm))
+      this.router.navigateByUrl('/login');
+    }
   }
 
-  register(registerData){
-    let data = { 
+  register(registerData) {
+    let data = {
       username: registerData.username,
       password: registerData.password,
-      name:     registerData.name,
-      address:  registerData.address,
+      name: registerData.name,
+      address: registerData.address,
       statusUser: registerData.statusUser,
-      statusConfirm : 0,
-      phone:    registerData.phone
+      statusConfirm: 0,
+      phone: registerData.phone
     };
     console.log(data);
-    this.http.post<any>('http://localhost:3000/api/get/register', data).subscribe(result=>{
+    this.http.post<any>('http://localhost:3000/api/get/register', data).subscribe(result => {
       alert(JSON.stringify(result));
     });
+  }
+  Cpassword() {
+    console.log(this.Repassword);
+
+    if (this.password != this.Repassword) {
+      document.getElementById('05').focus();
+      this.Repassword = null;
+      Swal.fire({
+        icon: 'error',
+        title: 'รหัสผ่านไม่ตรงกัน',
+      })
+
+    }
   }
 }

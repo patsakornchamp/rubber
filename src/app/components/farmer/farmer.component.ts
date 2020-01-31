@@ -8,12 +8,10 @@ import { AccountService } from '../services/account_services';
 
 export class FarmerComponent implements AfterViewInit, OnInit {
   //mapสามารถเลือกจุดบนแผนที่ได้
-  
-  latitude = 14.020740;
-  longitude = 99.991194;
-  locationChosen =false;
+  // latitude = 14.020740;
+  // longitude = 99.991194;
+  // locationChosen =false;
 
-  A= [14.020740,];
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
   map: google.maps.Map;
   //ละติจูท
@@ -24,7 +22,9 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   //   this.SEARCH[i] = this.LD_DET2[i];
   // }
   coordinates = new google.maps.LatLng(this.lat, this.lng);
-
+ info = new google.maps.InfoWindow({
+content: '<div>fffffffffffffffffffffffffffffffffffffffffffff</div>'
+});
   mapOptions: google.maps.MapOptions = {
     center: this.coordinates,
     zoom:15,
@@ -32,8 +32,15 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   marker = new google.maps.Marker({
     position: this.coordinates,
     map: this.map,
+    // title: this.info
   });
- 
+
+
+// test =new google.maps.event.addListener(
+//   this.marker,'click'{
+
+// });
+
 
   ngAfterViewInit(): void {
     //กราฟ
@@ -64,15 +71,16 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   mapInitializer() {
     this.map = new google.maps.Map(this.gmap.nativeElement,
-      this.mapOptions);
+    this.mapOptions);
     this.marker.setMap(this.map);
-
+    this.info.open(this.map,this.marker);
+    // google.map.event.addListener(marker,'click',function()){}
   }
-  onChoseLocation(event){
-    console.log(event);
-    this.latitude = event.coords.lat;
-    this.longitude = event.coords.lng;
-    this.locationChosen = true;
-  }
+  // onChoseLocation(event){
+  //   console.log(event);
+  //   this.latitude = event.coords.lat;
+  //   this.longitude = event.coords.lng;
+  //   this.locationChosen = true;
+  // }
 
 }
