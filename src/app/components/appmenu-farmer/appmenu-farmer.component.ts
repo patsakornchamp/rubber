@@ -11,20 +11,12 @@ export class AppmenuFarmerComponent implements OnInit {
 
   constructor(private router: Router,private data_User: AccountService ) { }
   name:string;
-  add:string;
-  user:string;
-  pass:string;
   dataUser: any;
 
   ngOnInit() {
     if(this.data_User.getUser() != null){
       this.dataUser = this.data_User.getUser();
       this.name = this.dataUser['name'];
-
-      this.user = this.dataUser['username'];
-      this.add = this.dataUser['address'];
-      this.pass = this.dataUser['password'];
-
     }
     else{
       this.name = "ไม่มีข้อมูล";
