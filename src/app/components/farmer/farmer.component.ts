@@ -115,6 +115,10 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.locationChosen = true;
   }
 
+  clickedMarker(m,i){
+
+  }
+
 
   // onChoseLocation(event){
   //   console.log(event);
