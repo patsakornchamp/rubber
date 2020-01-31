@@ -49,8 +49,7 @@ export class RegisterComponent implements OnInit {
       password: this.password,
       address: this.address,
       phone: this.phone,
-      statusUser: this.statusUser,
-      statusConfirm : 0,
+      statusUser: this.statusUser
     };
     if (
       this.name == null || this.name == "" ||
