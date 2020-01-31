@@ -9,8 +9,11 @@ import { Marker } from '@agm/core';
 
 export class FarmerComponent implements AfterViewInit, OnInit {
   //mapสามารถเลือกจุดบนแผนที่ได้
-  zoom:number = 10;
-  
+  zoom: number = 15;
+  //ละติจูท
+  lat = 14.020740;
+  //ลองติจูท
+  lng = 99.991194;
   markers: marker[] = [
     {
       name: 'champ',
@@ -31,10 +34,10 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       draggable: true
     },
   ]
- 
+
   latitude = 14.020740;
   longitude = 99.991194;
-  locationChosen =false;
+  locationChosen = false;
 
 
   // @ViewChild('map', { static: false }) gmap: ElementRef;
@@ -42,10 +45,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   map: google.maps.Map;
-  //ละติจูท
-  lat = 14.020740;
-  //ลองติจูท
-  lng = 99.991194;
+
   // for (let i = 0; i < A.length; i++) {
   //   this.SEARCH[i] = this.LD_DET2[i];
   // }  
@@ -61,12 +61,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     map: this.map,
   });
 
-
-
-  // test =new google.maps.event.addListener(
-  //   this.marker,'click'{
-
-  // });
 
 
 
@@ -89,13 +83,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   ) { }
 
   ngOnInit() {
-    // if(this.data_User.getUser() != null){
-    //   this.dataUser = this.data_User.getUser();
-    //   this.name = this.dataUser['name'];
-    // }
-    // else{
-    //   this.name = "null";
-    // }
+
   }
 
   mapInitializer() {
@@ -108,16 +96,12 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.marker.setMap(this.map);
 
   }
-  onChoseLocation(event) {
-    console.log(event);
-    this.latitude = event.coords.lat;
-    this.longitude = event.coords.lng;
-    this.locationChosen = true;
-  }
-
-  clickedMarker(m,i){
-
-  }
+  // onChoseLocation(event) {
+  //   console.log(event);
+  //   this.latitude = event.coords.lat;
+  //   this.longitude = event.coords.lng;
+  //   this.locationChosen = true;
+  // }
 
 
   // onChoseLocation(event){
@@ -128,12 +112,25 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   // }
 
 
+  clickedMarker(m, i) {
+    console.log(m, i);
+  }
+  //ขยับจุดมาค และส่งค่าจุดใหม่กลับมา
+  markerDragEnd(m, e) {
+    console.log(m, e);
+    this.latitude = e.coords.lat;
+    this.longitude = e.coords.lng;
+    console.log(this.latitude);
 
+  }
 
 }
-interface marker{
+
+
+
+interface marker {
   name: string,
   lat: number,
   lng: number,
-  draggable:boolean;
+  draggable: boolean;
 }
