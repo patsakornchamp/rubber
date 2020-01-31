@@ -12,7 +12,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   // longitude = 99.991194;
   // locationChosen =false;
 
-  @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+  @ViewChild('map', { static: false }) gmap: ElementRef;
   map: google.maps.Map;
   //ละติจูท
   lat = 14.020740;
@@ -28,6 +28,7 @@ content: '<div>fffffffffffffffffffffffffffffffffffffffffffff</div>'
   mapOptions: google.maps.MapOptions = {
     center: this.coordinates,
     zoom:15,
+    
   };
   marker = new google.maps.Marker({
     position: this.coordinates,
@@ -40,7 +41,6 @@ content: '<div>fffffffffffffffffffffffffffffffffffffffffffff</div>'
 //   this.marker,'click'{
 
 // });
-
 
   ngAfterViewInit(): void {
     //กราฟ
@@ -70,12 +70,12 @@ content: '<div>fffffffffffffffffffffffffffffffffffffffffffff</div>'
   }
 
   mapInitializer() {
-    this.map = new google.maps.Map(this.gmap.nativeElement,
-    this.mapOptions);
+    this.map = new google.maps.Map(this.gmap.nativeElement,this.mapOptions);
     this.marker.setMap(this.map);
     this.info.open(this.map,this.marker);
     // google.map.event.addListener(marker,'click',function()){}
   }
+  
   // onChoseLocation(event){
   //   console.log(event);
   //   this.latitude = event.coords.lat;
