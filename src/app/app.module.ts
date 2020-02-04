@@ -30,7 +30,6 @@ import { StatisticsNowComponent } from './components/statistics-now/statistics-n
 import { AccountService } from './components/services/account_services';
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
-import { AdminPageComponent } from './components/page-admin/admin-page.component';
 import { AppheaderAdminComponent } from './components/appheader-admin/appheader-admin.component';
 import { AppheaderGuestUserComponent } from './components/appheader-guest-user/appheader-guest-user.component';
 import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appmenu-guest-user.component';
@@ -66,7 +65,7 @@ import { AppheaderCooperativeComponent } from './components/appheader-cooperativ
     StatisticsNowComponent,
     CooperativePageComponent,
     GuestUserPageComponent,
-    AdminPageComponent,
+
     AppheaderAdminComponent,
     
     AppheaderGuestUserComponent,

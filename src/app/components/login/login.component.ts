@@ -26,10 +26,6 @@ export class LoginComponent implements OnInit {
   get formControls() { return this.loginForm.controls; }
 
   ngOnInit() {
-    // this.loginForm  =  this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
   }
   Click_sign_In() {
     // if (this.Musername == "b5920502045" && this.Mpassword == "1234") {
@@ -80,10 +76,6 @@ export class LoginComponent implements OnInit {
           this.authService.login(result['data']['_id']); // setToken
           // this.router.navigateByUrl('/page-guset-user');
           this.router.navigate(['/page-guset-user']);
-        }else if (this.dataUser['statusUser'] == 4) {
-          this.authService.login(result['data']['_id']); // setToken
-          // this.router.navigateByUrl('/page-admin');
-          this.router.navigate(['/page-admin']);
         }
       }
       else {

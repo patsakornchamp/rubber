@@ -3,45 +3,48 @@
 <app-appfooter></app-appfooter>
 <app-appsetting></app-appsetting> -->
 
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="login-box">
-            <div class="login-logo">
-                <a href="../../index2.html"><b>Admin</b>LTE</a>
-            </div>
-            <!-- /.login-logo -->
-            <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+<!-- Content Header (Page header) -->
 
-                <form action="../../index2.html" method="post">
-                    <div class="form-group has-feedback">
-                        <input name="username" [(ngModel)]="Musername" class="form-control" placeholder="username">
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input name="password" [(ngModel)]="Mpassword" type="password" class="form-control" placeholder="Password">
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-xs-4">
-                            <button type="submit" (click)="Click_sign_In()" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
-                <!-- <a href="#">I forgot my password</a><br> -->
-                <!-- <a  (click)="Click_Register()"  class="text-center">Register a new membership</a> -->
-                <button type="submit" (click)="Click_Register()" class="text-center">ลงทะเบียน</button>
+<!-- Main content -->
+<section class="content">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="../../index2.html"><b>RUBBER</b>TREE</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 
-
-            </div>
-            <!-- /.login-box-body -->
+      <form action="../../index2.html" method="post">
+        <div class="form-group has-feedback">
+          <input name="username" [(ngModel)]="Musername" class="form-control" placeholder="username">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
-    </section>
-</div>
+        <div class="form-group has-feedback">
+          <input name="password" [(ngModel)]="Mpassword" type="password" class="form-control" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+          </div>
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <button type="submit" (click)="Click_sign_In()" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="row">
+
+        <div class="col-xs-4">
+          <button type="submit" (click)="Click_Register()" class="btn btn-primary btn-block btn-flat">ลงทะเบียน</button>
+        </div>
+        <!-- /.col -->
+      </div>
+
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+</section>

@@ -13,3 +13,16 @@ agm-map {
     width: 800px;
 
 }
+.margin {
+  margin-left: 60px;
+}
+#area{
+  display: block;
+  margin: auto;
+}
+#search{
+  width: 90px;
+  margin-top: 20px;
+  font-size: 17px;
+}
+
