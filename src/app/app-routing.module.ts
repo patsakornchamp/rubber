@@ -20,6 +20,7 @@ import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appme
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
+import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: 'statistics-now', component: StatisticsNowComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-farmer', component: ManageRubberFarmerComponent, canActivate: [AuthGuard] },
+  { path: 'manage-user-farmer', component: ManageUserFarmerComponent, canActivate: [AuthGuard] },
   { path: 'appheader-farmer', component: AppheaderFarmerComponent, canActivate: [AuthGuard] },
   { path: 'appmenu', component: AppmenuComponent, canActivate: [AuthGuard] },
   { path: 'appheader', component: AppheaderComponent, canActivate: [AuthGuard] },

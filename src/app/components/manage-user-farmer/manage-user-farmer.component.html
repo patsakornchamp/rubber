@@ -1,0 +1,62 @@
+<app-appheader-farmer></app-appheader-farmer>
+<app-appmenu-farmer></app-appmenu-farmer>
+<div class="content-wrapper">
+
+  <section class="content-header">
+    <h1>
+      ข้อมูลผู้ใช้
+      <small></small>
+    </h1>
+  </section>
+  <div class="row">
+    <div class="col-md-3 ">
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="font-size: 15px;">
+        <label>ชื่อ</label><br>
+        <input type="text" value="นายอยู่ดี มีสุข" (keyup)="next($event,'002')">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 ">
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="font-size: 15px;">
+        <label>ชื่อผู้ใช้</label><br>
+        <input type="text" value="yodee" (keyup)="next($event,'002')">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 ">
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="font-size: 15px;">
+        <label>บ้านที่อยู่</label><br>
+        <!-- <input type="text" id="002" value="60/5 หมู่ 4 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม" (keyup)="next($event,'search')"> -->
+        <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 ">
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="font-size: 15px;">
+        <label>เบอร์โทรศัพ</label><br>
+        <input type="text" value="0815262459" (keyup)="next($event,'search')">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 ">
+    </div>
+    <div class="col-md-3">
+      <div class="form-group" style="font-size: 15px;">
+        <label>สถานะผู้ใช้</label><br>
+        <input type="text" value="เกษตกร" (keyup)="next($event,'search')">
+      </div>
+    </div>
+  </div>
+</div>
