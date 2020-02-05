@@ -37,6 +37,7 @@ import { AppmenuCooperativeComponent } from './components/appmenu-cooperative/ap
 import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
+import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
@@ -75,6 +76,7 @@ import { ManageUserFarmerComponent } from './components/manage-user-farmer/manag
     AppmenuAdminComponent,
     AppheaderCooperativeComponent,
     ManageUserFarmerComponent,
+    ManageTreeFarmerComponent,
     
   ],
   imports: [

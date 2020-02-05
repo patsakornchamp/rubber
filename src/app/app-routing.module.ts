@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -21,6 +22,7 @@ import { CooperativePageComponent } from './components/page-cooperative/cooperat
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
+import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -31,6 +33,8 @@ const routes: Routes = [
   { path: 'statistics-now', component: StatisticsNowComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-farmer', component: ManageRubberFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-user-farmer', component: ManageUserFarmerComponent, canActivate: [AuthGuard] },
+  { path: 'manage-tree-farmer', component: ManageTreeFarmerComponent, canActivate: [AuthGuard] },
+
   { path: 'appheader-farmer', component: AppheaderFarmerComponent, canActivate: [AuthGuard] },
   { path: 'appmenu', component: AppmenuComponent, canActivate: [AuthGuard] },
   { path: 'appheader', component: AppheaderComponent, canActivate: [AuthGuard] },
@@ -49,7 +53,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes),
+    ModalModule.forRoot(),
+  ],
+  exports: [RouterModule],
+ 
 })
 export class AppRoutingModule { }
