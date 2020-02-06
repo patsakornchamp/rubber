@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let any of SEARCH;let i = index" (click)="farmer(any)">
+            <tr *ngFor="let any of SEARCH|filter:searhText;let i = index" (click)="farmer(any)">
               <td>{{ any.name }}</td>
               <td>{{ any.addressRubberPlantation }}</td>
               <td>{{ any.numtree }}</td>
@@ -58,8 +58,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2">
-    </div>
+    
     <div class="col-md-4">
       <div style="display: flex">
         <input type="text" placeholder="เลือกสวนยาง" [(ngModel)]="dataSet.Name_farmer" class="form-control" />
@@ -69,6 +68,39 @@
 
       </div>
 
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>แถว</th>
+              <th>หลัก</th>
+              <th>พันธุ์ต้นยาง</th>
+              <th>วันที่ปลูก</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of SEARCH;let i = index ">
+              <td>{{ any.name }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.numtree }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.latitude }}</td>
+              <td style="border: none;
+                          background-color: #ffff; width: 2px; ">
+                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
+                  (click)="click_del(any.TR_TRNBR)">ลบ</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
     </div>
   </div>
 

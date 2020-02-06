@@ -20,6 +20,9 @@ import { AppmenuFarmerComponent } from './components/appmenu-farmer/appmenu-farm
 import { AppheaderFarmerComponent } from './components/appheader-farmer/appheader-farmer.component';
 //ngx
 import { ModalModule } from 'ngx-bootstrap/modal';
+//ค้นหา
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 //map
 import {AgmCoreModule} from '@agm/core';
 import { StatisticsComponent } from './components/statistics/statistics.component';
@@ -86,6 +89,7 @@ import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manag
     ReactiveFormsModule,
     // RouterModule.forRoot(routes),
     FormsModule,
+    Ng2SearchPipeModule,
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyC9XocvE-nxGymaM7eTzkwZ02KwlBLHXTY'
