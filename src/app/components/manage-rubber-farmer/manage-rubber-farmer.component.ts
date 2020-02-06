@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-manage-rubber-farmer',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-rubber-farmer.component.css']
 })
 export class ManageRubberFarmerComponent implements OnInit {
-
+  modalRef: BsModalRef;
   constructor() { }
   SEARCH: any = [{}, {}, {}];
-  resposne: any = [1,2,3]
+  resposne: any = [1,2,3];
   A: any = [
     {
       name: 'สวนA',
@@ -35,7 +36,8 @@ export class ManageRubberFarmerComponent implements OnInit {
       longitude: 99.991194,
       detail: 'ไม่มี'
     },
-  ]
+  ];
+
 
   ngOnInit() {
     this.test();

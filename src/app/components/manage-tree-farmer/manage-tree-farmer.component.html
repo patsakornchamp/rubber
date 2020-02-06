@@ -1,24 +1,75 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
-  <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+
+
+<ng-template #code_product>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>จำนวนต้นยาง</th>
+              <!-- <th>ละติจูด</th>
+              <th>ลองจิจูด</th> -->
+              <th>รายละเอียดของสวนยาง</th>
+              <th>หมายเหตุ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of SEARCH;let i = index" (click)="farmer(any)">
+              <td>{{ any.name }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.numtree }}</td>
+              <!-- <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td> -->
+              <td>{{ any.detail }}</td>
+              <td>{{ any.TR_RMKS }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
     </div>
-    <div class="modal-body">
-      This is a modal.
-    </div>
-  </ng-template>
+  </div>
+</ng-template>
 <div class="content-wrapper">
 
-    <section class="content-header">
-        <h1>
-          จัดการต้นยางพารา
-          <small></small>
-        </h1>
-      </section>
-  <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+  <section class="content-header">
+    <h1>
+      จัดการต้นยางพารา
+      <small></small>
+    </h1>
+  </section>
+  <div class="row">
+    <div class="col-md-2 " style="margin-top: 20px;">
+      <a class="btn btn-app font">
+        <i class="fa fa-plus-circle "></i> เพิ่มต้นยาง
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-4">
+      <div style="display: flex">
+        <input type="text" placeholder="เลือกสวนยาง" [(ngModel)]="dataSet.Name_farmer" class="form-control" />
+        <label> &nbsp; </label>
+        <button type="button" class="btn btn-primary" (click)="openModalWithClass(code_product)">
+          <i class="fa fa-search"></i></button>
+
+      </div>
+
+    </div>
+  </div>
 
 </div>
