@@ -1,13 +1,81 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
-<div class="content-wrapper">
 
+<ng-template #edituser>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">แก้ไขข้อมูลผู้ใช้</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ชื่อ:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" class="form-control" id='01'
+              (keyup)="checkinput1($event,02)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ชื่อผู้ใช้:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" class="form-control" id='01' 
+              (keyup)="checkinput1($event,02)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          บ้านที่อยู่:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          เบอร์โทรศัพ:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" class="form-control" id='01' 
+              (keyup)="checkinput1($event,02)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" >
+          <button id="center" class="btn btn-pill-right btn-success ripple "  
+            (click)="click_del(any.TR_TRNBR)">บันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div class="content-wrapper">
   <section class="content-header">
     <h1>
       ข้อมูลผู้ใช้
       <small></small>
     </h1>
   </section>
+  <div class="row">
+    <div class="col-md-2 " style="margin-top: 20px;">
+      <a class="btn btn-app font" (click)="openModalWithClass(edituser)">
+        <i class="fa fa-plus-circle "></i> แก้ไขข้อมูลผู้ใช้
+      </a>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-3 ">
     </div>
@@ -34,7 +102,6 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>บ้านที่อยู่</label><br>
-        <!-- <input type="text" id="002" value="60/5 หมู่ 4 ต.กำแพงแสน อ.กำแพงแสน จ.นครปฐม" (keyup)="next($event,'search')"> -->
         <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
       </div>
     </div>
