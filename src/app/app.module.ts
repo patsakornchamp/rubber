@@ -41,6 +41,8 @@ import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
@@ -94,7 +96,9 @@ import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manag
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyC9XocvE-nxGymaM7eTzkwZ02KwlBLHXTY'
     }),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule
 
   ],
   providers: [AccountService],
