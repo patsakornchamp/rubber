@@ -30,7 +30,6 @@ import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/m
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { StatisticsNowComponent } from './components/statistics-now/statistics-now.component'
 
-import { AccountService } from './components/services/account_services';
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AppheaderAdminComponent } from './components/appheader-admin/appheader-admin.component';
@@ -101,7 +100,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
     // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
   ],
-  providers: [AccountService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

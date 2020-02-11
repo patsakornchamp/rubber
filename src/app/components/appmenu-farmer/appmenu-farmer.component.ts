@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from '../services/account_services';
 
 @Component({
   selector: 'app-appmenu-farmer',
@@ -9,18 +8,18 @@ import { AccountService } from '../services/account_services';
 })
 export class AppmenuFarmerComponent implements OnInit {
 
-  constructor(private router: Router,private data_User: AccountService ) { }
+  constructor(private router: Router) { }
   name:string;
   dataUser: any;
 
   ngOnInit() {
-    if(this.data_User.getUser() != null){
-      this.dataUser = this.data_User.getUser();
-      this.name = this.dataUser['name'];
-    }
-    else{
-      this.name = "ไม่มีข้อมูล";
-    }
+    // if(this.data_User.getUser() != null){
+    //   this.dataUser = this.data_User.getUser();
+    //   this.name = this.dataUser['name'];
+    // }
+    // else{
+    //   this.name = "ไม่มีข้อมูล";
+    // }
   }
   Click_statistics(){
     console.log("25555555555555");

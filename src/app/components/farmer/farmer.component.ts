@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { AccountService } from '../services/account_services';
 import { ApiService } from '../../api.sercice';
 import { Marker } from '@agm/core';
 @Component({
@@ -10,7 +9,6 @@ import { Marker } from '@agm/core';
 
 export class FarmerComponent implements AfterViewInit, OnInit {
   constructor(
-    private data_User: AccountService,
     private apiService: ApiService
   ) { }
   /////////////////////////////////////////ตัวแปล
@@ -103,9 +101,12 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   // }
   getPlantation() {
-    this.demo = { mod:"getPlantation",
-    value: {"IDUserF":"1"
-    } };
+    this.demo = { 
+      mod:"getPlantation",
+      value: {
+        "IDUserF":"1"
+      } 
+    };
   }
   code_product() {
     this.demo = { 

@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { AccountService } from '../services/account_services';
 @Component({
   selector: 'app-guest-user-page',
   templateUrl: './guest-user-page.component.html',
@@ -7,7 +6,7 @@ import { AccountService } from '../services/account_services';
 })
 export class GuestUserPageComponent implements AfterViewInit,OnInit {
 
-  constructor(private data_User: AccountService) { }
+  constructor() { }
   zoom: number = 15;
   //ละติจูท
   lat = 14.020740;

@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { AccountService } from '../services/account_services';
 
 @Component({
   selector: 'app-cooperative-page',
@@ -8,7 +7,7 @@ import { AccountService } from '../services/account_services';
 })
 export class CooperativePageComponent implements AfterViewInit,OnInit {
 
-  constructor(private data_User: AccountService) { }
+  constructor() { }
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 15;
   //ละติจูท
