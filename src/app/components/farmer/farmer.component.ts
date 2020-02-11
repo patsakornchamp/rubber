@@ -15,6 +15,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   ) { }
   /////////////////////////////////////////ตัวแปล
   demo: any;
+  GET_Plantation:any;
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 15;
   //ละติจูท
@@ -87,7 +88,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit() {
-    this.code_product()
+    this.getPlantation()
+    // this.code_product2()
   }
 
   // mapInitializer() {
@@ -100,16 +102,34 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   //   this.marker.setMap(this.map);
 
   // }
-  code_product() {
+  getPlantation() {
     this.demo = { mod:"getPlantation",
     value: {"IDUserF":"1"
     } };
     this.apiService.readPolicies(this.demo).subscribe((resposne: any) => {
+    this.GET_Plantation = resposne;
+    console.log(resposne);
+    console.log("resposne");
+    });
+  }
+  code_product2() {
+    this.demo = { mod:"insertPlantation",
+    value: {
+      "namePlantation":"testPlant",
+      "addressRubberPlantation":"12345/234",
+      "detail":"test test test test",
+      "latitude":"45",
+      "longitude":"45",
+      "IDUserF":"1"
+    
+    } };
+    this.apiService.insert(this.demo).subscribe((resposne: any) => {
     // this.CODE_PRODUCT = resposne;
     console.log(resposne);
     console.log("resposne");
     });
   }
+
 
   clickedMarker(m, i) {
     console.log(m, i);
