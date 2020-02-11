@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                   console.log(data);
-                    // this.router.navigate(['/farmer']);
+                    this.router.navigate(['/farmer']);
                 },
                 error => {
                   window.alert("รหัสผ่านไม่ถูกต้อง");

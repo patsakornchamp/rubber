@@ -15,7 +15,8 @@ export class AuthenticationService {
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    PHP_API_SERVER = "http://158.108.207.7/rubberProject/demo/ctrl.php";
+    // PHP_API_SERVER = "http://158.108.207.7/rubberProject/demo/ctrl.php";
+    PHP_API_SERVER = "http://localhost/api/demo/ctrl.php";
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;

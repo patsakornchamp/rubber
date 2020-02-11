@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-appmenu-farmer',
@@ -8,11 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AppmenuFarmerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private authenticationService: AuthenticationService) { }
   name:string;
   dataUser: any;
 
   ngOnInit() {
+    this.dataUser = this.authenticationService.currentUserValue;
+    this.name = this.dataUser[0]['name'];
     // if(this.data_User.getUser() != null){
     //   this.dataUser = this.data_User.getUser();
     //   this.name = this.dataUser['name'];
