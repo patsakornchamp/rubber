@@ -94,12 +94,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Ng2SearchPipeModule,
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyC9XocvE-nxGymaM7eTzkwZ02KwlBLHXTY'
+      apiKey:'AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA'
     }),
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule
-
+    // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

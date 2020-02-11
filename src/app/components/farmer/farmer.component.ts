@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AccountService } from '../services/account_services';
+import { ApiService } from '../../api.sercice';
 import { Marker } from '@agm/core';
 @Component({
   selector: 'app-farmer',
@@ -8,6 +9,12 @@ import { Marker } from '@agm/core';
 })
 
 export class FarmerComponent implements AfterViewInit, OnInit {
+  constructor(
+    private data_User: AccountService,
+    private apiService: ApiService
+  ) { }
+  /////////////////////////////////////////ตัวแปล
+  demo: any;
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 15;
   //ละติจูท
@@ -71,46 +78,38 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
     //googlemapp
-    this.mapInitializer();
   }
 
   dataUser: any;
   name: any;
   test = ["แปลงA", "แปลงB", "แปลงC"];
 
-  constructor(
-    private data_User: AccountService
-  ) { }
+
 
   ngOnInit() {
-
+    this.code_product()
   }
 
-  mapInitializer() {
+  // mapInitializer() {
 
-    this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
+  //   this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
 
-    this.map = new google.maps.Map(this.gmap.nativeElement,
-      this.mapOptions);
+  //   this.map = new google.maps.Map(this.gmap.nativeElement,
+  //     this.mapOptions);
 
-    this.marker.setMap(this.map);
+  //   this.marker.setMap(this.map);
 
+  // }
+  code_product() {
+    this.demo = { mod:"getPlantation",
+    value: {"IDUserF":"1"
+    } };
+    this.apiService.readPolicies(this.demo).subscribe((resposne: any) => {
+    // this.CODE_PRODUCT = resposne;
+    console.log(resposne);
+    console.log("resposne");
+    });
   }
-  // onChoseLocation(event) {
-  //   console.log(event);
-  //   this.latitude = event.coords.lat;
-  //   this.longitude = event.coords.lng;
-  //   this.locationChosen = true;
-  // }
-
-
-  // onChoseLocation(event){
-  //   console.log(event);
-  //   this.latitude = event.coords.lat;
-  //   this.longitude = event.coords.lng;
-  //   this.locationChosen = true;
-  // }
-
 
   clickedMarker(m, i) {
     console.log(m, i);
