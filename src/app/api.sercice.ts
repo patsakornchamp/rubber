@@ -12,18 +12,17 @@ export class ApiService {
 
   PHP_API_SERVER = "http://158.108.207.7/rubberProject/demo/ctrl.php";
 
-  readPolicies(pl:any){
-    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,pl);
+  read(data:any){
+    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,data);
   }
-  insert(dataMod: any): Observable<any>{
-    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,dataMod)
+  insert(data: any): Observable<any>{
+    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,data)
   }
-  delete(id: any) {
-    console.log(id);
-    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,id);
+  delete(data: any) {
+    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,data);
   }
-  updatePolicy(pl: Array<any>) {
-    return this.httpClient.put<Array<any>>(`${this.PHP_API_SERVER}`, pl);
+  update(data: Array<any>) {
+    return this.httpClient.post<any>(`${this.PHP_API_SERVER}`, data);
   }
 
 }

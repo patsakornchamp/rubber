@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       }
     };
     console.log(data);
-    this.apiService.readPolicies(data).subscribe((resposne: any) => {
+    this.apiService.read(data).subscribe((resposne: any) => {
       console.log(resposne['statusUser']);
       if(resposne[0]['statusUser'] == 1){
         this.router.navigate(['/farmer']);
