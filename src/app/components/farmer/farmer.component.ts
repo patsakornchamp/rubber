@@ -102,12 +102,11 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   //   this.marker.setMap(this.map);
 
   // }
-<<<<<<< HEAD
   getPlantation() {
     this.demo = { mod:"getPlantation",
     value: {"IDUserF":"1"
     } };
-=======
+  }
   code_product() {
     this.demo = { 
       mod:"getPlantation",
@@ -115,7 +114,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
         "IDUserF":"1"
       }
     };
->>>>>>> 2511e072ff910e6523329d025cf02f4ede4c3a09
+
     this.apiService.readPolicies(this.demo).subscribe((resposne: any) => {
     this.GET_Plantation = resposne;
     console.log(resposne);
