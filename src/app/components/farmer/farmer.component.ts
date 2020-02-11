@@ -100,7 +100,9 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   //   this.marker.setMap(this.map);
 
   // }
+
   getPlantation() {
+<<<<<<< HEAD
     this.demo = { 
       mod:"getPlantation",
       value: {
@@ -109,6 +111,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     };
   }
   code_product() {
+=======
+>>>>>>> 5529dfe66902ad5145d80489fb6cb867f309ab97
     this.demo = { 
       mod:"getPlantation",
       value: {
@@ -118,11 +122,13 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
     this.apiService.readPolicies(this.demo).subscribe((resposne: any) => {
     this.GET_Plantation = resposne;
-    console.log(resposne);
-    console.log("resposne");
+    console.log(this.GET_Plantation);
     });
   }
-  code_product2() {
+  searchPic(data){
+    console.log(data);
+  }
+  insert() {
     this.demo = { mod:"insertPlantation",
     value: {
       "namePlantation":"testPlant",

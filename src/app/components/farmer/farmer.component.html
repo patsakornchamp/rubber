@@ -30,9 +30,9 @@
           <div class="col-md-3">
             <div class="form-group" style="font-size: 15px;margin-left: 65px;">
               <label>เลือกแปลง</label>
-              <select class="form-control select2" style="width: 100%;font-size: 13px;">
-                <option selected="selected">---เลือก---</option>
-                <option *ngFor="let item of test">{{item}}</option>
+              <select class="form-control select2"  style="width: 100%;font-size: 13px;">
+                <option selected="selected" >---เลือก---</option>
+                <option *ngFor="let item of GET_Plantation" (click)="searchPic(item)"  >{{item.namePlantation}}</option>
                 <!-- <option>Alaska</option>
                   <option>California</option>
                   <option>Delaware</option>
@@ -45,7 +45,7 @@
           <div class="col-md-2">
             <div class="form-group" style="font-size: 15px;">
               <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
-                (click)="searchPic()">
+                (click)="searchPic(item)">
                 <span class="md-ripple"></span>ค้นหา
               </button>
             </div>
