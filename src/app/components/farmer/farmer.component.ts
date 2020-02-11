@@ -101,13 +101,16 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   // }
   code_product() {
-    this.demo = { mod:"getPlantation",
-    value: {"IDUserF":"1"
-    } };
+    this.demo = { 
+      mod:"getPlantation",
+      value: {
+        "IDUserF":"1"
+      }
+    };
     this.apiService.readPolicies(this.demo).subscribe((resposne: any) => {
     // this.CODE_PRODUCT = resposne;
-    console.log(resposne);
-    console.log("resposne");
+      console.log(resposne);
+      console.log("resposne");
     });
   }
 
