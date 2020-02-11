@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { MustMatch } from '../_helper/must-match.validator';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from  '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.sercice';
 
 @Component({
@@ -20,7 +18,6 @@ export class RegisterComponent implements OnInit {
   statusUser: string = "";
   constructor(
     private apiService: ApiService,
-    private http : HttpClient,
     private router: Router,
     private formBuilder: FormBuilder
   ) { }
