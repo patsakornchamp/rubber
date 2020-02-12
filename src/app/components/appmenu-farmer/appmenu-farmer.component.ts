@@ -11,8 +11,8 @@ export class AppmenuFarmerComponent implements OnInit {
 
   constructor(private router: Router,
     private authenticationService: AuthenticationService) { }
-  name:string;
-  dataUser: any;
+    name:string;
+    dataUser: any;
 
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
