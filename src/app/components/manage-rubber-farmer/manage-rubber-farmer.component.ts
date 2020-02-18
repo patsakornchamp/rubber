@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
-import { AccountService } from '../services/account_services';
+// import { AccountService } from '../services/account_services';
 
 @Component({
   selector: 'app-manage-rubber-farmer',
@@ -9,7 +9,7 @@ import { AccountService } from '../services/account_services';
 })
 export class ManageRubberFarmerComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService,private data_User: AccountService) { }
+  constructor(private modalService: BsModalService) { }
    
   //mapสามารถเลือกจุดบนแผนที่ได้
     zoom: number = 15;
