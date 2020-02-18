@@ -1,62 +1,62 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
 <div class="content-wrapper">
-  <section class="content-header">
-    <h1>
-      จัดการสวนยาง
-      <small></small>
-    </h1>
-  </section>
-  <div class="row">
-    <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="btn btn-app font">
-        <i class="fa fa-plus-circle "></i> เพิ่มสวนยาง
-      </a>
+    <section class="content-header">
+        <h1>
+            จัดการสวนยาง
+            <small></small>
+        </h1>
+    </section>
+    <div class="row">
+        <div class="col-md-2 " style="margin-top: 20px;">
+            <a class="btn btn-app font">
+                <i class="fa fa-plus-circle "></i> เพิ่มสวนยาง
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
-      <div class="table-responsive" style="text-align:center; height: 500px;">
-        <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
-          <thead>
-            <tr>
-              <th>ลำดับ</th>
-              <th>ชื่อแปลง</th>
-              <th>ที่อยู่</th>
-              <th>จำนวนต้นยาง</th>
-              <th>ละติจูด</th>
-              <th>ลองจิจูด</th>
-              <th>รายละเอียดของสวนยาง</th>
-              <th>หมายเหตุ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let any of SEARCH;let i = index ">
-              <td style="height: 30px">{{ i+1 }}</td>
-              <td>{{ any.name }}</td>
-              <td>{{ any.addressRubberPlantation }}</td>
-              <td>{{ any.numtree }}</td>
-              <td>{{ any.latitude }}</td>
-              <td>{{ any.longitude }}</td>
-              <td>{{ any.detail }}</td>
-              <td>{{ any.TR_RMKS }}</td>
-              <!-- <td>{{ any.TR_TRNBR }}</td> -->
-              <td style="border: none;
+        <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+            <div class="table-responsive" style="text-align:center; height: 500px;">
+                <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อแปลง</th>
+                            <th>ที่อยู่</th>
+                            <th>จำนวนต้นยาง</th>
+                            <th>ละติจูด</th>
+                            <th>ลองจิจูด</th>
+                            <th>รายละเอียดของสวนยาง</th>
+                            <th>ชื่อเจ้าของสวนยาง</th>
+                            <th>หมายเหตุ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let any of SEARCH;let i = index ">
+                            <td style="height: 30px">{{ i+1 }}</td>
+                            <td>{{ any.name }}</td>
+                            <td>{{ any.addressRubberPlantation }}</td>
+                            <td>{{ any.numtree }}</td>
+                            <td>{{ any.latitude }}</td>
+                            <td>{{ any.longitude }}</td>
+                            <td>{{ any.detail }}</td>
+                            <td>{{ any.nameFamer }}</td>
+                            <td>{{ any.TR_RMKS }}</td>
+                            <!-- <td>{{ any.TR_TRNBR }}</td> -->
+                            <td style="border: none;
             background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal"
-                  (click)="click_del(any.TR_TRNBR)">แก้ไข</button>
-              </td>
-              <td style="border: none;
+                                <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal" (click)="click_del(any.TR_TRNBR)">แก้ไข</button>
+                            </td>
+                            <td style="border: none;
                           background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
-                  (click)="click_del(any.TR_TRNBR)">ลบ</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-      </div>
+                                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal" (click)="click_del(any.TR_TRNBR)">ลบ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
