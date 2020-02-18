@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { MustMatch } from '../_helper/must-match.validator';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from  '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../api.sercice';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +17,7 @@ export class RegisterComponent implements OnInit {
   phone: string = "";
   statusUser: string = "";
   constructor(
-    private http : HttpClient,
+    private apiService: ApiService,
     private router: Router,
     private formBuilder: FormBuilder
   ) { }
@@ -64,24 +63,26 @@ export class RegisterComponent implements OnInit {
       }
       else{
         this.register(this.registerForm)
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm))
-        this.router.navigateByUrl('/login');
       }
   }
 
   register(registerData){
     let data = { 
-      username: registerData.username,
-      password: registerData.password,
-      name:     registerData.name,
-      address:  registerData.address,
-      statusUser: registerData.statusUser,
-      statusConfirm : 0,
-      phone:    registerData.phone
+      mod:"register",
+      value:{
+        "username": registerData.username,
+        "password": registerData.password,
+        "name":     registerData.name,
+        "addressUser":  registerData.address,
+        "statusUser": registerData.statusUser,
+        "phoneNumber":    registerData.phone
+      }
     };
     console.log(data);
-    this.http.post<any>('http://localhost:3000/api/get/register', data).subscribe(result=>{
-      alert(JSON.stringify(result));
+    this.apiService.insert(data).subscribe((resposne: any) => {
+      if(resposne['status_Insert']){
+        this.router.navigateByUrl('/login');
+      }
     });
   }
 }

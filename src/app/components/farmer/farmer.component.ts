@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { AccountService } from '../services/account_services';
 import { ApiService } from '../../api.sercice';
 import { Marker } from '@agm/core';
 @Component({
@@ -10,7 +9,6 @@ import { Marker } from '@agm/core';
 
 export class FarmerComponent implements AfterViewInit, OnInit {
   constructor(
-    private data_User: AccountService,
     private apiService: ApiService
   ) { }
   /////////////////////////////////////////ตัวแปล
@@ -69,10 +67,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     map: this.map,
   });
 
-
-
-
-
   ngAfterViewInit(): void {
     //กราฟ
     const script = document.createElement('script');
@@ -84,8 +78,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   dataUser: any;
   name: any;
   test = ["แปลงA", "แปลงB", "แปลงC"];
-
-
 
   ngOnInit() {
     this.getPlantation()
@@ -102,8 +94,15 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   //   this.marker.setMap(this.map);
 
   // }
-
   getPlantation() {
+    this.demo = { 
+      mod:"getPlantation",
+      value: {
+        "IDUserF":"1"
+      } 
+    };
+  }
+  code_product() {
     this.demo = { 
       mod:"getPlantation",
       value: {
@@ -111,15 +110,13 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       }
     };
 
-    this.apiService.readPolicies(this.demo).subscribe((resposne: any) => {
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
     this.GET_Plantation = resposne;
-    console.log(this.GET_Plantation);
+    console.log(resposne);
+    console.log("resposne");
     });
   }
-  searchPic(data){
-    console.log(data);
-  }
-  insert() {
+  code_product2() {
     this.demo = { mod:"insertPlantation",
     value: {
       "namePlantation":"testPlant",
@@ -151,9 +148,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   }
 
 }
-
-
-
 interface marker {
   name: string,
   lat: number,

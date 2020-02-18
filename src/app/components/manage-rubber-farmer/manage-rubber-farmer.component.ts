@@ -53,7 +53,8 @@ export class ManageRubberFarmerComponent implements OnInit {
       numtree:'1000',
       latitude: 14.020740,
       longitude: 99.991194,
-      detail: 'ไม่มี'
+      detail: 'ไม่มี',
+      nameFamer:'นายสมพง  จงเจริญ'
     },
     {
       name: 'สวนB',
@@ -61,7 +62,8 @@ export class ManageRubberFarmerComponent implements OnInit {
       numtree:'1300',
       latitude: 14.020740,
       longitude: 99.991194,
-      detail: 'ไม่มี'
+      detail: 'ไม่มี',
+      nameFamer:'นายสมลักษณ์ จงสำเร็จ'
     },
     {
       name: 'สวนC',
@@ -69,7 +71,8 @@ export class ManageRubberFarmerComponent implements OnInit {
       numtree:'1500',
       latitude: 14.020740,
       longitude: 99.991194,
-      detail: 'ไม่มี'
+      detail: 'ไม่มี',
+      nameFamer:'นายประทาน  ฟ้าสีคราม'
     },
   ];
   openModalWithClass(template: TemplateRef<any>) {
