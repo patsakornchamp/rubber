@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {  BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
+import { AccountService } from '../services/account_services';
 
 @Component({
   selector: 'app-manage-rubber-farmer',
@@ -8,7 +9,41 @@ import {  BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ManageRubberFarmerComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor() { }
+  constructor(private modalService: BsModalService,private data_User: AccountService) { }
+   
+  //mapสามารถเลือกจุดบนแผนที่ได้
+    zoom: number = 15;
+    //ละติจูท
+    lat = 14.020740;
+    //ลองติจูท
+    lng = 99.991194;
+    markers: marker[] = [
+      {
+        name: 'champ',
+        lat: 14.020740,
+        lng: 99.991194,
+        draggable: true
+      },
+      {
+        name: 'champ2',
+        lat: 14.020750,
+        lng: 99.991120,
+        draggable: true
+      },
+      {
+        name: 'champ3',
+        lat: 14.020744,
+        lng: 99.991155,
+        draggable: true
+      },
+    ]
+  
+    latitude = 14.020740;
+    longitude = 99.991194;
+    locationChosen = false;
+    map: google.maps.Map;
+    @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+  
   SEARCH: any = [{}, {}, {}];
   resposne: any = [1,2,3];
   A: any = [
@@ -37,7 +72,11 @@ export class ManageRubberFarmerComponent implements OnInit {
       detail: 'ไม่มี'
     },
   ];
-
+  openModalWithClass(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,
+      Object.assign({}, { class: 'gray modal-lg' })
+    );
+  }
 
   ngOnInit() {
     this.test();
@@ -55,5 +94,22 @@ export class ManageRubberFarmerComponent implements OnInit {
     }
 console.log(this.SEARCH)
   }
-
+  //mapเปิด
+  clickedMarker(m, i) {
+    console.log(m, i);
+  }
+  //ขยับจุดมาค และส่งค่าจุดใหม่กลับมา
+  markerDragEnd(m, e) {
+    console.log(m, e);
+    this.latitude = e.coords.lat;
+    this.longitude = e.coords.lng;
+    console.log(this.latitude);
+  }
+  //mapปิด
+}
+interface marker {
+  name: string,
+  lat: number,
+  lng: number,
+  draggable: boolean;
 }

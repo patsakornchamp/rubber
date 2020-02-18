@@ -1,6 +1,92 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
+<ng-template #AddFram>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">เพิ่มสวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ชื่อแปลง:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
+              (keyup)="checkinput1($event,02)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ที่อยู่:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-md-3" id="map">
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+            (mapClick)="mapClick($event)">
+            <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.lat"
+              [longitude]="m.lng" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
+              <agm-info-window>
+                {{m.name}}
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ละติจูด:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
+              (keyup)="checkinput1($event,02)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ลองจิจูด:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
+              (keyup)="checkinput1($event,02)" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ลองจิจูด:
+        </div>
+        <div class="col-md-4">
+          <div style="display: flex">
+            <input type="text" id="14" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YY'}"
+              [(ngModel)]="to_date">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button id="center" class="btn btn-pill-right btn-success ripple "
+            (click)="click_del(any.TR_TRNBR)">บันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 <div class="content-wrapper">
+
   <section class="content-header">
     <h1>
       จัดการสวนยาง
@@ -9,7 +95,7 @@
   </section>
   <div class="row">
     <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="btn btn-app font">
+      <a class="btn btn-app font" (click)="openModalWithClass(AddFram)">
         <i class="fa fa-plus-circle "></i> เพิ่มสวนยาง
       </a>
     </div>
@@ -29,6 +115,8 @@
               <th>ลองจิจูด</th>
               <th>รายละเอียดของสวนยาง</th>
               <th>หมายเหตุ</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
