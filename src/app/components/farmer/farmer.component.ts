@@ -81,19 +81,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.getPlantation()
-    // this.code_product2()
   }
 
-  // mapInitializer() {
-
-  //   this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
-
-  //   this.map = new google.maps.Map(this.gmap.nativeElement,
-  //     this.mapOptions);
-
-  //   this.marker.setMap(this.map);
-
-  // }
   getPlantation() {
     this.demo = { 
       mod:"getPlantation",

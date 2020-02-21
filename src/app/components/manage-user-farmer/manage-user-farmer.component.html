@@ -44,7 +44,7 @@
       </div>
       <div class="row">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          เบอร์โทรศัพ:
+          เบอร์โทรศัพท์:
         </div>
         <div class="col-md-4">
           <div style="display: flex">
@@ -112,7 +112,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>เบอร์โทรศัพ</label><br>
-        <input type="text" value="0815262459" (keyup)="next($event,'search')">
+        <input type="text" value="0815262459" oninput="this.value=this.value.replace(/[^0-9]/g,'');" (keyup)="next($event,'search')">
       </div>
     </div>
   </div>

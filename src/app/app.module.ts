@@ -42,6 +42,7 @@ import { ManageUserFarmerComponent } from './components/manage-user-farmer/manag
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
 
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
@@ -81,6 +82,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppheaderCooperativeComponent,
     ManageUserFarmerComponent,
     ManageTreeFarmerComponent,
+    ManageRubberAddFarmerComponent,
     
   ],
   imports: [

@@ -1,0 +1,25 @@
+.font{
+    font-size: 15px;
+}
+#map {
+  height: 500px;
+  width: 800px;
+  display: block;
+  margin: auto;
+}
+agm-map {
+    height: 400px;
+    width: 800px;
+
+}
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}

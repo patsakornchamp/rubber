@@ -6,7 +6,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FarmerComponent } from './components/farmer/farmer.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
-import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
 import { StatisticsNowComponent } from './components/statistics-now/statistics-now.component';
 import { AuthGuard } from './auth.guard';
 import { AppheaderFarmerComponent } from './components/appheader-farmer/appheader-farmer.component';
@@ -21,8 +20,11 @@ import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appme
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
+import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
+import {ManageRubberAddFarmerComponent} from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component'; 
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: 'statistics-now', component: StatisticsNowComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-farmer', component: ManageRubberFarmerComponent, canActivate: [AuthGuard] },
+  { path: 'manage-rubber-add-farmer', component: ManageRubberAddFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-user-farmer', component: ManageUserFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-tree-farmer', component: ManageTreeFarmerComponent, canActivate: [AuthGuard] },
 
