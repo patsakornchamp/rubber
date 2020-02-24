@@ -95,7 +95,6 @@ export class ManageRubberFarmerComponent implements OnInit {
     for (let i = 0; i < this.resposne.length; i++) {
       this.SEARCH[i] = this.A[i];
     }
-console.log(this.SEARCH)
   }
   //mapเปิด
   clickedMarker(m, i) {

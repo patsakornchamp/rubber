@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
-import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-manage-rubber-add-farmer',
@@ -7,8 +7,9 @@ import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./manage-rubber-add-farmer.component.css']
 })
 export class ManageRubberAddFarmerComponent implements OnInit {
-  modalRef: BsModalRef;
+
   constructor(private modalService: BsModalService) { }
+  //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 15;
   //ละติจูท
   lat = 14.020740;
@@ -40,22 +41,31 @@ export class ManageRubberAddFarmerComponent implements OnInit {
   locationChosen = false;
   map: google.maps.Map;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+  mapClick_lat: any;
+  mapClick_lng: any;
+
 
   ngOnInit() {
   }
-    //mapเปิด
-    clickedMarker(m, i) {
-      console.log(m, i);
-    }
-    //ขยับจุดมาค และส่งค่าจุดใหม่กลับมา
-    markerDragEnd(m, e) {
-      console.log(m, e);
-      this.latitude = e.coords.lat;
-      this.longitude = e.coords.lng;
-      console.log(this.latitude);
-    }
-    //mapปิด
+  //mapเปิด
+  clickedMarker(m, i) {
+    console.log(m, i);
+  }
+  //ขยับจุดมาค และส่งค่าจุดใหม่กลับมา
+  markerDragEnd(m, e) {
+    console.log(m, e);
+    this.latitude = e.coords.lat;
+    this.longitude = e.coords.lng;
+    console.log(this.latitude);
+  }
+  mapClick(e) {
+    this.mapClick_lat = e["coords"].lat;
+    this.mapClick_lng = e["coords"].lng;
+    console.log(e["coords"].lat);
+    console.log(e["coords"].lng);
 
+  }
+  //mapปิด
 }
 interface marker {
   name: string,

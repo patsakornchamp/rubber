@@ -3,7 +3,7 @@
 
 <ng-template #Garden>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">สวนยาง</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -18,8 +18,6 @@
               <th>ชื่อแปลง</th>
               <th>ที่อยู่</th>
               <th>จำนวนต้นยาง</th>
-              <!-- <th>ละติจูด</th>
-              <th>ลองจิจูด</th> -->
               <th>รายละเอียดของสวนยาง</th>
               <th>หมายเหตุ</th>
             </tr>
@@ -29,8 +27,6 @@
               <td>{{ any.name }}</td>
               <td>{{ any.addressRubberPlantation }}</td>
               <td>{{ any.numtree }}</td>
-              <!-- <td>{{ any.latitude }}</td>
-              <td>{{ any.longitude }}</td> -->
               <td>{{ any.detail }}</td>
               <td>{{ any.TR_RMKS }}</td>
             </tr>
@@ -50,64 +46,64 @@
   </div>
   <div class="modal-body">
     <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
-      <div class="row">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           IDต้นยาง:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row"  id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           แถว:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row"  id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           หลัก:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row"  id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           พันธุ์ต้นยาง:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row"  id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           วันที่ปลูก:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" id="14" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YY'}"
               [(ngModel)]="to_date">
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12" >
-          <button id="center" class="btn btn-pill-right btn-success ripple "  
+      <div class="row"  id="margin">
+        <div class="col-md-12">
+          <button id="center" class="btn btn-pill-right btn-success ripple "
             (click)="click_del(any.TR_TRNBR)">บันทึก</button>
         </div>
       </div>
@@ -156,6 +152,7 @@
               <th>พันธุ์ต้นยาง</th>
               <th>วันที่ปลูก</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -167,6 +164,11 @@
               <td>{{ any.latitude }}</td>
               <td style="border: none;
                           background-color: #ffff; width: 2px; ">
+                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
+                  (click)="click_del(any.TR_TRNBR)">แก้ไข</button>
+              </td>
+              <td style="border: none;
+              background-color: #ffff; width: 2px; ">
                 <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
                   (click)="click_del(any.TR_TRNBR)">ลบ</button>
               </td>

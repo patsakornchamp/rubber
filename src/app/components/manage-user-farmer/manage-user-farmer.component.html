@@ -10,50 +10,50 @@
   </div>
   <div class="modal-body">
     <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
-      <div class="row">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           ชื่อ:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01'
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           ชื่อผู้ใช้:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01' 
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           บ้านที่อยู่:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           เบอร์โทรศัพท์:
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div style="display: flex">
             <input type="text" class="form-control" id='01' 
               (keyup)="checkinput1($event,02)" />
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="margin">
         <div class="col-md-12" >
           <button id="center" class="btn btn-pill-right btn-success ripple "  
             (click)="click_del(any.TR_TRNBR)">บันทึก</button>
@@ -111,7 +111,7 @@
     </div>
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
-        <label>เบอร์โทรศัพ</label><br>
+        <label>เบอร์โทรศัพท์</label><br>
         <input type="text" value="0815262459" oninput="this.value=this.value.replace(/[^0-9]/g,'');" (keyup)="next($event,'search')">
       </div>
     </div>

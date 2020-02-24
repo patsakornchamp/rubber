@@ -81,6 +81,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.getPlantation()
+    this.get_Plantation()
+
   }
 
   getPlantation() {
@@ -91,7 +93,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       } 
     };
   }
-  code_product() {
+  get_Plantation() {
     this.demo = { 
       mod:"getPlantation",
       value: {
@@ -105,6 +107,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     console.log("resposne");
     });
   }
+  
   code_product2() {
     this.demo = { mod:"insertPlantation",
     value: {

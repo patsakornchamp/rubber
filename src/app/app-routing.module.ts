@@ -21,7 +21,7 @@ import { CooperativePageComponent } from './components/page-cooperative/cooperat
 import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
-import {ManageRubberAddFarmerComponent} from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component'; 
+import { ManageRubberAddFarmerComponent} from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component'; 
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 import { from } from 'rxjs';
