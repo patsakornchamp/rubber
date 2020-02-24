@@ -1,29 +1,29 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
 <div class="content-wrapper">
-    <section class="content-header">
-        <h1>
-          เพิ่มสวนยางพารา
-          <small></small>
-        </h1>
-      </section>
+  <section class="content-header">
+    <h1>
+      เพิ่มสวนยางพารา
+      <small></small>
+    </h1>
+  </section>
   <div class="row" id="margin">
     <div class="col-md-3" style="text-align: right;margin-top: 5px">
       ชื่อแปลง:
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <input type="text" class="form-control" id='01' (keyup)="checkinput1($event,02)" />
+        <input type="text" class="form-control" id='01' [(ngModel)]="dataset.name_farm" (keyup)="checkinput1($event,02)" />
       </div>
     </div>
   </div>
-  <div class="row" id="margin" >
+  <div class="row" id="margin">
     <div class="col-md-3" style="text-align: right;margin-top: 5px">
       ที่อยู่:
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
+        <textarea [(ngModel)]="dataset.address_farm" rows="4" cols="60"></textarea>
       </div>
     </div>
   </div>
@@ -31,10 +31,10 @@
     <div class="col-md-12" id="map">
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
         (mapClick)="mapClick($event)">
-        <agm-marker  [latitude]="mapClick_lat"    [longitude]="mapClick_lng">
+        <agm-marker [latitude]="dataset.mapClick_lat" [longitude]="dataset.mapClick_lng">
           <agm-info-window>
-            ละติจูด:{{mapClick_lat}}<br>
-            ลองจิจูด:{{mapClick_lng}}
+            ละติจูด:{{dataset.mapClick_lat}}<br>
+            ลองจิจูด:{{dataset.mapClick_lng}}
           </agm-info-window>
         </agm-marker>
       </agm-map>
@@ -46,7 +46,7 @@
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <input type="text" class="form-control" id='01' [(ngModel)]="mapClick_lat" (keyup)="checkinput1($event,02)" />
+        <input type="text" class="form-control" id='01' [(ngModel)]="dataset.mapClick_lat" (keyup)="checkinput1($event,02)" />
       </div>
     </div>
   </div>
@@ -56,16 +56,33 @@
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <input type="text" class="form-control" id='01' [(ngModel)]="mapClick_lng" (keyup)="checkinput1($event,02)" />
+        <input type="text" class="form-control" id='01' [(ngModel)]="dataset.mapClick_lng" (keyup)="checkinput1($event,02)" />
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" type="button">
-        <span class="md-ripple"></span>ค้นหา
+    <!-- <div class="col-md-2">
+      <button class="btn btn-oval btn-danger ripple" type="button">
+        <span class="md-ripple"></span>ย้อนกลับ
       </button>
     </div>
+    <div class="col-md-2">
+      <button class="btn btn-oval btn-danger ripple" type="button">
+        <span class="md-ripple"></span>ค้นหา
+      </button>
+    </div> -->
+    <div class="col-md-4"></div>
+    <div class="col-md-1">
+      <a class="btn btn-oval btn-danger ripple" href="manage-rubber-farmer">
+        <span class="md-ripple"></span>ย้อนกลับ
+      </a>
+    </div>
+    <div class="col-md-1">
+      <a class="btn btn-oval btn-danger ripple" (click)="Add_Farm(dataset)" >
+        <span class="md-ripple"></span>บันทึก
+      </a>
+    </div>
   </div>
+
 
 </div>

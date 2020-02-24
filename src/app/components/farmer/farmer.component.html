@@ -2,116 +2,121 @@
 <app-appmenu-farmer></app-appmenu-farmer>
 
 <div class="content-wrapper">
-    <section class="content-header">
-        <h1>
-            หน้าแรก
-            <small></small>
-        </h1>
-    </section>
-    <!-- <div #mapContainer id="map"></div> -->
-    <div id="map">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClick($event)">
-            <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.lat" [longitude]="m.lng" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
-                <!-- markerDraggable ทำให้จุดขยับได้ -->
-                <agm-info-window>
-                    {{m.name}}
-                </agm-info-window>
-            </agm-marker>
-        </agm-map>
-    </div>
-    <div class="margin">
-        <label style="margin-top: 50px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวัน</label>
+  <section class="content-header">
+    <h1>
+      หน้าแรก
+      <small></small>
+    </h1>
+  </section>
+  <!-- <div #mapContainer id="map"></div> -->
+  <div id="map">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+      (mapClick)="mapClick($event)">
+      <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.lat"
+        [longitude]="m.lng" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
+        <!-- markerDraggable ทำให้จุดขยับได้ -->
+        <agm-info-window>
+          {{m.name}}
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+  <div class="margin">
+    <label style="margin-top: 50px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวัน</label>
 
-        <tabset #staticTabs style="font-size:15px;">
-            <tab heading="รายแปลง" id="1">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-                            <label>เลือกแปลง</label>
-                            <select class="form-control select2" style="width: 100%;font-size: 13px;">
-                <option selected="selected" >---เลือก---</option>
-                <option *ngFor="let item of GET_Plantation" (click)="searchPic(item)"  >{{item.namePlantation}}</option>
+    <tabset #staticTabs style="font-size:15px;">
+      <tab heading="รายแปลง" id="1">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+              <label>เลือกแปลง</label>
+              <select class="form-control select2" style="width: 100%;font-size: 13px;">
+                <!-- <option selected="selected" >---เลือก---</option> -->
+                <option *ngFor="let item of GET_Plantation" (click)="searchPic(item)">{{item.namePlantation}}</option>
               </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group" style="font-size: 15px;">
-                            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button" (click)="searchPic(item)">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group" style="font-size: 15px;">
+              <button class="btn btn-oval btn-danger ripple" id="search" type="button" (click)="searchPic(item)">
                 <span class="md-ripple"></span>ค้นหา
               </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-xs-12">
-                        <!-- small box -->
-                        <div class="small-box bg-red" style="height: 150px;">
-                            <div class="inner">
-                                <h3 style="font-size: 60px">65<sup style="font-size:40px">กิโลกรัม</sup></h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-red" style="height: 150px;">
+              <div class="inner">
+                <h3 style="font-size: 60px">65<sup style="font-size:40px">กิโลกรัม</sup></h3>
 
-                                <p>ปริมาณน้ำยางทั้งหมด</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
-            </tab>
-            <tab heading="รายต้น" id="2">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-                            <label>เลือกแปลง</label>
-                            <select class="form-control select2" style="width: 100%;font-size: 13px;">
+                <p>ปริมาณน้ำยางทั้งหมด</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+      </tab>
+      <tab heading="รายต้น" id="2">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+              <label>เลือกแปลง</label>
+              <select class="form-control select2" style="width: 100%;font-size: 13px;">
                 <option selected="selected">---เลือก---</option>
-                <option *ngFor="let item of GET_Plantation" (click)="searchPic(item)"  >{{item.namePlantation}}</option>
+                <option *ngFor="let item of GET_Plantation" (change)="searchPic(item)">{{item.namePlantation}}</option>
               </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group" style="font-size: 15px;">
-                            <label>กรอกแถว</label><br>
-                            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001" style="text-align:right" (keyup)="next($event,'002')">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group" style="font-size: 15px;">
-                            <label>กรอกหลัก</label><br>
-                            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right" id="002" (keyup)="next($event,'search')">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group" style="font-size: 15px;">
-                            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button" (click)="searchPic()">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group" style="font-size: 15px;">
+              <label>กรอกแถว</label><br>
+              <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001"
+                style="text-align:right" (keyup)="next($event,'002')">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group" style="font-size: 15px;">
+              <label>กรอกหลัก</label><br>
+              <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right"
+                id="002" (keyup)="next($event,'search')">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group" style="font-size: 15px;">
+              <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
+                (click)="searchPic()">
                 <span class="md-ripple"></span>ค้นหา
               </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-xs-12">
-                        <!-- small box -->
-                        <div class="small-box bg-red" style="height: 150px;">
-                            <div class="inner">
-                                <h3 style="font-size: 60px">65<sup style="font-size:40px">กิโลกรัม</sup></h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-red" style="height: 150px;">
+              <div class="inner">
+                <h3 style="font-size: 60px">65<sup style="font-size:40px">กิโลกรัม</sup></h3>
 
-                                <p>ปริมาณน้ำยางทั้งหมด</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
+                <p>ปริมาณน้ำยางทั้งหมด</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
 
-            </tab>
-            <tab heading="" id="3">
-            </tab>
-        </tabset>
-    </div>
+      </tab>
+      <tab heading="" id="3">
+      </tab>
+    </tabset>
+  </div>
 
 
 

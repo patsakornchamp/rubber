@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
+import { ApiService } from '../../api.sercice';
+
 // import Swal from 'sweetalert2'
 
 @Component({
@@ -11,11 +13,16 @@ import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
 export class StatisticsComponent implements AfterViewInit, OnInit {
 
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  constructor() { }
+  constructor(private apiService: ApiService) { }
+  /////////////////////////////////////////ตัวแปล
+  demo: any;
+  GET_Plantation: any;
+  test2:any;
   test = ["แปลงA", "แปลงB", "แปลงC"];
   ngOnInit() {
+    this.get_Plantation()
   }
-  
+
   ngAfterViewInit(): void {
     //กราฟ
     console.log("55555555555");
@@ -39,16 +46,26 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       document.getElementById(id).focus();
     }
   }
-  searchPic(){
-    console.log("22222222222222222");
+  searchPic() {
+    console.log(this.test2);
     // Swal.fire({
     //   icon: 'error',
     //   title: 'Oops...',
     //   text: 'Something went wrong!',
     //   footer: '<a href>Why do I have this issue?</a>'
     // })
-    this.ngAfterViewInit();
-
   }
-
+  get_Plantation() {
+    this.demo = {
+      mod: "getPlantation",
+      value: {
+        "IDUserF": "1"
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.GET_Plantation = resposne;
+      console.log(resposne);
+      console.log("resposne");
+    });
+  }
 }

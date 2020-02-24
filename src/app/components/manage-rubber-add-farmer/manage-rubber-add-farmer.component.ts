@@ -41,8 +41,8 @@ export class ManageRubberAddFarmerComponent implements OnInit {
   locationChosen = false;
   map: google.maps.Map;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
-  mapClick_lat: any;
-  mapClick_lng: any;
+
+  dataset:any={name_farm:null,address_farm:null,mapClick_lat:null,mapClick_lng:null};
 
 
   ngOnInit() {
@@ -59,13 +59,17 @@ export class ManageRubberAddFarmerComponent implements OnInit {
     console.log(this.latitude);
   }
   mapClick(e) {
-    this.mapClick_lat = e["coords"].lat;
-    this.mapClick_lng = e["coords"].lng;
+    this.dataset.mapClick_lat = e["coords"].lat;
+    this.dataset.mapClick_lng = e["coords"].lng;
     console.log(e["coords"].lat);
     console.log(e["coords"].lng);
 
   }
   //mapปิด
+
+  Add_Farm(e){
+    console.log(e);
+  }
 }
 interface marker {
   name: string,

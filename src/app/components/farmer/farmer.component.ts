@@ -77,6 +77,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   dataUser: any;
   name: any;
+  test2:any;
   test = ["แปลงA", "แปลงB", "แปลงC"];
 
   ngOnInit() {
@@ -84,7 +85,15 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.get_Plantation()
 
   }
-
+  searchPic(e) {
+    console.log("22222222222222222");
+    // Swal.fire({
+    //   icon: 'error',
+    //   title: 'Oops...',
+    //   text: 'Something went wrong!',
+    //   footer: '<a href>Why do I have this issue?</a>'
+    // })
+  }
   getPlantation() {
     this.demo = { 
       mod:"getPlantation",
