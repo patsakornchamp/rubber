@@ -96,9 +96,9 @@ export class ManageRubberFarmerComponent implements OnInit {
   }
   //mapปิด
 }
-interface marker {
-  name: string,
-  lat: number,
-  lng: number,
-  draggable: boolean;
-}
+// interface marker {
+//   name: string,
+//   lat: number,
+//   lng: number,
+//   draggable: boolean;
+// }
