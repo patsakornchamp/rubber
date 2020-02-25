@@ -83,18 +83,6 @@ export class ManageRubberFarmerComponent implements OnInit {
       }
     })
   }
-  // test(){
-  //   if (this.resposne.length > 10) {
-  //     let pushfor = this.resposne.length - 10;
-  //     for (let j = 0; j < pushfor; j++) {
-  //       this.SEARCH.push({});
-  //     }
-  //   }
-  //   for (let i = 0; i < this.resposne.length; i++) {
-  //     this.SEARCH[i] = this.GET_Plantation[i];
-  //   }
-  //   console.log(this.SEARCH);
-  // }
   //mapเปิด
   clickedMarker(m, i) {
     console.log(m, i);
