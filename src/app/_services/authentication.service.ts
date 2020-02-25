@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ApiService } from '../api.sercice';
 
 import { User } from '../_models';
 
@@ -10,13 +11,14 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private service : ApiService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
     // PHP_API_SERVER = "http://158.108.207.7/rubberProject/demo/ctrl.php";
-    PHP_API_SERVER = "http://localhost/RubberTree/ctrl.php";
+    // PHP_API_SERVER = "http://localhost/RubberTree/ctrl.php";
+    PHP_API_SERVER = this.service.PHP_API_SERVER;
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
