@@ -26,12 +26,10 @@ export class AppmenuFarmerComponent implements OnInit {
     // }
   }
   Click_statistics(){
-    console.log("25555555555555");
     this.router.navigate(["/statistics"]);
 
   }
   Click_ManageRubberfarmer(){
-    console.log("25555555555555");
     this.router.navigate(["/manage-rubber-farmer"]);
 
   }

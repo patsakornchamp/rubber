@@ -1,5 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { ApiService } from '../../api.sercice';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthenticationService } from '../../_services';
+
 import { Marker } from '@agm/core';
 @Component({
   selector: 'app-farmer',
@@ -8,38 +11,25 @@ import { Marker } from '@agm/core';
 })
 
 export class FarmerComponent implements AfterViewInit, OnInit {
+  modalRef: BsModalRef;
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService, private modalService: BsModalService, private authenticationService: AuthenticationService
   ) { }
   /////////////////////////////////////////ตัวแปล
   demo: any;
-  GET_Plantation:any;
+  GET_Plantation: any;
+  IDUser: any;
+  dataUser: any;
+  row: any = 0;
+  col: any = 0;
+  lng_lat: any;
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 15;
   //ละติจูท
   lat = 14.020740;
   //ลองติจูท
   lng = 99.991194;
-  markers: marker[] = [
-    {
-      name: 'champ',
-      lat: 14.020740,
-      lng: 99.991194,
-      draggable: true
-    },
-    {
-      name: 'champ2',
-      lat: 14.020750,
-      lng: 99.991120,
-      draggable: true
-    },
-    {
-      name: 'champ3',
-      lat: 14.020744,
-      lng: 99.991155,
-      draggable: true
-    },
-  ]
+  markers: marker[];
 
   latitude = 14.020740;
   longitude = 99.991194;
@@ -51,10 +41,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   map: google.maps.Map;
-
-  // for (let i = 0; i < A.length; i++) {
-  //   this.SEARCH[i] = this.LD_DET2[i];
-  // }  
   coordinates = new google.maps.LatLng(this.lat, this.lng);
 
   mapOptions: google.maps.MapOptions = {
@@ -72,69 +58,129 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     const script = document.createElement('script');
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
-    //googlemapp
+    this.searchPic_map()
+
   }
-
-  dataUser: any;
-  name: any;
-  test2:any;
-  test = ["แปลงA", "แปลงB", "แปลงC"];
-
+  Plantation: any; Plantation2: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
+  dataset: any = {}
   ngOnInit() {
+    this.dataUser = this.authenticationService.currentUserValue;
+    this.IDUser = this.dataUser[0]['IDUser'];
     this.getPlantation()
     this.get_Plantation()
+    console.log(this.markers)
 
   }
-  searchPic(e) {
-    console.log("22222222222222222");
-    // Swal.fire({
-    //   icon: 'error',
-    //   title: 'Oops...',
-    //   text: 'Something went wrong!',
-    //   footer: '<a href>Why do I have this issue?</a>'
-    // })
+  openModalWithClass(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,
+      Object.assign({}, { class: 'gray modal-lg' })
+    );
   }
   getPlantation() {
-    this.demo = { 
-      mod:"getPlantation",
+    this.demo = {
+      mod: "getPlantation",
       value: {
-        "IDUserF":"1"
-      } 
+        "IDUserF": "1"
+      }
     };
   }
   get_Plantation() {
-    this.demo = { 
-      mod:"getPlantation",
+    this.demo = {
+      mod: "getPlantation",
       value: {
-        "IDUserF":"1"
+        "IDUserF": "1"
       }
     };
 
     this.apiService.read(this.demo).subscribe((resposne: any) => {
-    this.GET_Plantation = resposne;
-    console.log(resposne);
-    console.log("resposne");
-    });
-  }
-  
-  code_product2() {
-    this.demo = { mod:"insertPlantation",
-    value: {
-      "namePlantation":"testPlant",
-      "addressRubberPlantation":"12345/234",
-      "detail":"test test test test",
-      "latitude":"45",
-      "longitude":"45",
-      "IDUserF":"1"
-    
-    } };
-    this.apiService.insert(this.demo).subscribe((resposne: any) => {
-    // this.CODE_PRODUCT = resposne;
+      this.GET_Plantation = resposne;
       console.log(resposne);
       console.log("resposne");
     });
   }
 
+
+  code_product2() {
+    this.demo = {
+      mod: "insertPlantation",
+      value: {
+        "namePlantation": "testPlant",
+        "addressRubberPlantation": "12345/234",
+        "detail": "test test test test",
+        "latitude": "45",
+        "longitude": "45",
+        "IDUserF": "1"
+
+      }
+    };
+    this.apiService.insert(this.demo).subscribe((resposne: any) => {
+      // this.CODE_PRODUCT = resposne;
+      console.log(resposne);
+      console.log("resposne");
+    });
+  }
+  click_Plantation(data) {
+    this.Plantation = data.namePlantation;
+    this.IDPlantation = data.IDPlantation;
+    this.searchPic_farm();
+    this.modalRef.hide();
+  }
+  click_Plantation2(data) {
+    this.Plantation2 = data.namePlantation;
+    this.IDPlantation = data.IDPlantation;
+    this.searchPic_tree();
+    this.modalRef.hide();
+  }
+  searchPic_farm() {
+    this.demo = {
+      mod: "searchPic_farm",
+      item: {
+        IDUser: this.IDUser,
+        IDPlantation: this.IDPlantation
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.latex_farm = resposne[0].sumquantity;
+      if (this.latex_farm == null) {
+        this.latex_farm = 0;
+      }
+      console.log(this.latex_farm)
+
+    });
+  }
+  searchPic_tree() {
+    this.demo = {
+      mod: "searchPic_tree",
+      item: {
+        IDUser: this.IDUser,
+        IDPlantation: this.IDPlantation,
+        row: this.row,
+        col: this.col
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.latex_tree = resposne[0].sumquantity;
+      if (this.latex_tree == null) {
+        this.latex_tree = 0;
+      }
+    });
+  }
+  searchPic_map() {
+    this.demo = {
+      mod: "searchPic_map",
+      item: {
+        IDUser: this.IDUser,
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.markers = resposne;
+      // if(this.latex_tree == null){
+      //   this.latex_tree = 0;
+      // }  
+      console.log(this.markers);
+
+    });
+  }
 
   clickedMarker(m, i) {
     console.log(m, i);
@@ -147,11 +193,11 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     console.log(this.latitude);
 
   }
-
 }
 interface marker {
-  name: string,
-  lat: number,
-  lng: number,
-  draggable: boolean;
+  namePlantation: string,
+  addressRubberPlantation:string,
+  latitude: number,
+  longitude: number,
+  detail:string,
 }
