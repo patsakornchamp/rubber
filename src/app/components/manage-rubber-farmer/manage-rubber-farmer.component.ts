@@ -1,7 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import { ApiService } from '../../api.sercice';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-rubber-farmer',
@@ -10,26 +11,26 @@ import { ApiService } from '../../api.sercice';
 })
 export class ManageRubberFarmerComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor( private apiService: ApiService,private modalService: BsModalService, private authenticationService: AuthenticationService) { }
-   
+  constructor(private apiService: ApiService, private modalService: BsModalService, private authenticationService: AuthenticationService) { }
+
   //mapสามารถเลือกจุดบนแผนที่ได้
-    zoom: number = 5;
-    //ละติจูท
-    lat = 14.020740;
-    //ลองติจูท
-    lng = 99.991194;
-    IDUser: any;
-    dataUser: any;
-    demo:any;
-    GET_Plantation:any;
-    p:number=1;
-    latitude = 14.020740;
-    longitude = 99.991194;
-    locationChosen = false;
-    map: google.maps.Map;
-    @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
-  
- 
+  zoom: number = 5;
+  //ละติจูท
+  lat = 14.020740;
+  //ลองติจูท
+  lng = 99.991194;
+  IDUser: any;
+  dataUser: any;
+  demo: any;
+  GET_Plantation: any;
+  p: number = 1;
+  latitude = 14.020740;
+  longitude = 99.991194;
+  locationChosen = false;
+  map: google.maps.Map;
+  @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+
+
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
       Object.assign({}, { class: 'gray modal-lg' })
@@ -54,6 +55,33 @@ export class ManageRubberFarmerComponent implements OnInit {
       this.GET_Plantation = resposne;
       console.log(this.GET_Plantation);
     });
+  }
+  del_farm(data) {
+    Swal.fire({
+      title: 'ต้องการลบ?',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        let del = {
+          IDPlantation: data,
+        }
+        this.demo = { mod: "deletePlantation", value: del };
+        this.apiService.delete(this.demo).subscribe((resposne: any) => {
+          Swal.fire(
+            'ลบเรียบร้อยแล้ว',
+            '',
+            'success'
+          )
+          this.get_Plantation();
+        })
+      }
+    })
   }
   // test(){
   //   if (this.resposne.length > 10) {
