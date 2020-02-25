@@ -43,7 +43,8 @@ import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manag
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
 //   {path: '' ,redirectTo:'/login', pathMatch: 'full'},
@@ -90,6 +91,7 @@ import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-f
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     // RouterModule.forRoot(routes),
     FormsModule,
     Ng2SearchPipeModule,
@@ -99,7 +101,8 @@ import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-f
     }),
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PaginationModule.forRoot()
     // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
   ],
   providers: [],

@@ -35,9 +35,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   longitude = 99.991194;
   locationChosen = false;
 
-
-  // @ViewChild('map', { static: false }) gmap: ElementRef;
-
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   map: google.maps.Map;
@@ -66,7 +63,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
-    this.getPlantation()
     this.get_Plantation()
     console.log(this.markers)
 
@@ -76,14 +72,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       Object.assign({}, { class: 'gray modal-lg' })
     );
   }
-  getPlantation() {
-    this.demo = {
-      mod: "getPlantation",
-      value: {
-        "IDUserF": "1"
-      }
-    };
-  }
+
   get_Plantation() {
     this.demo = {
       mod: "getPlantation",
@@ -98,8 +87,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       console.log("resposne");
     });
   }
-
-
   code_product2() {
     this.demo = {
       mod: "insertPlantation",
@@ -196,8 +183,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 }
 interface marker {
   namePlantation: string,
-  addressRubberPlantation:string,
+  addressRubberPlantation: string,
   latitude: number,
   longitude: number,
-  detail:string,
+  detail: string,
 }

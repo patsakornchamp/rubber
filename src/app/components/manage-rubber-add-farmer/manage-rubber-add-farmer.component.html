@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <input type="text" class="form-control" id='01' [(ngModel)]="dataset.name_farm" (keyup)="checkinput1($event,02)" />
+        <input type="text" class="form-control" [(ngModel)]="dataset.namePlantation" />
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <textarea [(ngModel)]="dataset.address_farm" rows="4" cols="60"></textarea>
+        <textarea [(ngModel)]="dataset.addressRubberPlantation" rows="4" cols="60"></textarea>
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <input type="text" class="form-control" id='01' [(ngModel)]="dataset.mapClick_lat" (keyup)="checkinput1($event,02)" />
+        <input type="text" class="form-control" [(ngModel)]="dataset.mapClick_lat" />
       </div>
     </div>
   </div>
@@ -56,7 +56,17 @@
     </div>
     <div class="col-md-4">
       <div style="display: flex">
-        <input type="text" class="form-control" id='01' [(ngModel)]="dataset.mapClick_lng" (keyup)="checkinput1($event,02)" />
+        <input type="text" class="form-control" [(ngModel)]="dataset.mapClick_lng" />
+      </div>
+    </div>
+  </div>
+  <div class="row" id="margin">
+    <div class="col-md-3" style="text-align: right;margin-top: 5px">
+      รายละเอียด:
+    </div>
+    <div class="col-md-4">
+      <div style="display: flex">
+        <input type="text" class="form-control" [(ngModel)]="dataset.detail" />
       </div>
     </div>
   </div>
@@ -78,11 +88,9 @@
       </a>
     </div>
     <div class="col-md-1">
-      <a class="btn btn-oval btn-danger ripple" (click)="Add_Farm(dataset)" >
+      <a class="btn btn-oval btn-danger ripple" (click)="Add_Farm(dataset)">
         <span class="md-ripple"></span>บันทึก
       </a>
     </div>
   </div>
-
-
 </div>
