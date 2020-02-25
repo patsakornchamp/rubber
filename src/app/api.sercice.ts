@@ -26,5 +26,7 @@ export class ApiService {
   update(data: Array<any>) {
     return this.httpClient.post<any>(`${this.PHP_API_SERVER}`, data);
   }
-
+  readOl(){
+    return this.httpClient.get<any>(`http://localhost/api/input.php`);
+  }
 }

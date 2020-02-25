@@ -1,5 +1,6 @@
 import { Component, OnInit,TemplateRef  } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ApiService } from '../../api.sercice'
 
 @Component({
   selector: 'app-manage-tree-farmer',
@@ -9,7 +10,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class ManageTreeFarmerComponent implements OnInit {
   modalRef: BsModalRef;
   searhText:any;
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService,private service: ApiService) {}
   //ตัวแปล
   SEARCH: any = [{}, {}, {}];
   resposne: any = [1,2,3]
@@ -40,7 +41,8 @@ export class ManageTreeFarmerComponent implements OnInit {
     },
   ]
   dataSet: any = {
-    Name_farmer:null
+    Name_farmer:null,
+    ID : 1150001
   };
 
 
@@ -67,6 +69,15 @@ export class ManageTreeFarmerComponent implements OnInit {
     for (let i = 0; i < this.resposne.length; i++) {
       this.SEARCH[i] = this.A[i];
     }
-console.log(this.SEARCH)
+    console.log(this.SEARCH)
+  }
+
+  sendID(){
+    this.dataSet.ID
+    this.service.readOl().subscribe((resposne: any) => {
+      console.log(resposne);
+      // if(resposne){
+      // }
+    });
   }
 }
