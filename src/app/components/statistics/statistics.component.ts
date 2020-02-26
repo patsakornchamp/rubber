@@ -25,23 +25,21 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     //กราฟ
-    console.log("55555555555");
     const script = document.createElement('script');
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
   }
-  SelectNext2(tabId: number) {
-    this.staticTabs.tabs[tabId].disabled = false;
-    this.staticTabs.tabs[tabId].active = true;
-    if (tabId == 0) {
-      this.ngAfterViewInit();
-    }
-    this.staticTabs.tabs[0].disabled = true;
-    this.staticTabs.tabs[1].disabled = true;
-    this.staticTabs.tabs[2].disabled = true;
-  }
+  // SelectNext2(tabId: number) {
+  //   this.staticTabs.tabs[tabId].disabled = false;
+  //   this.staticTabs.tabs[tabId].active = true;
+  //   if (tabId == 0) {
+  //     this.ngAfterViewInit();
+  //   }
+  //   this.staticTabs.tabs[0].disabled = true;
+  //   this.staticTabs.tabs[1].disabled = true;
+  //   this.staticTabs.tabs[2].disabled = true;
+  // }
   next(e, id) {
-    console.log('0000000')
     if (e.key == 'Enter') {
       document.getElementById(id).focus();
     }
@@ -65,7 +63,6 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
       console.log(resposne);
-      console.log("resposne");
     });
   }
 }

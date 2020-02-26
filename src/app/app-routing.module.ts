@@ -22,6 +22,7 @@ import { GuestUserPageComponent } from './components/page-guest-user/guest-user-
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
 import { ManageRubberAddFarmerComponent} from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component'; 
+import { ManageRubberEditFarmerComponent} from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component'; 
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 import { from } from 'rxjs';
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'statistics-now', component: StatisticsNowComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-farmer', component: ManageRubberFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-add-farmer', component: ManageRubberAddFarmerComponent, canActivate: [AuthGuard] },
+  { path: 'manage-rubber-edit-farmer', component: ManageRubberEditFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-user-farmer', component: ManageUserFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-tree-farmer', component: ManageTreeFarmerComponent, canActivate: [AuthGuard] },
 

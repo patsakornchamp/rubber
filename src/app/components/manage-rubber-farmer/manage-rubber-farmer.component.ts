@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import { ApiService } from '../../api.sercice';
@@ -11,22 +11,32 @@ import Swal from 'sweetalert2';
 })
 export class ManageRubberFarmerComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor(private apiService: ApiService, private modalService: BsModalService, private authenticationService: AuthenticationService) { }
+  constructor(
+    private apiService: ApiService,
+    private modalService: BsModalService,
+    private authenticationService: AuthenticationService) { }
 
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
   //ละติจูท
-  lat = 14.020740;
+  lat = 10.4782;
   //ลองติจูท
-  lng = 99.991194;
+  lng = 99.1423;
   IDUser: any;
   dataUser: any;
   demo: any;
   GET_Plantation: any;
-  p: number = 1;
-  latitude = 14.020740;
-  longitude = 99.991194;
+  latitude = 0;
+  longitude = 0;
+  dataset = {
+    IDPlantation: null, namePlantation: null,
+    addressRubberPlantation: null,
+    latitude: null,
+    longitude: null,
+    detail: null,
+  }
   locationChosen = false;
+  markers2: Array<any>;
   map: google.maps.Map;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
@@ -36,7 +46,6 @@ export class ManageRubberFarmerComponent implements OnInit {
       Object.assign({}, { class: 'gray modal-lg' })
     );
   }
-
   ngOnInit() {
     // this.test();
     this.dataUser = this.authenticationService.currentUserValue;
@@ -53,10 +62,9 @@ export class ManageRubberFarmerComponent implements OnInit {
 
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
-      console.log(this.GET_Plantation);
     });
   }
-  del_farm(data) {
+  deletePlantation(data) {
     Swal.fire({
       title: 'ต้องการลบ?',
       text: "",
@@ -83,22 +91,81 @@ export class ManageRubberFarmerComponent implements OnInit {
       }
     })
   }
+  edit_farm(data) {
+    this.dataset.IDPlantation = data.IDPlantation
+    // this.dataset.namePlantation = data.namePlantation
+    // this.dataset.addressRubberPlantation= data.addressRubberPlantation
+    // this.dataset.latitude = data.latitude
+    // this.dataset.longitude = data.longitude
+    // this.dataset.detail = data.detail
+    let markers: marker[] =
+      [{
+        IDPlantation: data.IDPlantation,
+        namePlantation: data.namePlantation,
+        addressRubberPlantation: data.addressRubberPlantation,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        detail: data.detail
+      }];
+    this.markers2 = markers;
+    console.log(this.markers2);
+  }
+  updatePlantation() {
+    let data = {
+      namePlantation: this.markers2[0].namePlantation,
+      addressRubberPlantation: this.markers2[0].addressRubberPlantation,
+      detail: this.markers2[0].detail,
+      latitude: this.markers2[0].latitude,
+      longitude: this.markers2[0].longitude,
+      IDPlantation: this.markers2[0].IDPlantation
+    };
+    Swal.fire({
+      title: 'ยืนยันการแก้ไข',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        this.demo = { mod: "updatePlantation", value: data };
+        this.apiService.update(this.demo).subscribe((resposne: any) => {
+          Swal.fire(
+            'แก้ไขเรียบร้อย', "",
+            'success')
+        });
+        this.modalRef.hide();
+        this.markers2 = [];
+        this.get_Plantation();
+        // this.router.navigateByUrl('/manage-rubber-farmer');
+      }
+    })
+  }
   //mapเปิด
   clickedMarker(m, i) {
     console.log(m, i);
   }
   //ขยับจุดมาค และส่งค่าจุดใหม่กลับมา
   markerDragEnd(m, e) {
-    console.log(m, e);
     this.latitude = e.coords.lat;
     this.longitude = e.coords.lng;
-    console.log(this.latitude);
+  }
+  mapClick(e) {
+    this.markers2[0].latitude = e["coords"].lat;
+    this.markers2[0].longitude = e["coords"].lng;
+    // console.log(e["coords"].lat);
+    // console.log(e["coords"].lng);
+    // console.log(e);
   }
   //mapปิด
 }
-// interface marker {
-//   name: string,
-//   lat: number,
-//   lng: number,
-//   draggable: boolean;
-// }
+interface marker {
+  IDPlantation: number,
+  namePlantation: string,
+  addressRubberPlantation: string,
+  latitude: number,
+  longitude: number,
+  detail: string,
+}

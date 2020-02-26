@@ -51,14 +51,13 @@ export class ManageRubberAddFarmerComponent implements OnInit {
   mapClick(e) {
     this.dataset.mapClick_lat = e["coords"].lat;
     this.dataset.mapClick_lng = e["coords"].lng;
-    console.log(e["coords"].lat);
-    console.log(e["coords"].lng);
-    console.log(e);
+    // console.log(e["coords"].lat);
+    // console.log(e["coords"].lng);
+    // console.log(e);
   }
   //mapปิด
 
   Add_Farm(e) {
-    console.log(e);
     let data = {
       namePlantation: this.dataset.namePlantation,
       addressRubberPlantation: this.dataset.addressRubberPlantation,

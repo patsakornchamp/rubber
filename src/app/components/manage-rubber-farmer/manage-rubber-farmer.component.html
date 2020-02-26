@@ -2,21 +2,20 @@
 <app-appmenu-farmer></app-appmenu-farmer>
 <ng-template #AddFram>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">เพิ่มสวนยาง</h4>
+    <h4 class="modal-title pull-left">แก้ไขสวนยาง</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
+
       <div class="row">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           ชื่อแปลง:
         </div>
         <div class="col-md-4">
           <div style="display: flex">
-            <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
-              (keyup)="checkinput1($event,02)" />
+            <input type="text" [(ngModel)]="markers2[0].namePlantation" class="form-control" />
           </div>
         </div>
       </div>
@@ -26,7 +25,7 @@
         </div>
         <div class="col-md-4">
           <div style="display: flex">
-            <textarea [(ngModel)]="address" rows="4" cols="50"></textarea>
+            <textarea [(ngModel)]="markers2[0].addressRubberPlantation" rows="4" cols="50"></textarea>
           </div>
         </div>
       </div>
@@ -34,10 +33,13 @@
         <div class="col-md-3" id="map">
           <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
             (mapClick)="mapClick($event)">
-            <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.lat"
-              [longitude]="m.lng" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
+            <agm-marker *ngFor="let m of markers2;let i = index" (markerClick)="clickedMarker(m,i)"
+              [latitude]="m.latitude" [longitude]="m.longitude" 
+            >
               <agm-info-window>
-                {{m.name}}
+                ชื่อแปลง:{{dataset.namePlantation}}<br>
+                ที่อยู่:{{dataset.addressRubberPlantation}}<br>
+                รายละเอียดของสวนยาง:{{dataset.detail}}
               </agm-info-window>
             </agm-marker>
           </agm-map>
@@ -49,8 +51,7 @@
         </div>
         <div class="col-md-4">
           <div style="display: flex">
-            <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
-              (keyup)="checkinput1($event,02)" />
+            <input type="text" class="form-control" [(ngModel)]="markers2[0].latitude" />
           </div>
         </div>
       </div>
@@ -60,29 +61,27 @@
         </div>
         <div class="col-md-4">
           <div style="display: flex">
-            <input type="text" class="form-control" id='01' [(ngModel)]="dataSet.LD_PART"
-              (keyup)="checkinput1($event,02)" />
+            <input type="text" class="form-control" [(ngModel)]="markers2[0].longitude" />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          ลองจิจูด:
+          รายละเอียดของสวนยาง:
         </div>
         <div class="col-md-4">
           <div style="display: flex">
-            <input type="text" id="14" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YY'}"
-              [(ngModel)]="to_date">
+            <input type="text" class="form-control" [(ngModel)]="markers2[0].detail" />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <button id="center" class="btn btn-pill-right btn-success ripple "
-            (click)="click_del(any.TR_TRNBR)">บันทึก</button>
+            (click)="updatePlantation()">บันทึก</button>
         </div>
       </div>
-    </div>
+    
   </div>
 </ng-template>
 <div class="content-wrapper">
@@ -118,7 +117,7 @@
           </thead>
           <div></div>
           <tbody>
-            <tr *ngFor="let any of GET_Plantation;let i = index">
+            <tr *ngFor="let any of GET_Plantation;let i = index" (click)="edit_farm(any)">
               <td style="height: 30px">{{ i+1 }}</td>
               <td>{{ any.namePlantation }}</td>
               <td>{{ any.addressRubberPlantation }}</td>
@@ -128,12 +127,12 @@
               <td>{{ any.detail }}</td>
               <td style="border: none;background-color: #ffff; width: 2px; ">
                 <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal"
-                  (click)="click_del(any.TR_TRNBR)">แก้ไข</button>
+                  (click)="openModalWithClass(AddFram)">แก้ไข</button>
               </td>
               <td style="border: none;
                           background-color: #ffff; width: 2px; ">
                 <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
-                  (click)="del_farm(any.IDPlantation)">ลบ</button>
+                  (click)="deletePlantation(any.IDPlantation)">ลบ</button>
               </td>
             </tr>
           </tbody>

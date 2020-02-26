@@ -177,8 +177,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     console.log(m, e);
     this.latitude = e.coords.lat;
     this.longitude = e.coords.lng;
-    console.log(this.latitude);
-
   }
 }
 interface marker {
