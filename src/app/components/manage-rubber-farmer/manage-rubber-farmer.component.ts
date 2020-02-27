@@ -47,7 +47,6 @@ export class ManageRubberFarmerComponent implements OnInit {
     );
   }
   ngOnInit() {
-    // this.test();
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
@@ -92,7 +91,7 @@ export class ManageRubberFarmerComponent implements OnInit {
     })
   }
   edit_farm(data) {
-    this.dataset.IDPlantation = data.IDPlantation
+    // this.dataset.IDPlantation = data.IDPlantation
     // this.dataset.namePlantation = data.namePlantation
     // this.dataset.addressRubberPlantation= data.addressRubberPlantation
     // this.dataset.latitude = data.latitude
@@ -131,14 +130,14 @@ export class ManageRubberFarmerComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.demo = { mod: "updatePlantation", value: data };
-        this.apiService.update(this.demo).subscribe((resposne: any) => {
+        this.apiService.update(this.demo).subscribe((resposne: any) => {        
+          this.get_Plantation();
           Swal.fire(
             'แก้ไขเรียบร้อย', "",
             'success')
         });
         this.modalRef.hide();
         this.markers2 = [];
-        this.get_Plantation();
         // this.router.navigateByUrl('/manage-rubber-farmer');
       }
     })
