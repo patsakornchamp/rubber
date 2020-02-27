@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
-import { BsModalService, TabsetComponent } from 'ngx-bootstrap';
+import { TabsetComponent } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
-
-// import Swal from 'sweetalert2'
+import { AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-statistics',
@@ -11,18 +11,29 @@ import { ApiService } from '../../api.sercice';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements AfterViewInit, OnInit {
-
+  modalRef: BsModalRef;
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  constructor(private apiService: ApiService) { }
+  constructor( private modalService: BsModalService,
+    private apiService: ApiService, 
+    private authenticationService: AuthenticationService) { }
   /////////////////////////////////////////ตัวแปล
   demo: any;
   GET_Plantation: any;
-  test2:any;
-  test = ["แปลงA", "แปลงB", "แปลงC"];
+  Plantation: any; Plantation2: any; IDPlantation: any;addressRubberPlantation:any;addressRubberPlantation2:any;
+  IDUser: any;
+  dataUser: any;
+  row: any = 0;
+  col: any = 0;
   ngOnInit() {
+    this.dataUser = this.authenticationService.currentUserValue;
+    this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
   }
-
+  openModalWithClass(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,
+      Object.assign({}, { class: 'gray modal-lg' })
+    );
+  }
   ngAfterViewInit(): void {
     //กราฟ
     const script = document.createElement('script');
@@ -44,15 +55,6 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       document.getElementById(id).focus();
     }
   }
-  searchPic() {
-    console.log(this.test2);
-    // Swal.fire({
-    //   icon: 'error',
-    //   title: 'Oops...',
-    //   text: 'Something went wrong!',
-    //   footer: '<a href>Why do I have this issue?</a>'
-    // })
-  }
   get_Plantation() {
     this.demo = {
       mod: "getPlantation",
@@ -60,9 +62,50 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
         "IDUserF": "1"
       }
     };
+
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
       console.log(resposne);
+      console.log("resposne");
+    });
+  }
+  click_Plantation(data) {
+    this.Plantation = data.namePlantation;
+    this.IDPlantation = data.IDPlantation;
+    this.addressRubberPlantation= data.addressRubberPlantation;
+    // this.searchPic_farm();
+    this.modalRef.hide();
+  }
+  click_Plantation2(data) {
+    this.Plantation2 = data.namePlantation;
+    this.IDPlantation = data.IDPlantation;
+    this.addressRubberPlantation2= data.addressRubberPlantation;
+    // this.searchPic_tree();
+    this.modalRef.hide();
+  }
+  searchPic_farm() {
+    this.demo = {
+      mod: "searchPic_farm",
+      item: {
+        IDUser: this.IDUser,
+        IDPlantation: this.IDPlantation
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+    });
+  }
+  searchPic_tree() {
+    this.demo = {
+      mod: "searchPic_tree",
+      item: {
+        IDUser: this.IDUser,
+        IDPlantation: this.IDPlantation,
+        row: this.row,
+        col: this.col
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+    
     });
   }
 }

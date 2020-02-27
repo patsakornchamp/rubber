@@ -13,7 +13,9 @@ import { Marker } from '@agm/core';
 export class FarmerComponent implements AfterViewInit, OnInit {
   modalRef: BsModalRef;
   constructor(
-    private apiService: ApiService, private modalService: BsModalService, private authenticationService: AuthenticationService
+    private apiService: ApiService,
+    private modalService: BsModalService,
+    private authenticationService: AuthenticationService
   ) { }
   /////////////////////////////////////////ตัวแปล
   demo: any;
@@ -38,17 +40,17 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   map: google.maps.Map;
-  coordinates = new google.maps.LatLng(this.lat, this.lng);
+  // coordinates = new google.maps.LatLng(this.lat, this.lng);
 
-  mapOptions: google.maps.MapOptions = {
-    center: this.coordinates,
-    zoom: 15,
+  // mapOptions: google.maps.MapOptions = {
+  //   center: this.coordinates,
+  //   zoom: 15,
 
-  };
-  marker = new google.maps.Marker({
-    position: this.coordinates,
-    map: this.map,
-  });
+  // };
+  // marker = new google.maps.Marker({
+  //   position: this.coordinates,
+  //   map: this.map,
+  // });
 
   ngAfterViewInit(): void {
     //กราฟ
@@ -83,29 +85,27 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
-      console.log(resposne);
-      console.log("resposne");
     });
   }
-  code_product2() {
-    this.demo = {
-      mod: "insertPlantation",
-      value: {
-        "namePlantation": "testPlant",
-        "addressRubberPlantation": "12345/234",
-        "detail": "test test test test",
-        "latitude": "45",
-        "longitude": "45",
-        "IDUserF": "1"
+  // code_product2() {
+  //   this.demo = {
+  //     mod: "insertPlantation",
+  //     value: {
+  //       "namePlantation": "testPlant",
+  //       "addressRubberPlantation": "12345/234",
+  //       "detail": "test test test test",
+  //       "latitude": "45",
+  //       "longitude": "45",
+  //       "IDUserF": "1"
 
-      }
-    };
-    this.apiService.insert(this.demo).subscribe((resposne: any) => {
-      // this.CODE_PRODUCT = resposne;
-      console.log(resposne);
-      console.log("resposne");
-    });
-  }
+  //     }
+  //   };
+  //   this.apiService.insert(this.demo).subscribe((resposne: any) => {
+  //     // this.CODE_PRODUCT = resposne;
+  //     console.log(resposne);
+  //     console.log("resposne");
+  //   });
+  // }
   click_Plantation(data) {
     this.Plantation = data.namePlantation;
     this.IDPlantation = data.IDPlantation;

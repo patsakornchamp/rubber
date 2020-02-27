@@ -1,5 +1,77 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
+<ng-template #Garden>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>ละติจูด</th>
+              <th>ลองจิจูด</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #Garden2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>ละติจูด</th>
+              <th>ลองจิจูด</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation2(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+  </div>
+</ng-template>
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
@@ -16,19 +88,14 @@
       <div class="row">
         <div class="col-md-3">
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-            <label>เลือกแปลง</label>
-            <select class="form-control select2" [(ngModel)]="test2" style="width: 100%;font-size: 13px;">
-              <option selected="selected">---เลือก---</option>
-              <option *ngFor="let item of GET_Plantation"  (change)="searchPic()">{{item.namePlantation}}</option>
-            </select>
+            <label>เลือกแปลง</label><br>
+            <input type="text" [(ngModel)]="Plantation">
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <div class="form-group" style="font-size: 15px;">
-            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
-              (click)="searchPic()">
-              <span class="md-ripple"></span>ค้นหา
-            </button>
+            <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
+              <i class="fa fa-search"></i></button>
           </div>
         </div>
       </div>
@@ -42,7 +109,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <blockquote>
-                <p>Lorem ipsum dolor sit amet</p>
+                <p>{{addressRubberPlantation}}</p>
               </blockquote>
             </div>
             <!-- /.box-body -->
@@ -54,25 +121,28 @@
       <div class="row">
         <div class="col-md-3">
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-            <label>เลือกแปลง</label>
-            <select class="form-control select2" style="width: 100%;font-size: 13px;">
-              <option selected="selected">---เลือก---</option>
-              <option *ngFor="let item of GET_Plantation" (click)="searchPic(item)"  >{{item.namePlantation}}</option>
-            </select>
+            <label>เลือกแปลง</label><br>
+            <input type="text" [(ngModel)]="Plantation2">
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="form-group" style="font-size: 15px;">
+            <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden2)">
+              <i class="fa fa-search"></i></button>
           </div>
         </div>
         <div class="col-md-2">
           <div class="form-group" style="font-size: 15px;">
             <label>กรอกแถว</label><br>
-            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001" style="text-align:right"
-              (keyup)="next($event,'002')">
+            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001"
+              style="text-align:right" [(ngModel)]="row" (change)="searchPic_tree()">
           </div>
         </div>
         <div class="col-md-2">
           <div class="form-group" style="font-size: 15px;">
             <label>กรอกหลัก</label><br>
-            <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right" id="002"
-              (keyup)="next($event,'search')">
+            <input type="text" (change)="searchPic_tree()" [(ngModel)]="col" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+              style="text-align:right" >
           </div>
         </div>
         <div class="col-md-2">
@@ -94,7 +164,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <p>{{addressRubberPlantation2}}</p>
               </blockquote>
             </div>
             <!-- /.box-body -->
