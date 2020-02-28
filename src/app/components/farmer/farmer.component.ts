@@ -39,17 +39,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   map: google.maps.Map;
-  // coordinates = new google.maps.LatLng(this.lat, this.lng);
-
-  // mapOptions: google.maps.MapOptions = {
-  //   center: this.coordinates,
-  //   zoom: 15,
-
-  // };
-  // marker = new google.maps.Marker({
-  //   position: this.coordinates,
-  //   map: this.map,
-  // });
 
   ngAfterViewInit(): void {
     //กราฟ
@@ -86,25 +75,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       this.GET_Plantation = resposne;
     });
   }
-  // code_product2() {
-  //   this.demo = {
-  //     mod: "insertPlantation",
-  //     value: {
-  //       "namePlantation": "testPlant",
-  //       "addressRubberPlantation": "12345/234",
-  //       "detail": "test test test test",
-  //       "latitude": "45",
-  //       "longitude": "45",
-  //       "IDUserF": "1"
-
-  //     }
-  //   };
-  //   this.apiService.insert(this.demo).subscribe((resposne: any) => {
-  //     // this.CODE_PRODUCT = resposne;
-  //     console.log(resposne);
-  //     console.log("resposne");
-  //   });
-  // }
   click_Plantation(data) {
     this.Plantation = data.namePlantation;
     this.IDPlantation = data.IDPlantation;
@@ -130,8 +100,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       if (this.latex_farm == null) {
         this.latex_farm = 0;
       }
-      console.log(this.latex_farm)
-
     });
   }
   searchPic_tree() {
@@ -160,9 +128,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.markers = resposne;
-      console.log("dddddddddddddddddddddddddddddd");
 
-      console.log(this.markers);
     });
   }
 

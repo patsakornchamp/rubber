@@ -30,10 +30,11 @@ export class CooperativePageComponent implements AfterViewInit, OnInit {
   IDUser: any;
   IDUser2:any;
   dataUser: any;
+  //น้ำยางพารา
   Plantation: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
-  data_framer:any = {
-    name:null,phoneNumber:null,addressUser:null
-  }
+  // data_framer:any = {
+  //   name:null,phoneNumber:null,addressUser:null
+  // }
   map: google.maps.Map;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
@@ -61,14 +62,13 @@ export class CooperativePageComponent implements AfterViewInit, OnInit {
         "IDUser": this.IDUser
       }
     };
-
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_farm = resposne;
       this.markers =this.GET_farm;
       this.Plantation = null;
       this.latex_farm = 0;
 
-      // console.log(this.GET_farm)
+      console.log(this.GET_farm)
     });
   }
   click_Plantation(data) {
@@ -76,7 +76,6 @@ export class CooperativePageComponent implements AfterViewInit, OnInit {
     this.IDPlantation = data.IDPlantation;
     this.IDUser2 =data.IDUserF;
     this.searchPic_farm();
-    this.getuser();
     console.log( this.IDUser2)
 
     this.modalRef.hide();
@@ -97,24 +96,24 @@ export class CooperativePageComponent implements AfterViewInit, OnInit {
       }
     });
   }
-  getuser(){
-    this.demo = {
-      mod: "getuser",
-      value: {
-        "IDUser": this.IDUser2
-      }
-    };
-    this.apiService.read(this.demo).subscribe((resposne: any) => {
-      // this.latex_farm = resposne;
-      this.data_framer.name = resposne[0].name;
-      this.data_framer.phoneNumber = resposne[0].phoneNumber;
-      this.data_framer.addressUser = resposne[0].addressUser;
+  // getuser(){
+  //   this.demo = {
+  //     mod: "getuser",
+  //     value: {
+  //       "IDUser": this.IDUser2
+  //     }
+  //   };
+  //   this.apiService.read(this.demo).subscribe((resposne: any) => {
+  //     // this.latex_farm = resposne;
+  //     this.data_framer.name = resposne[0].name;
+  //     this.data_framer.phoneNumber = resposne[0].phoneNumber;
+  //     this.data_framer.addressUser = resposne[0].addressUser;
 
 
-      console.log(resposne)
+  //     console.log(resposne)
 
-    });
-  }
+  //   });
+  // }
 
   //mapเปิด
   clickedMarker(m, i) {
@@ -135,4 +134,6 @@ interface marker {
   latitude: number,
   longitude: number,
   detail: string,
+  name:string,
+  phoneNumber:string
 }

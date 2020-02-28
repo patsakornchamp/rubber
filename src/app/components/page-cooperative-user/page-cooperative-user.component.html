@@ -20,16 +20,36 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row" id="margin">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           ชื่อผู้ใช้:
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control"  />
+            <input type="text" class="form-control" readonly  [(ngModel)]="dataset2.username" />
           </div>
         </div>
-      </div> -->
+      </div>
+      <div class="row" id="margin">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          รหัสผ่านใหม่:
+        </div>
+        <div class="col-md-5">
+          <div style="display: flex">
+            <input type="password" class="form-control" (change)="chack_pass()" id="01"   [(ngModel)]="dataset2.password_new" />
+          </div>
+        </div>
+      </div>
+      <div class="row" id="margin">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ยื่นยันรหัสผ่านใหม่:
+        </div>
+        <div class="col-md-5">
+          <div style="display: flex">
+            <input type="password" class="form-control" (change)="chack_pass()"  [(ngModel)]="dataset2.password_new2" />
+          </div>
+        </div>
+      </div>
       <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           บ้านที่อยู่:
