@@ -32,7 +32,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   //ลองติจูท
   lng = 99.991194;
   markers: marker[];
-
   latitude = 14.020740;
   longitude = 99.991194;
   locationChosen = false;
@@ -66,7 +65,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
-    console.log(this.markers)
+    // console.log(this.IDUser)
 
   }
   openModalWithClass(template: TemplateRef<any>) {
@@ -161,10 +160,9 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.markers = resposne;
-      // if(this.latex_tree == null){
-      //   this.latex_tree = 0;
-      // }  
+      console.log("dddddddddddddddddddddddddddddd");
 
+      console.log(this.markers);
     });
   }
 

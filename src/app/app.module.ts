@@ -44,11 +44,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
-import {NgxPaginationModule} from 'ngx-pagination';
+// import {NgxPaginationModule} from 'ngx-pagination';
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
 import { PageGuestComponent } from './components/page-guest/page-guest.component';
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
-
 // import {NgxPaginationModule} from 'ngx-pagination';
 
 
@@ -89,8 +88,7 @@ import { PageGuestUserComponent } from './components/page-guest-user/page-guest-
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
-    // RouterModule.forRoot(routes),
+    // NgxPaginationModule,
     FormsModule,
     Ng2SearchPipeModule,
     ModalModule.forRoot(),
