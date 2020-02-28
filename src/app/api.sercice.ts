@@ -14,6 +14,7 @@ export class ApiService {
   PHP_API_SERVER = "http://localhost/RubberTree/ctrl.php";
 
 
+  
   read(data:any){
     return this.httpClient.post<any>(`${this.PHP_API_SERVER}`,data);
   }
