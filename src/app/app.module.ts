@@ -43,15 +43,15 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-<<<<<<< HEAD
-import {NgxPaginationModule} from 'ngx-pagination';
+
+// import {NgxPaginationModule} from 'ngx-pagination';
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
 import { PageGuestComponent } from './components/page-guest/page-guest.component';
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
-=======
+
 // import {NgxPaginationModule} from 'ngx-pagination';
-import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component';
->>>>>>> 1c4f47f99a9a3a3e0edee84840d1e35eceb09433
+// import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component';
+
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
 //   {path: '' ,redirectTo:'/login', pathMatch: 'full'},
