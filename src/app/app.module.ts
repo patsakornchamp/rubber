@@ -44,7 +44,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import {NgxPaginationModule} from 'ngx-pagination';
+// import {NgxPaginationModule} from 'ngx-pagination';
 import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component';
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
@@ -93,7 +93,7 @@ import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
+    // NgxPaginationModule,
     // RouterModule.forRoot(routes),
     FormsModule,
     Ng2SearchPipeModule,
