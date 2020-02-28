@@ -49,13 +49,23 @@ export class LoginComponent implements OnInit {
         "password": loginForm.password
       }
     };
-    console.log(dataLogin);
+    // console.log(dataLogin);
     this.authenticationService.login(dataLogin)
             .pipe(first())
             .subscribe(
                 data => {
-                  console.log(data);
+                  if(data[0].statusUser == "1" ){
                     this.router.navigate(['/farmer']);
+                  }
+                  else if(data[0].statusUser == "2" ){
+                    this.router.navigate(['/page-cooperative']);
+
+                  } 
+                  else if(data[0].statusUser == "3" ){
+                    this.router.navigate(['/page-guest-user']);
+
+                  }
+                  console.log(data);
                 },
                 error => {
                   window.alert("รหัสผ่านไม่ถูกต้อง");

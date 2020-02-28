@@ -1,5 +1,41 @@
 <app-appheader-cooperative></app-appheader-cooperative>
 <app-appmenu-cooperative></app-appmenu-cooperative>
+<ng-template #Garden>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>ละติจูด</th>
+              <th>ลองจิจูด</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_farm|filter:searhText;let i = index" (click)="click_Plantation(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+  </div>
+</ng-template>
 <div class="content-wrapper">
   <!-- หัวข้อ -->
   <section class="content-header">
@@ -7,17 +43,79 @@
       หน้าแรก
       <small></small>
     </h1>
-  </section>
+  </section><br>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+        <label>เลือกสวนยาง</label><br>
+        <input type="text" [(ngModel)]="Plantation">
+      </div>
+    </div>
+
+    <div class="col-md-1">
+      <div class="form-group" style="font-size: 15px;">
+        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
+          <i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+        <button type="button" class="btn btn-primary" (click)="get_farm()">ดูปักหมุดทั้งหมด
+        </button>
+      </div>
+    </div>
+  </div>
   <div id="map">
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
-      (mapClick)="mapClick($event)">
-      <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.lat"
-        [longitude]="m.lng" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+      <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude"
+        [longitude]="m.longitude" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
         <!-- markerDraggable ทำให้จุดขยับได้ -->
         <agm-info-window>
-          {{m.name}}
+          ชื่อแปลง:{{m.namePlantation}}<br>
+          ที่อยู่สวน:{{m.addressRubberPlantation}}<br>
+          รายละเอียด:{{m.detail}}<br>
+          ชื่อเจ้าของสวน:{{data_framer.name}}<br>
+          เบอร์โทรศัพท์:{{data_framer.phoneNumber}}
         </agm-info-window>
       </agm-marker>
     </agm-map>
   </div>
+
+  <!-- <div class="row">
+      <div class="col-md-3">
+        <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+          <label>เลือกแปลง</label><br>
+          <input type="text" [(ngModel)]="Plantation">
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="form-group" style="font-size: 15px;">
+          <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
+            <i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div> -->
+  <div class="margin">
+
+    <label style="margin-top: 50px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวัน</label>
+
+    <div class="row">
+      <div class="col-lg-6 col-xs-12">
+        <div class="small-box bg-red" style="height: 150px;">
+          <div class="inner">
+            <h3 style="font-size: 60px">{{latex_farm}}<sup style="font-size:40px">กิโลกรัม</sup></h3>
+
+            <p>ปริมาณน้ำยางทั้งหมด</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

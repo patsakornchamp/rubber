@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-appmenu-cooperative',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppmenuCooperativeComponent implements OnInit {
 
-  constructor() { }
+  constructor( private authenticationService: AuthenticationService ) { }
+  name:string;
+  dataUser: any;
+
 
   ngOnInit() {
+    this.dataUser = this.authenticationService.currentUserValue;
+    this.name = this.dataUser[0]['name'];
   }
 
 }

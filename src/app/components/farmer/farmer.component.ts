@@ -164,7 +164,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       // if(this.latex_tree == null){
       //   this.latex_tree = 0;
       // }  
-      console.log(this.markers);
 
     });
   }
