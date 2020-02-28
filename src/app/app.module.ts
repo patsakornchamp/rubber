@@ -44,25 +44,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
-// import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
 import { PageGuestComponent } from './components/page-guest/page-guest.component';
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
 
 // import {NgxPaginationModule} from 'ngx-pagination';
-// import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component';
 
-// ส่วนเรียกใช้หน้าเพจ
-// const routes: Routes = [
-//   {path: '' ,redirectTo:'/login', pathMatch: 'full'},
-//   {path:'login',component:LoginComponent},
-//   {path:'farmer',component:FarmerComponent},
-//   {path:'register',component:RegisterComponent},
-//   {path:'statistics',component:StatisticsComponent},
-//   {path:'statistics-now',component:StatisticsNowComponent},
-//   {path:'manage-rubber-farmer',component:ManageRubberFarmerComponent},
-//   {path:'**',redirectTo: '/login'}
-// ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +89,7 @@ import { PageGuestUserComponent } from './components/page-guest-user/page-guest-
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    // NgxPaginationModule,
+    NgxPaginationModule,
     // RouterModule.forRoot(routes),
     FormsModule,
     Ng2SearchPipeModule,
