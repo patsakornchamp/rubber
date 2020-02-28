@@ -1,17 +1,24 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-@Component({
-  selector: 'app-guest-user-page',
-  templateUrl: './guest-user-page.component.html',
-  styleUrls: ['./guest-user-page.component.css']
-})
-export class GuestUserPageComponent implements AfterViewInit,OnInit {
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef,TemplateRef } from '@angular/core';
+import { ApiService } from '../../api.sercice';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthenticationService } from '../../_services';
 
-  constructor() { }
+@Component({
+  selector: 'app-page-guest',
+  templateUrl: './page-guest.component.html',
+  styleUrls: ['./page-guest.component.css']
+})
+export class PageGuestComponent implements AfterViewInit, OnInit {
+  constructor( private apiService: ApiService,
+    private modalService: BsModalService,
+    private authenticationService: AuthenticationService) { }
   zoom: number = 15;
   //ละติจูท
   lat = 14.020740;
   //ลองติจูท
   lng = 99.991194;
+  IDUser: any;
+  dataUser: any;
   markers: marker[] = [
     {
       name: 'champ',
@@ -46,6 +53,8 @@ export class GuestUserPageComponent implements AfterViewInit,OnInit {
     document.body.appendChild(script);
   }
   ngOnInit() {
+    this.dataUser = this.authenticationService.currentUserValue;
+    this.IDUser = this.dataUser[0]['IDUser'];
   }
   clickedMarker(m, i) {
     console.log(m, i);

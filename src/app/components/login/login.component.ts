@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
                   } 
                   else if(data[0].statusUser == "3" ){
-                    this.router.navigate(['/page-guest-user']);
+                    this.router.navigate(['/page-guset']);
 
                   }
                   console.log(data);

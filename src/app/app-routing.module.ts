@@ -18,13 +18,15 @@ import { AppmenuAdminComponent } from './components/appmenu-admin/appmenu-admin.
 import { AppmenuCooperativeComponent } from './components/appmenu-cooperative/appmenu-cooperative.component';
 import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appmenu-guest-user.component';
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
-import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
+import { PageGuestComponent } from './components/page-guest/page-guest.component';
+import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
 import { ManageRubberAddFarmerComponent} from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component'; 
-import { ManageRubberEditFarmerComponent} from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component'; 
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
+import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
+
 import { from } from 'rxjs';
 
 const routes: Routes = [
@@ -36,7 +38,6 @@ const routes: Routes = [
   { path: 'statistics-now', component: StatisticsNowComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-farmer', component: ManageRubberFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-rubber-add-farmer', component: ManageRubberAddFarmerComponent, canActivate: [AuthGuard] },
-  { path: 'manage-rubber-edit-farmer', component: ManageRubberEditFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-user-farmer', component: ManageUserFarmerComponent, canActivate: [AuthGuard] },
   { path: 'manage-tree-farmer', component: ManageTreeFarmerComponent, canActivate: [AuthGuard] },
 
@@ -54,7 +55,10 @@ const routes: Routes = [
   { path: 'appmenu-guset-user', component: AppmenuGuestUserComponent, canActivate: [AuthGuard] },
   
   { path: 'page-cooperative', component: CooperativePageComponent, canActivate: [AuthGuard] },
-  { path: 'page-guset-user', component: GuestUserPageComponent, canActivate: [AuthGuard] },
+  { path: 'page-guest-user', component: PageGuestUserComponent, canActivate: [AuthGuard] },
+  { path: 'page-guset', component: PageGuestComponent, canActivate: [AuthGuard] },
+  { path: 'page-cooperative-user', component: PageCooperativeUserComponent, canActivate: [AuthGuard] },
+
 ];
 
 @NgModule({
@@ -62,6 +66,6 @@ const routes: Routes = [
     ModalModule.forRoot(),
   ],
   exports: [RouterModule],
- 
+
 })
 export class AppRoutingModule { }

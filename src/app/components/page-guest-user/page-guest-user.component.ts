@@ -1,33 +1,34 @@
-import { Component, OnInit,TemplateRef  } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import { ApiService } from '../../api.sercice';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'; '@angular/core';
 
 @Component({
-  selector: 'app-manage-user-farmer',
-  templateUrl: './manage-user-farmer.component.html',
-  styleUrls: ['./manage-user-farmer.component.css']
+  selector: 'app-page-guest-user',
+  templateUrl: './page-guest-user.component.html',
+  styleUrls: ['./page-guest-user.component.css']
 })
-export class ManageUserFarmerComponent implements OnInit {
+export class PageGuestUserComponent implements OnInit {
+
   modalRef: BsModalRef;
   dataUser: any;
 
   dataUser2: any;
-  demo:any;
-  statistcs:any;
-  statusUser:any;
-  dataset2:any={ 
-    name:null,
-    addressUser:null,
+  demo: any;
+  statistcs: any;
+  statusUser: any;
+  dataset2: any = {
+    name: null,
+    addressUser: null,
     phoneNumber: null,
     username: null,
     IDUser: null,
   };
-  IDUser:any
+  IDUser: any
   constructor(private modalService: BsModalService,
     private authenticationService: AuthenticationService,
-    private apiService: ApiService,) { }
+    private apiService: ApiService, ) { }
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -49,14 +50,14 @@ export class ManageUserFarmerComponent implements OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.dataUser2 = resposne[0];
-      if(this.statusUser == '1'){
+      if (this.statusUser == '1') {
         this.statistcs = 'เกษตกร';
       }
-      else if(this.statusUser == '2'){
+      else if (this.statusUser == '2') {
         this.statistcs = 'กระทรวงเกษตรและสหกรณ์';
 
       }
-      else if(this.statusUser == '3'){
+      else if (this.statusUser == '3') {
         this.statistcs = 'ผู้ใช้ทั่วไป';
 
       }
@@ -64,12 +65,12 @@ export class ManageUserFarmerComponent implements OnInit {
       // console.log(this.dataset2);
     });
   }
-  get_data(data){
+  get_data(data) {
     this.dataset2.name = data.name;
-    this.dataset2.addressUser= data.addressUser,
-    this.dataset2.phoneNumber= data.phoneNumber,
-    this.dataset2.username=data.username,
-    this.dataset2.IDUser=data.IDUser
+    this.dataset2.addressUser = data.addressUser,
+      this.dataset2.phoneNumber = data.phoneNumber,
+      this.dataset2.username = data.username,
+      this.dataset2.IDUser = data.IDUser
   }
   updateDataUser() {
     let data = {
@@ -92,7 +93,7 @@ export class ManageUserFarmerComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.demo = { mod: "updateDataUser", value: data };
-        this.apiService.update(this.demo).subscribe((resposne: any) => {        
+        this.apiService.update(this.demo).subscribe((resposne: any) => {
           this.ngOnInit();
           Swal.fire(
             'แก้ไขเรียบร้อย', "",
@@ -103,4 +104,5 @@ export class ManageUserFarmerComponent implements OnInit {
       }
     })
   }
+
 }

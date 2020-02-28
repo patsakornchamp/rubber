@@ -31,7 +31,6 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { StatisticsNowComponent } from './components/statistics-now/statistics-now.component'
 
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
-import { GuestUserPageComponent } from './components/page-guest-user/guest-user-page.component';
 import { AppheaderAdminComponent } from './components/appheader-admin/appheader-admin.component';
 import { AppheaderGuestUserComponent } from './components/appheader-guest-user/appheader-guest-user.component';
 import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appmenu-guest-user.component';
@@ -45,7 +44,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageRubberAddFarmerComponent } from './components/manage-rubber-add-farmer/manage-rubber-add-farmer.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit-farmer/manage-rubber-edit-farmer.component';
+import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
+import { PageGuestComponent } from './components/page-guest/page-guest.component';
+import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
 // ส่วนเรียกใช้หน้าเพจ
 // const routes: Routes = [
 //   {path: '' ,redirectTo:'/login', pathMatch: 'full'},
@@ -73,7 +74,6 @@ import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit
     ManageRubberFarmerComponent,
     StatisticsNowComponent,
     CooperativePageComponent,
-    GuestUserPageComponent,
 
     AppheaderAdminComponent,
     
@@ -85,7 +85,9 @@ import { ManageRubberEditFarmerComponent } from './components/manage-rubber-edit
     ManageUserFarmerComponent,
     ManageTreeFarmerComponent,
     ManageRubberAddFarmerComponent,
-    ManageRubberEditFarmerComponent,
+    PageCooperativeUserComponent,
+    PageGuestComponent,
+    PageGuestUserComponent,
     
   ],
   imports: [
