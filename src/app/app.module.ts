@@ -48,6 +48,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
 import { PageGuestComponent } from './components/page-guest/page-guest.component';
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
+import { PageCooperativeManageComponent } from './components/page-cooperative-manage/page-cooperative-manage.component';
 // import {NgxPaginationModule} from 'ngx-pagination';
 
 
@@ -81,6 +82,7 @@ import { PageGuestUserComponent } from './components/page-guest-user/page-guest-
     PageCooperativeUserComponent,
     PageGuestComponent,
     PageGuestUserComponent,
+    PageCooperativeManageComponent,
     
   ],
   imports: [

@@ -15,27 +15,48 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text"  [(ngModel)]="dataset2.name" class="form-control"  />
+            <input type="text" [(ngModel)]="dataset2.name" class="form-control" />
           </div>
         </div>
       </div>
-      <!-- <div class="row" id="margin">
+      <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           ชื่อผู้ใช้:
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control"  />
+            <input type="text" class="form-control" readonly [(ngModel)]="dataset2.username" />
           </div>
         </div>
-      </div> -->
+      </div>
+      <div class="row" id="margin">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          รหัสผ่านใหม่:
+        </div>
+        <div class="col-md-5">
+          <div style="display: flex">
+            <input type="password" class="form-control" (change)="chack_pass()" id="01"
+              [(ngModel)]="dataset2.password_new" />
+          </div>
+        </div>
+      </div>
+      <div class="row" id="margin">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          ยื่นยันรหัสผ่านใหม่:
+        </div>
+        <div class="col-md-5">
+          <div style="display: flex">
+            <input type="password" class="form-control" (change)="chack_pass()" [(ngModel)]="dataset2.password_new2" />
+          </div>
+        </div>
+      </div>
       <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           บ้านที่อยู่:
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <textarea  [(ngModel)]="dataset2.addressUser" rows="4" cols="50"></textarea>
+            <textarea [(ngModel)]="dataset2.addressUser" rows="4" cols="50"></textarea>
           </div>
         </div>
       </div>
@@ -45,13 +66,13 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control" 
-              [(ngModel)]="dataset2.phoneNumber"  oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+            <input type="text" class="form-control" [(ngModel)]="dataset2.phoneNumber"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
           </div>
         </div>
       </div>
       <div class="row" id="margin">
-        <div class="col-md-12" >
+        <div class="col-md-12">
           <button id="center" (click)="updateDataUser()" class="btn btn-pill-right btn-success ripple ">บันทึก</button>
         </div>
       </div>
@@ -78,7 +99,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>ชื่อ</label><br>
-        <input type="text"  [(ngModel)]="dataUser2.name" readonly>
+        <input type="text" [(ngModel)]="dataUser2.name" readonly>
       </div>
     </div>
   </div>
@@ -88,7 +109,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>ชื่อผู้ใช้</label><br>
-        <input type="text"   [(ngModel)]="dataUser2.username">
+        <input type="text" [(ngModel)]="dataUser2.username">
       </div>
     </div>
   </div>
@@ -98,7 +119,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>บ้านที่อยู่</label><br>
-        <textarea  [(ngModel)]="dataUser2.addressUser" rows="4" cols="50" readonly></textarea>
+        <textarea [(ngModel)]="dataUser2.addressUser" rows="4" cols="50" readonly></textarea>
       </div>
     </div>
   </div>
@@ -108,7 +129,8 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>เบอร์โทรศัพท์</label><br>
-        <input type="text"  [(ngModel)]="dataUser2.phoneNumber" readonly oninput="this.value=this.value.replace(/[^0-9]/g,'');" >
+        <input type="text" [(ngModel)]="dataUser2.phoneNumber" readonly
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');">
       </div>
     </div>
   </div>
@@ -118,7 +140,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>สถานะผู้ใช้</label><br>
-        <input type="text" [(ngModel)]="statistcs" readonly >
+        <input type="text" [(ngModel)]="statistcs" readonly>
       </div>
     </div>
   </div>

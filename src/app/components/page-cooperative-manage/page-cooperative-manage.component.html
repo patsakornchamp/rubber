@@ -1,0 +1,99 @@
+<app-appheader-cooperative></app-appheader-cooperative>
+<app-appmenu-cooperative></app-appmenu-cooperative>
+<ng-template #Adduser>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อเกษตกร</th>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่แปลง</th>
+              <th>เบอร์โทรศัพท์</th>
+              <th>รายละเอียดของสวนยาง</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_user_plant|filter:searhText;let i = index" >
+              <td>{{ any.name }}</td>
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.phoneNumber }}</td>
+              <td>{{ any.detail }}</td>
+              <td style="border: none;
+              background-color: #ffff; width: 2px; ">
+                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
+                  (click)="add_user(any.IDPlantation)">เพิ่ม</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      จัดการสวนยางที่ดูแล
+      <small></small>
+    </h1>
+  </section>
+  <div class="row">
+    <div class="col-md-2 " style="margin-top: 20px;">
+      <a class="btn btn-app font" (click)="openModalWithClass(Adduser)">
+        <i class="fa fa-plus-circle "></i> เพิ่มสวนยาง
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+      <div class="table-responsive" style="text-align:center; height: 600px;">
+        <table class="font table table-hover" style='border-collapse: collapse;' id="customers">
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>ชื่อเกษตกร</th>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่แปลง</th>
+              <th>เบอร์โทรศัพท์</th>
+              <th>รายละเอียดของสวนยาง</th>
+              <!-- <th></th> -->
+              <th></th>
+            </tr>
+          </thead>
+          <div></div>
+          <tbody>
+            <tr *ngFor="let any of GET_farm;let i = index" (click)="edit_farm(any)">
+              <td style="height: 30px">{{ i+1 }}</td>
+              <td>{{ any.name }}</td>
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.phoneNumber }}</td>
+              <td>{{ any.detail }}</td>
+              <!-- <td style="border: none;background-color: #ffff; width: 2px; ">
+                <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal"
+                  (click)="openModalWithClass(AddFram)">แก้ไข</button>
+              </td> -->
+              <td style="border: none;
+                          background-color: #ffff; width: 2px; ">
+                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
+                (click)="del_user(any.IDPlantation)">ลบ</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

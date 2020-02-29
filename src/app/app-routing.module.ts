@@ -19,6 +19,7 @@ import { AppmenuCooperativeComponent } from './components/appmenu-cooperative/ap
 import { AppmenuGuestUserComponent } from './components/appmenu-guest-user/appmenu-guest-user.component';
 import { CooperativePageComponent } from './components/page-cooperative/cooperative-page.component';
 import { PageGuestComponent } from './components/page-guest/page-guest.component';
+import { PageCooperativeManageComponent } from './components/page-cooperative-manage/page-cooperative-manage.component';
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
 import { AppheaderCooperativeComponent } from './components/appheader-cooperative/appheader-cooperative.component';
 import { ManageRubberFarmerComponent } from './components/manage-rubber-farmer/manage-rubber-farmer.component';
@@ -28,7 +29,6 @@ import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manag
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
 
 import { from } from 'rxjs';
-
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent },
@@ -57,6 +57,7 @@ const routes: Routes = [
   { path: 'page-cooperative', component: CooperativePageComponent, canActivate: [AuthGuard] },
   { path: 'page-guest-user', component: PageGuestUserComponent, canActivate: [AuthGuard] },
   { path: 'page-guset', component: PageGuestComponent, canActivate: [AuthGuard] },
+  { path: 'page-cooperative-manage', component: PageCooperativeManageComponent, canActivate: [AuthGuard] },
   { path: 'page-cooperative-user', component: PageCooperativeUserComponent, canActivate: [AuthGuard] },
 
 ];

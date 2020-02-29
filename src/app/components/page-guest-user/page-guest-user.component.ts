@@ -18,12 +18,16 @@ export class PageGuestUserComponent implements OnInit {
   demo: any;
   statistcs: any;
   statusUser: any;
+  data1: any;
   dataset2: any = {
     name: null,
     addressUser: null,
     phoneNumber: null,
     username: null,
-    IDUser: null,
+    password: null,
+    password_new: '',
+    password_new2: '',
+    IDUser: null
   };
   IDUser: any
   constructor(private modalService: BsModalService,
@@ -71,38 +75,87 @@ export class PageGuestUserComponent implements OnInit {
       this.dataset2.phoneNumber = data.phoneNumber,
       this.dataset2.username = data.username,
       this.dataset2.IDUser = data.IDUser
+    this.dataset2.password = data.password
+
+  }
+  chack_pass() {
+    if (this.dataset2.password_new != '' && this.dataset2.password_new2 != '') {
+      if (this.dataset2.password_new != this.dataset2.password_new2) {
+        this.dataset2.password_new = '';
+        this.dataset2.password_new2 = '';
+        document.getElementById('01').focus();
+        Swal.fire(
+          'รหัสผ่านไม่ตรงกัน', '',
+          'error')
+      }
+    }
   }
   updateDataUser() {
-    let data = {
-      name: this.dataset2.name,
-      addressUser: this.dataset2.addressUser,
-      phoneNumber: this.dataset2.phoneNumber,
-      username: this.dataset2.username,
-      IDUser: this.dataset2.IDUser,
-    };
-    console.log("222222");
-    Swal.fire({
-      title: 'ยืนยันการแก้ไข',
-      text: "",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
-    }).then((result) => {
-      if (result.value) {
-        this.demo = { mod: "updateDataUser", value: data };
-        this.apiService.update(this.demo).subscribe((resposne: any) => {
-          this.ngOnInit();
-          Swal.fire(
-            'แก้ไขเรียบร้อย', "",
-            'success')
-        });
-        this.modalRef.hide();
-        // this.router.navigateByUrl('/manage-rubber-farmer');
+    if (this.dataset2.password_new == '' && this.dataset2.password_new2 != '') {
+      document.getElementById('01').focus();
+      this.dataset2.password_new = '';
+      this.dataset2.password_new2 = '';
+      Swal.fire(
+        'รหัสผ่านไม่ตรงกัน', '',
+        'error')
+      return;
+    }
+    else if (this.dataset2.password_new != '' && this.dataset2.password_new2 == '') {
+      document.getElementById('01').focus();
+      this.dataset2.password_new = '';
+      this.dataset2.password_new2 = '';
+      Swal.fire(
+        'รหัสผ่านไม่ตรงกัน', '',
+        'error')
+      return;
+    }
+    else {
+      if (this.dataset2.password_new2 == '') {
+        this.data1 = {
+          name: this.dataset2.name,
+          addressUser: this.dataset2.addressUser,
+          phoneNumber: this.dataset2.phoneNumber,
+          username: this.dataset2.username,
+          IDUser: this.dataset2.IDUser,
+          password: this.dataset2.password
+        };
       }
-    })
+      else if (this.dataset2.password_new2 != '') {
+        this.data1 = {
+          name: this.dataset2.name,
+          addressUser: this.dataset2.addressUser,
+          phoneNumber: this.dataset2.phoneNumber,
+          username: this.dataset2.username,
+          IDUser: this.dataset2.IDUser,
+          password: this.dataset2.password_new2
+
+        };
+      }
+      Swal.fire({
+        title: 'ยืนยันการแก้ไข',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value) {
+          this.demo = { mod: "updateDataUser", value: this.data1 };
+          this.apiService.update(this.demo).subscribe((resposne: any) => {
+            this.dataset2.password_new = '';
+            this.dataset2.password_new2 = '';
+            this.ngOnInit();
+            Swal.fire(
+              'แก้ไขเรียบร้อย', "",
+              'success')
+          });
+          this.modalRef.hide();
+          // this.router.navigateByUrl('/manage-rubber-farmer');
+        }
+      })
+    }
   }
 
 }
