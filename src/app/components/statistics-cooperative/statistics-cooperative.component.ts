@@ -4,13 +4,13 @@ import { TabsetComponent } from 'ngx-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
-
 @Component({
-  selector: 'app-statistics',
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css']
+  selector: 'app-statistics-cooperative',
+  templateUrl: './statistics-cooperative.component.html',
+  styleUrls: ['./statistics-cooperative.component.css']
 })
-export class StatisticsComponent implements AfterViewInit, OnInit {
+export class StatisticsCooperativeComponent implements OnInit {
+
   modalRef: BsModalRef;
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   constructor(private modalService: BsModalService,
@@ -24,12 +24,12 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   dataUser: any;
   row: any = 0;
   col: any = 0;
-  YEAR: any;
+  GET_farm:any;
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
-    this.get_Plantation();
-    this.get_year();
+    // this.get_Plantation()
+    this.get_farm()
   }
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
@@ -42,45 +42,36 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
   }
-  // SelectNext2(tabId: number) {
-  //   this.staticTabs.tabs[tabId].disabled = false;
-  //   this.staticTabs.tabs[tabId].active = true;
-  //   if (tabId == 0) {
-  //     this.ngAfterViewInit();
-  //   }
-  //   this.staticTabs.tabs[0].disabled = true;
-  //   this.staticTabs.tabs[1].disabled = true;
-  //   this.staticTabs.tabs[2].disabled = true;
-  // }
   next(e, id) {
     if (e.key == 'Enter') {
       document.getElementById(id).focus();
     }
   }
-  get_Plantation() {
-    this.demo = {
-      mod: "getPlantation",
-      value: {
-        "IDUserF": this.IDUser
-      }
-    };
+  // get_Plantation() {
+  //   this.demo = {
+  //     mod: "getPlantation",
+  //     value: {
+  //       "IDUserF": "1"
+  //     }
+  //   };
 
-    this.apiService.read(this.demo).subscribe((resposne: any) => {
-      this.GET_Plantation = resposne;
-      console.log(resposne);
-      console.log("resposne");
-    });
-  }
-  get_year() {
+  //   this.apiService.read(this.demo).subscribe((resposne: any) => {
+  //     this.GET_Plantation = resposne;
+  //     console.log(resposne);
+  //     console.log("resposne");
+  //   });
+  // }
+  get_farm() {
     this.demo = {
-      mod: "get_year",
+      mod: "get_farm",
       value: {
         "IDUser": this.IDUser
       }
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
-      this.YEAR = resposne;
-      console.log(this.YEAR);
+      this.GET_farm = resposne;
+
+      console.log(this.GET_farm)
     });
   }
   click_Plantation(data) {

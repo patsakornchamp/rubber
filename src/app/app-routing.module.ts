@@ -27,6 +27,7 @@ import { ManageRubberAddFarmerComponent} from './components/manage-rubber-add-fa
 import { ManageUserFarmerComponent } from './components/manage-user-farmer/manage-user-farmer.component';
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
+import { StatisticsCooperativeComponent } from './components/statistics-cooperative/statistics-cooperative.component';
 
 import { from } from 'rxjs';
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'page-guset', component: PageGuestComponent, canActivate: [AuthGuard] },
   { path: 'page-cooperative-manage', component: PageCooperativeManageComponent, canActivate: [AuthGuard] },
   { path: 'page-cooperative-user', component: PageCooperativeUserComponent, canActivate: [AuthGuard] },
+  { path: 'statistics-cooperative', component: StatisticsCooperativeComponent, canActivate: [AuthGuard] },
 
 ];
 

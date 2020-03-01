@@ -1,5 +1,5 @@
-<app-appheader-farmer></app-appheader-farmer>
-<app-appmenu-farmer></app-appmenu-farmer>
+<app-appheader-cooperative></app-appheader-cooperative>
+<app-appmenu-cooperative></app-appmenu-cooperative>
 <ng-template #Garden>
   <div class="modal-header">
     <h4 class="modal-title pull-left">สวนยาง</h4>
@@ -15,18 +15,16 @@
           <thead>
             <tr>
               <th>ชื่อแปลง</th>
-              <th>ที่อยู่</th>
-              <th>ละติจูด</th>
-              <th>ลองจิจูด</th>
+              <th>ชื่อเกษตกร</th>
+              <th>ที่อยู่แปลง</th>
               <th>รายละเอียดของสวนยาง</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation(any)">
+            <tr *ngFor="let any of GET_farm|filter:searhText;let i = index" (click)="click_Plantation(any)">
               <td>{{ any.namePlantation }}</td>
+              <td>{{ any.name }}</td>
               <td>{{ any.addressRubberPlantation }}</td>
-              <td>{{ any.latitude }}</td>
-              <td>{{ any.longitude }}</td>
               <td>{{ any.detail }}</td>
             </tr>
           </tbody>
@@ -100,19 +98,6 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-1">
-
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label>เลือกปี</label>
-            <select class="form-control">
-              <option *ngFor="let any of YEAR">{{any.date}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-3" style="font-size: 15px;margin-left: 65px;">
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -130,7 +115,7 @@
         </div>
       </div>
     </tab>
-    <tab heading="รายต้น" id="2">
+    <!-- <tab heading="รายต้น" id="2">
       <div class="row">
         <div class="col-md-3">
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
@@ -174,19 +159,16 @@
               <i class="fa  fa-map-marker"></i>
               <h3 class="box-title">ที่อยู่</h3>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
               <blockquote>
                 <p>{{addressRubberPlantation2}}</p>
               </blockquote>
             </div>
-            <!-- /.box-body -->
           </div>
         </div>
       </div>
-    </tab>
-    <tab heading="" id="3">
-    </tab>
+    </tab> -->
+
   </tabset>
   <!-- กราฟ -->
   <section class="content">
