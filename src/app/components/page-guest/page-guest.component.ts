@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef,TemplateRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
@@ -9,36 +9,26 @@ import { AuthenticationService } from '../../_services';
   styleUrls: ['./page-guest.component.css']
 })
 export class PageGuestComponent implements AfterViewInit, OnInit {
-  constructor( private apiService: ApiService,
+  constructor(private apiService: ApiService,
     private modalService: BsModalService,
     private authenticationService: AuthenticationService) { }
+  modalRef: BsModalRef;
   zoom: number = 15;
   //ละติจูท
   lat = 14.020740;
   //ลองติจูท
   lng = 99.991194;
   IDUser: any;
+  demo: any;
+  IDUserF: any;
+  GET_user_guest: any;
+  SEARCH_plan_guest: any;
+  namePlantation: any;
+  name_user: any;
   dataUser: any;
-  markers: marker[] = [
-    {
-      name: 'champ',
-      lat: 14.020740,
-      lng: 99.991194,
-      draggable: true
-    },
-    {
-      name: 'champ2',
-      lat: 14.020750,
-      lng: 99.991120,
-      draggable: true
-    },
-    {
-      name: 'champ3',
-      lat: 14.020744,
-      lng: 99.991155,
-      draggable: true
-    },
-  ]
+  Plantation: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
+  markers: marker[];
+
 
   latitude = 14.020740;
   longitude = 99.991194;
@@ -52,9 +42,67 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
   }
+  openModalWithClass(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,
+      Object.assign({}, { class: 'gray modal-lg' })
+    );
+  }
+
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
+    this.get_user_guest();
+  }
+  get_user_guest() {
+    this.demo = {
+      mod: "get_user_guest"
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.GET_user_guest = resposne;
+      console.log(this.GET_user_guest)
+    });
+  }
+
+  searchPic_plan_guest() {
+    this.demo = {
+      mod: "searchPic_plan_guest",
+      item: {
+        IDUserF: this.IDUserF
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.SEARCH_plan_guest = resposne;
+      this.markers = this.SEARCH_plan_guest;
+      console.log(this.SEARCH_plan_guest);
+    });
+  }
+  searchPic_farm() {
+    this.demo = {
+      mod: "searchPic_farm",
+      item: {
+        IDUser: this.IDUser,
+        IDPlantation: this.IDPlantation
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.latex_farm = resposne[0].sumquantity;
+      this.markers = resposne;
+      if (this.latex_farm == null) {
+        this.latex_farm = 0;
+      }
+    });
+  }
+  click_user_guest(data) {
+    this.IDUserF = data.IDUser;
+    this.name_user = data.name;
+    this.searchPic_plan_guest();
+    this.modalRef.hide();
+  }
+  click_plan_guest(data) {
+    this.namePlantation = data.namePlantation
+    this.IDPlantation = data.IDPlantation
+    this.searchPic_farm();
+    this.modalRef.hide();
   }
   clickedMarker(m, i) {
     console.log(m, i);
@@ -68,8 +116,11 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   }
 }
 interface marker {
+  namePlantation: string,
+  addressRubberPlantation: string,
+  latitude: number,
+  longitude: number,
+  detail: string,
   name: string,
-  lat: number,
-  lng: number,
-  draggable: boolean;
+  phoneNumber: string
 }
