@@ -95,6 +95,8 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   click_user_guest(data) {
     this.IDUserF = data.IDUser;
     this.name_user = data.name;
+    this.namePlantation = null;
+    this.latex_farm = 0;
     this.searchPic_plan_guest();
     this.modalRef.hide();
   }

@@ -102,6 +102,7 @@
       </div>
     </div>
   </div>
+
   <div id="map">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
       <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude"
