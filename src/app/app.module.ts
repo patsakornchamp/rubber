@@ -50,7 +50,9 @@ import { PageGuestComponent } from './components/page-guest/page-guest.component
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
 import { PageCooperativeManageComponent } from './components/page-cooperative-manage/page-cooperative-manage.component';
 import { StatisticsCooperativeComponent } from './components/statistics-cooperative/statistics-cooperative.component';
+import { StatisticsGuestComponent } from './components/statistics-guest/statistics-guest.component';
 // import {NgxPaginationModule} from 'ngx-pagination';
+// import {EncrDecrService} from '../app/EncrDecr/encr-decr.service';
 
 
 @NgModule({
@@ -85,6 +87,7 @@ import { StatisticsCooperativeComponent } from './components/statistics-cooperat
     PageGuestUserComponent,
     PageCooperativeManageComponent,
     StatisticsCooperativeComponent,
+    StatisticsGuestComponent,
     
   ],
   imports: [
