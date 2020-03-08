@@ -25,6 +25,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   row: any = 0;
   col: any = 0;
   YEAR: any;
+  staticData: any;
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -38,6 +39,10 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   }
   ngAfterViewInit(): void {
     //กราฟ
+    this.staticData = [
+      0.50, 0.48, 0.40, 0.19, 0.86, 0.27,
+      0.50, 0.4, 0.50, 0.34, 0.35, 0.97
+  ];
     const script = document.createElement('script');
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
