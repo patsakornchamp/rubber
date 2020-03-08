@@ -47,6 +47,20 @@ export class StatisticsCooperativeComponent implements OnInit {
       document.getElementById(id).focus();
     }
   }
+  // get_Plantation() {
+  //   this.demo = {
+  //     mod: "getPlantation",
+  //     value: {
+  //       "IDUserF": "1"
+  //     }
+  //   };
+
+  //   this.apiService.read(this.demo).subscribe((resposne: any) => {
+  //     this.GET_Plantation = resposne;
+  //     console.log(resposne);
+  //     console.log("resposne");
+  //   });
+  // }
   get_farm() {
     this.demo = {
       mod: "get_farm",

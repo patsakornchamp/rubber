@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
 
   Click_Register() {
     this.router.navigateByUrl('/register');
-
   }
 
   loginDB(loginForm) {
