@@ -1,5 +1,6 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
+
 <ng-template #edituser>
   <div class="modal-header">
     <h4 class="modal-title pull-left">แก้ไขข้อมูลผู้ใช้</h4>
@@ -15,7 +16,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" [(ngModel)]="dataset2.name" class="form-control" />
+            <input type="text"  [(ngModel)]="dataset2.name" class="form-control"  />
           </div>
         </div>
       </div>
@@ -25,7 +26,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control" readonly [(ngModel)]="dataset2.username" />
+            <input type="text" class="form-control" readonly  [(ngModel)]="dataset2.username" />
           </div>
         </div>
       </div>
@@ -35,8 +36,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="password" class="form-control" (change)="chack_pass()" id="01"
-              [(ngModel)]="dataset2.password_new" />
+            <input type="password" class="form-control" (change)="chack_pass()" id="01"   [(ngModel)]="dataset2.password_new" />
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="password" class="form-control" (change)="chack_pass()" [(ngModel)]="dataset2.password_new2" />
+            <input type="password" class="form-control" (change)="chack_pass()"  [(ngModel)]="dataset2.password_new2" />
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <textarea [(ngModel)]="dataset2.addressUser" rows="4" cols="50"></textarea>
+            <textarea  [(ngModel)]="dataset2.addressUser" rows="4" cols="50"></textarea>
           </div>
         </div>
       </div>
@@ -66,62 +66,15 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control" [(ngModel)]="dataset2.phoneNumber"
-              oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+            <input type="text" class="form-control" 
+              [(ngModel)]="dataset2.phoneNumber"  oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
           </div>
         </div>
       </div>
       <div class="row" id="margin">
-        <div class="col-md-12">
+        <div class="col-md-12" >
           <button id="center" (click)="updateDataUser()" class="btn btn-pill-right btn-success ripple ">บันทึก</button>
         </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-<ng-template #item>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">จัดการอุปกรณ์</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="form-group" style="font-size: 15px;">
-          <label>เพิ่มอุปกรณ์</label><br>
-          <input type="text" placeholder="ใส่รหัสอุปกรณ์" [(ngModel)]="equipment_Item" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
-        </div>
-      </div>
-      <div class="col-md-1">
-        <button id="center" (click)="insertequipment()"
-          class="btn btn-pill-right btn-success ripple ">เพิ่มอุปกรณ์</button>
-      </div>
-    </div>
-    <div class="col-md-12 " style="margin-top: 20px;">
-      <div class="table-responsive" style="text-align:center; height: 500px;">
-        <table border='1' width='100%' class="table table-hover" id="customers">
-          <thead>
-            <tr>
-              <th>ลำดับ</th>
-              <th>รหัสอุปกรณ์</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let any of equipment|filter:searhText;let i = index" (click)="getRubberTree(any)">
-              <td style="height: 30px">{{ i+1 }}</td>
-              <td>{{ any.equipment_Item }}</td>
-              <td style="border: none; background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
-                  (click)="deleteequipment(any.equipmentID)">ลบ</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
       </div>
     </div>
   </div>
@@ -135,13 +88,8 @@
   </section>
   <div class="row">
     <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="btn btn-block btn-info btn-lg" (click)="openModalWithClass(edituser);get_data(dataUser2)">
+      <a class="btn btn-app font" (click)="openModalWithClass(edituser);get_data(dataUser2)">
         <i class="fa fa-plus-circle "></i> แก้ไขข้อมูลผู้ใช้
-      </a>
-    </div>
-    <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="btn btn-block btn-warning btn-lg" (click)="openModalWithClass(item);get_data(dataUser2)">
-        <i class="fa fa-plus-circle "></i> จัดการอุปกรณ์
       </a>
     </div>
   </div>
@@ -151,7 +99,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>ชื่อ</label><br>
-        <input type="text" [(ngModel)]="dataUser2.name" readonly>
+        <input type="text"  [(ngModel)]="dataUser2.name" readonly>
       </div>
     </div>
   </div>
@@ -161,7 +109,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>ชื่อผู้ใช้</label><br>
-        <input type="text" [(ngModel)]="dataUser2.username">
+        <input type="text"   [(ngModel)]="dataUser2.username">
       </div>
     </div>
   </div>
@@ -171,7 +119,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>บ้านที่อยู่</label><br>
-        <textarea [(ngModel)]="dataUser2.addressUser" rows="4" cols="50" readonly></textarea>
+        <textarea  [(ngModel)]="dataUser2.addressUser" rows="4" cols="50" readonly></textarea>
       </div>
     </div>
   </div>
@@ -181,8 +129,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>เบอร์โทรศัพท์</label><br>
-        <input type="text" [(ngModel)]="dataUser2.phoneNumber" readonly
-          oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+        <input type="text"  [(ngModel)]="dataUser2.phoneNumber" readonly oninput="this.value=this.value.replace(/[^0-9]/g,'');" >
       </div>
     </div>
   </div>
@@ -192,7 +139,7 @@
     <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>สถานะผู้ใช้</label><br>
-        <input type="text" [(ngModel)]="statistcs" readonly>
+        <input type="text" [(ngModel)]="statistcs" readonly >
       </div>
     </div>
   </div>
