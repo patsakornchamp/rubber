@@ -79,7 +79,54 @@
     </div>
   </div>
 </ng-template>
-
+<ng-template #item>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">จัดการอุปกรณ์</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group" style="font-size: 15px;">
+          <label>เพิ่มอุปกรณ์</label><br>
+          <input type="text" placeholder="ใส่รหัสอุปกรณ์" [(ngModel)]="equipment_Item"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+        </div>
+      </div>
+      <div class="col-md-1">
+        <button id="center" (click)="insertequipment()"
+          class="btn btn-pill-right btn-success ripple ">เพิ่มอุปกรณ์</button>
+      </div>
+    </div>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>รหัสอุปกรณ์</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of equipment|filter:searhText;let i = index" (click)="getRubberTree(any)">
+              <td style="height: 30px">{{ i+1 }}</td>
+              <td>{{ any.equipment_Item }}</td>
+              <td style="border: none; background-color: #ffff; width: 2px; ">
+                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
+                  (click)="deleteequipment(any.equipmentID)">ลบ</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+  </div>
+</ng-template>
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
@@ -93,7 +140,6 @@
         <i class="fa fa-plus-circle"></i> แก้ไขข้อมูลผู้ใช้
       </a>
     </div>
-
   </div>
   <div class="row">
     <div class="col-md-3 ">
