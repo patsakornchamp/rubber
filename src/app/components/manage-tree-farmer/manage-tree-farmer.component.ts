@@ -20,11 +20,14 @@ export class ManageTreeFarmerComponent implements OnInit {
   demo: any;
   GET_Plantation: any;
   GET_RubberTree: any;
+  GET_serial:any;
   EDIT_RubberTree: any;
   IDUser: any;
   dataUser: any;
   test:any;
   namePlantation:any;
+  equipment:any;
+  equipment_Item:any;
   dataSet: any = {
     Name_farmer: null,
     ID: 1150001
@@ -38,6 +41,7 @@ export class ManageTreeFarmerComponent implements OnInit {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
+    this.get_equipment();
   }
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
@@ -74,6 +78,32 @@ export class ManageTreeFarmerComponent implements OnInit {
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_RubberTree = resposne;
       this.modalRef.hide();
+    });
+  }
+  get_serial(){
+    console.log(this.equipment_Item);
+    this.demo = {
+      mod: "get_serial",
+      value: {
+        "IDUserF": this.IDUser
+      }
+    };
+
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.GET_serial = resposne;
+    });
+    
+  }
+  get_equipment() {
+    this.demo = {
+      mod: "get_equipment",
+      value: {
+        "IDUser": this.IDUser
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.equipment = resposne;
+      console.log(resposne);
     });
   }
   deleteDataRubber(data) {

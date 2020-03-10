@@ -40,13 +40,24 @@
 </ng-template>
 <ng-template #AddTree>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">เพิ่มต้นยาง</h4>
+    <h4 class="modal-title pull-left">เพิ่มต้นยาง {{namePlantation}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
+      <div class="row">
+        <div class="col-md-3" style="text-align: right;margin-top: 5px">
+          เลือกอุปกรณ์:
+        </div>
+        <div class="form-group col-md-5">
+          <select class="form-control" [(ngModel)]="equipment_Item">
+            <option *ngFor="let item of equipment" >{{item.equipment_Item}}</option>
+            <option></option>
+          </select>
+        </div>
+      </div>
       <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           IDต้นยาง:
@@ -57,7 +68,7 @@
           </div>
         </div>
         <div>
-          <button (click)="sendID()">GET SERAIL</button>
+          <button (click)="get_serial()">GET SERAIL</button>
         </div>
       </div>
       <div class="row" id="margin">
@@ -128,7 +139,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control"  [(ngModel)]="data_edit.serialNumber" />
+            <input type="text" class="form-control" [(ngModel)]="data_edit.serialNumber" />
           </div>
         </div>
       </div>
@@ -148,7 +159,7 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control"  [(ngModel)]="data_edit.col" />
+            <input type="text" class="form-control" [(ngModel)]="data_edit.col" />
           </div>
         </div>
       </div>
@@ -168,10 +179,8 @@
         </div>
         <div class="col-md-5">
           <div style="display: flex">
-            <input type="text" class="form-control" 
-            bsDatepicker 
-            [bsConfig]="{dateInputFormat: 'DD/MM/YY'}"
-            [(ngModel)]="data_edit.datePlant">
+            <input type="text" class="form-control" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YY'}"
+              [(ngModel)]="data_edit.datePlant">
           </div>
         </div>
       </div>
@@ -191,18 +200,6 @@
       <small></small>
     </h1>
   </section>
-  <!-- <?php
-      echo $dataSet->ID;
-    ?>
-
-        <p>{{ dataSet.ID }}</p> -->
-  <div class="row">
-    <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="btn btn-app font" (click)="openModalWithClass(AddTree)">
-        <i class="fa fa-plus-circle "></i> เพิ่มต้นยาง
-      </a>
-    </div>
-  </div>
   <div class="row">
     <div class="col-md-4">
       <div style="display: flex">
@@ -211,6 +208,13 @@
         <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
           <i class="fa fa-search"></i></button>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 " style="margin-top: 20px;">
+      <a class="btn btn-app font" (click)="openModalWithClass(AddTree)">
+        <i class="fa fa-plus-circle "></i> เพิ่มต้นยาง
+      </a>
     </div>
   </div>
   <div class="row">
