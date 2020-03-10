@@ -40,8 +40,8 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     //กราฟ
     this.staticData = [
-      0.50, 0.48, 0.40, 0.19, 0.86, 0.27,
-      0.50, 0.4, 0.50, 0.34, 0.35, 0.97
+      0.50, 0.50, 0.50, 0.50, 0.50, 0.50,
+      0.50, 0.50, 0.50, 0.50, 0.50, 0.50
   ];
     const script = document.createElement('script');
     script.src = 'assets/js/chart.js';
