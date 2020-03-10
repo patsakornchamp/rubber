@@ -20,20 +20,19 @@ export class ManageTreeFarmerComponent implements OnInit {
   demo: any;
   GET_Plantation: any;
   GET_RubberTree: any;
-  GET_serial:any;
+  serialNumber: any;
   EDIT_RubberTree: any;
   IDUser: any;
   dataUser: any;
-  test:any;
-  namePlantation:any;
-  equipment:any;
-  equipment_Item:any;
+  test: any;
+  namePlantation: any = '';
+  equipment: any;
+  equipment_Item: any;
   dataSet: any = {
-    Name_farmer: null,
-    ID: 1150001
+    serialNumber:null,row:null,col:null,species:null,datePlant:null,IDPlantation:null
   };
   data_edit: any = {
-    serialNumber: null, row: null, col: null, species: null, datePlant:Date,IDRubber:null
+    serialNumber: null, row: null, col: null, species: null, datePlant: Date, IDRubber: null
   }
 
 
@@ -65,14 +64,14 @@ export class ManageTreeFarmerComponent implements OnInit {
     });
   }
   getRubberTree(data) {
-    this.test =data;
+    this.test = data;
     this.namePlantation = data.namePlantation;
-    let IDPlantation = data.IDPlantation
+    this.dataSet.IDPlantation = data.IDPlantation
     this.demo = {
       mod: "getRubberTree",
       value: {
         "IDUserF": this.IDUser,
-        "IDPlantation": IDPlantation
+        "IDPlantation": this.dataSet.IDPlantation
       }
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
@@ -80,19 +79,26 @@ export class ManageTreeFarmerComponent implements OnInit {
       this.modalRef.hide();
     });
   }
-  get_serial(){
-    console.log(this.equipment_Item);
+  get_serial() {
+    if (this.equipment_Item == undefined) {
+      Swal.fire(
+        'กรุณาเลือกอุปกรณ์', '',
+        'error')
+    }
+    else {
     this.demo = {
       mod: "get_serial",
       value: {
-        "IDUserF": this.IDUser
+        "equipment_Item": this.equipment_Item
       }
     };
 
-    this.apiService.read(this.demo).subscribe((resposne: any) => {
-      this.GET_serial = resposne;
-    });
-    
+      this.apiService.read(this.demo).subscribe((resposne: any) => {
+        this.dataSet.serialNumber = resposne[0].serialNumber;
+        // console.log(this.GET_serial);
+      });
+    }
+
   }
   get_equipment() {
     this.demo = {
@@ -105,6 +111,44 @@ export class ManageTreeFarmerComponent implements OnInit {
       this.equipment = resposne;
       console.log(resposne);
     });
+  }
+  inserte_rubber() {
+    // console.log(this.namePlantation);
+    // return;
+    // let data = {
+    //   userID: this.IDUser,
+    //   equipment_Item: this.equipment_Item
+    // };
+    if (this.namePlantation != '') {
+      Swal.fire({
+        title: 'ยืนยันการบันทึก',
+        text: "ของแปลง  "+this.namePlantation,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value) {
+          this.demo = { mod: "inserte_rubber", value: this.dataSet };
+          this.apiService.insert(this.demo).subscribe((resposne: any) => {
+            this.getRubberTree(this.test);
+            Swal.fire(
+              'บันทึกเรียบร้อย', "",
+              'success')
+          });
+          this.dataSet.row = null;
+          this.dataSet.col = null;
+          this.dataSet.species = null;
+        }
+      })
+    }
+    else {
+      Swal.fire(
+        'กรุณาเลือกสวนยาง', '',
+        'error')
+    }
   }
   deleteDataRubber(data) {
     Swal.fire({
@@ -126,6 +170,7 @@ export class ManageTreeFarmerComponent implements OnInit {
           }
         };
         this.apiService.delete(this.demo).subscribe((resposne: any) => {
+          this.getRubberTree(this.test);
           Swal.fire(
             'ลบเรียบร้อยแล้ว',
             '',
@@ -137,7 +182,6 @@ export class ManageTreeFarmerComponent implements OnInit {
     })
   }
   Click_Edit(data) {
-    console.log(data)
     this.data_edit.serialNumber = data.serialNumber;
     this.data_edit.row = data.row;
     this.data_edit.col = data.col;
@@ -160,7 +204,7 @@ export class ManageTreeFarmerComponent implements OnInit {
       if (result.value) {
         console.log(this.data_edit.datePlant);
         this.demo = { mod: "updateDataRubber", value: this.data_edit };
-        this.apiService.update(this.demo).subscribe((resposne: any) => {        
+        this.apiService.update(this.demo).subscribe((resposne: any) => {
           this.getRubberTree(this.test);
           Swal.fire(
             'แก้ไขเรียบร้อย', "",
