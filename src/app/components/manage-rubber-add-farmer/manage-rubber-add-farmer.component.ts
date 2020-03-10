@@ -15,7 +15,7 @@ export class ManageRubberAddFarmerComponent implements OnInit {
 
   constructor(private modalService: BsModalService,    private router: Router, private apiService: ApiService, private authenticationService: AuthenticationService) { }
   //mapสามารถเลือกจุดบนแผนที่ได้
-  zoom: number = 5;
+  zoom: number = 15;
   //ละติจูท
   lat = 14.020740;
   //ลองติจูท
