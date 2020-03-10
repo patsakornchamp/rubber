@@ -42,16 +42,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
   }
-  // SelectNext2(tabId: number) {
-  //   this.staticTabs.tabs[tabId].disabled = false;
-  //   this.staticTabs.tabs[tabId].active = true;
-  //   if (tabId == 0) {
-  //     this.ngAfterViewInit();
-  //   }
-  //   this.staticTabs.tabs[0].disabled = true;
-  //   this.staticTabs.tabs[1].disabled = true;
-  //   this.staticTabs.tabs[2].disabled = true;
-  // }
+
   next(e, id) {
     if (e.key == 'Enter') {
       document.getElementById(id).focus();
