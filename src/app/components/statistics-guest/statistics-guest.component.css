@@ -1,21 +1,33 @@
-
-  #margin{
-    margin: 15px;
+#area {
+    display: block;
+    margin: auto;
   }
-  #customers {
+  
+  #search {
+    width: 90px;
+    margin-top: 20px;
+    font-size: 17px;
+  }
+  /* ตกแต่งตราง */
+#customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #customers td, #customers th {
+  #customers td,
+  #customers th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  #customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
   
-  #customers tr:hover {background-color: #ddd;}
+  #customers tr:hover {
+    background-color: #ddd;
+  }
   
   #customers th {
     padding-top: 12px;
@@ -24,7 +36,9 @@
     background-color: #4CAF50;
     color: white;
   }
-  #center{
+  
+  #center {
     margin-top: 20px;
     margin-left: 48%;
   }
+  

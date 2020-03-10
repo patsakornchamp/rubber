@@ -28,6 +28,7 @@ import { ManageUserFarmerComponent } from './components/manage-user-farmer/manag
 import { ManageTreeFarmerComponent } from './components/manage-tree-farmer/manage-tree-farmer.component';
 import { PageCooperativeUserComponent } from './components/page-cooperative-user/page-cooperative-user.component';
 import { StatisticsCooperativeComponent } from './components/statistics-cooperative/statistics-cooperative.component';
+import { StatisticsGuestComponent } from './components/statistics-guest/statistics-guest.component';
 
 import { from } from 'rxjs';
 const routes: Routes = [
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'page-cooperative-manage', component: PageCooperativeManageComponent, canActivate: [AuthGuard] },
   { path: 'page-cooperative-user', component: PageCooperativeUserComponent, canActivate: [AuthGuard] },
   { path: 'statistics-cooperative', component: StatisticsCooperativeComponent, canActivate: [AuthGuard] },
+  { path: 'statistics-guest', component: StatisticsGuestComponent, canActivate: [AuthGuard] },
 
 ];
 

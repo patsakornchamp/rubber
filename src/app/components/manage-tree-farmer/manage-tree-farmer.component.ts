@@ -27,7 +27,7 @@ export class ManageTreeFarmerComponent implements OnInit {
   namePlantation:any;
   dataSet: any = {
     Name_farmer: null,
-    ID: 1150001
+    ID: 0
   };
   data_edit: any = {
     serialNumber: null, row: null, col: null, species: null, datePlant:Date,IDRubber:null
@@ -141,11 +141,11 @@ export class ManageTreeFarmerComponent implements OnInit {
     })
   }
   sendID() {
-    this.dataSet.ID
-    this.service.readOl().subscribe((resposne: any) => {
-      console.log(resposne);
-      // if(resposne){
-      // }
-    });
+    this.dataSet.ID = 123456;     
+     console.log('IDที่จะแสดง');
+
+    // this.service.readOl().subscribe((resposne: any) => {
+      
+    // });
   }
 }
