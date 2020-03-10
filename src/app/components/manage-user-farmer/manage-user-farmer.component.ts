@@ -26,7 +26,7 @@ export class ManageUserFarmerComponent implements OnInit {
     password: null,
     password_new: '',
     password_new2: '',
-    IDUser: null,
+    IDUser: null
   };
   IDUser: any
   constructor(private modalService: BsModalService,
