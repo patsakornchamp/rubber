@@ -111,7 +111,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let any of equipment|filter:searhText;let i = index" (click)="getRubberTree(any)">
+            <tr *ngFor="let any of equipment|filter:searhText;let i = index" >
               <td style="height: 30px">{{ i+1 }}</td>
               <td>{{ any.equipment_Item }}</td>
               <td style="border: none; background-color: #ffff; width: 2px; ">

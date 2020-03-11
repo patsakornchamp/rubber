@@ -28,6 +28,8 @@ export class ManageUserFarmerComponent implements OnInit {
     password_new2: '',
     IDUser: null
   };
+  equipment: any;
+  equipment_Item: any;
   IDUser: any
   constructor(private modalService: BsModalService,
     private authenticationService: AuthenticationService,
@@ -37,12 +39,86 @@ export class ManageUserFarmerComponent implements OnInit {
     this.IDUser = this.dataUser[0]['IDUser'];
     this.statusUser = this.dataUser[0]['statusUser'];
     this.getuser();
+    this.get_equipment();
 
   }
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
       Object.assign({}, { class: 'gray modal-lg' })
     );
+  }
+  get_equipment() {
+    this.demo = {
+      mod: "get_equipment",
+      value: {
+        "IDUser": this.IDUser
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.equipment = resposne;
+      console.log(resposne);
+    });
+  }
+  insertequipment() {
+    let data = {
+      userID: this.IDUser,
+      equipment_Item: this.equipment_Item
+    };
+    if (this.equipment_Item != null) {
+      Swal.fire({
+        title: 'ยืนยันการบันทึก',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.value) {
+          this.demo = { mod: "insertequipment", value: data };
+          this.apiService.insert(this.demo).subscribe((resposne: any) => {
+            this.get_equipment();
+            Swal.fire(
+              'บันทึกเรียบร้อย', "",
+              'success')
+          });
+          this.equipment_Item = null;
+        }
+      })
+    }
+    else {
+      Swal.fire(
+        'กรุณากรอกรหัสอุปกรณ์', '',
+        'error')
+    }
+  }
+  deleteequipment(data) {
+    Swal.fire({
+      title: 'ต้องการลบ?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        let del = {
+          equipmentID: data,
+        }
+        this.demo = { mod: "deleteequipment", value: del };
+        this.apiService.delete(this.demo).subscribe((resposne: any) => {
+          Swal.fire(
+            'ลบเรียบร้อยแล้ว',
+            '',
+            'success'
+          )
+          this.get_equipment();
+        })
+      }
+    })
   }
   getuser() {
     this.demo = {
