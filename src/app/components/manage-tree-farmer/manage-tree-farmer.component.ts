@@ -28,6 +28,7 @@ export class ManageTreeFarmerComponent implements OnInit {
   namePlantation: any = '';
   equipment: any;
   equipment_Item: any;
+  species :any = ["RRIM600",'RRIT251','RRIT226','BPM24'];
   dataSet: any = {
     serialNumber:null,row:null,col:null,species:null,datePlant:null,IDPlantation:null
   };
@@ -141,6 +142,7 @@ export class ManageTreeFarmerComponent implements OnInit {
           this.dataSet.row = null;
           this.dataSet.col = null;
           this.dataSet.species = null;
+          this.dataSet.serialNumber = null;
         }
       })
     }
