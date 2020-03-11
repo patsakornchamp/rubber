@@ -4,40 +4,38 @@ $(function staticJS() {
      * Here we will create a few charts using ChartJS
      */
 
-    //--------------
-    //- AREA CHART -
-    //--------------
+    // --------------
+    // - AREA CHART -
+    // --------------
+
+    var u_score = [
+        0.50, 0.50, 0.50, 0.50, 0.50, 0.50,
+        0.50, 0.50, 0.50, 0.50, 0.50, 0.50
+    ];
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
         // This will get the first returned node in the jQuery collection.
     var areaChart = new Chart(areaChartCanvas)
 
-    var u_score = [
-        0.00, 0.25, 0.50, 0.75, 1.00, 0.75,
-        0.50, 0.25, 0.00, 0.25, 0.50, 0.75
-    ];
-
     var areaChartData = {
         labels: [
             'January', 'February', 'March', 'April', 'May', 'June',
             'July', 'August', 'September', 'October', 'November', 'December'
         ],
-        datasets: [
-            // {
-            //     label: 'Electronics',
-            //     fillColor: 'rgba(210, 214, 222, 1)',
-            //     strokeColor: 'rgba(210, 214, 222, 1)',
-            //     pointColor: 'rgba(210, 214, 222, 1)',
-            //     pointStrokeColor: '#c1c7d1',
-            //     pointHighlightFill: '#fff',
-            //     pointHighlightStroke: 'rgba(220,220,220,1)',
-            //     data: [
-            //         0.25, 0.59, 0.80, 0.81, 0.56, 1.00,
-            //         0.40, 0.9, 0.80, 0.70, 0.60, 0.60
-            //     ]
-            // }
-            // ,
+        datasets: [{
+                label: 'Electronics',
+                fillColor: 'rgba(210, 214, 222, 1)',
+                strokeColor: 'rgba(210, 214, 222, 1)',
+                pointColor: 'rgba(210, 214, 222, 1)',
+                pointStrokeColor: '#c1c7d1',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220,220,220,1)',
+                data: [
+                    0.25, 0.59, 0.80, 0.81, 0.56, 1.00,
+                    0.40, 0.9, 0.80, 0.70, 0.60, 0.60
+                ]
+            },
             {
                 label: 'Digital Goods',
                 fillColor: 'rgba(60,141,188,0.9)',

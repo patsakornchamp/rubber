@@ -4,6 +4,8 @@ import { TabsetComponent } from 'ngx-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
+import { Chart } from '../../../assets/js/chart.js';
+// export declare function staticJS();
 
 @Component({
   selector: 'app-statistics',
@@ -37,15 +39,18 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       Object.assign({}, { class: 'gray modal-lg' })
     );
   }
+
   ngAfterViewInit(): void {
     //กราฟ
     this.staticData = [
       0.50, 0.50, 0.50, 0.50, 0.50, 0.50,
       0.50, 0.50, 0.50, 0.50, 0.50, 0.50
   ];
-    const script = document.createElement('script');
-    script.src = 'assets/js/chart.js';
-    document.body.appendChild(script);
+  // staticJS();
+    // const script = document.createElement('script');
+    // script.src = 'assets/js/chart.js';
+    // document.body.appendChild(script);
+    // Chart;
   }
 
   next(e, id) {
