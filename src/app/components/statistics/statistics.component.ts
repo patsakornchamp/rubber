@@ -4,8 +4,6 @@ import { TabsetComponent } from 'ngx-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
-import { Chart } from '../../../assets/js/chart.js';
-// export declare function staticJS();
 
 @Component({
   selector: 'app-statistics',
@@ -27,7 +25,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   row: any = 0;
   col: any = 0;
   YEAR: any;
-  staticData: any;
+  staticData: Array<any> = [];
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -40,17 +38,25 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     );
   }
 
-  ngAfterViewInit(): void {
-    //กราฟ
-    this.staticData = [
-      0.50, 0.50, 0.50, 0.50, 0.50, 0.50,
-      0.50, 0.50, 0.50, 0.50, 0.50, 0.50
-  ];
-  // staticJS();
-    // const script = document.createElement('script');
-    // script.src = 'assets/js/chart.js';
-    // document.body.appendChild(script);
-    // Chart;
+  ngAfterViewInit(): void { //กราฟ
+    this.demo = {
+      mod: "avgQuantity",
+      value: {
+          "IDPlantation": 1,
+          "YEAR": 2020
+      }
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      console.log(resposne);
+      for(let i=0;i< 12; i++){
+        this.staticData.push(resposne[i]['avgQuantity']);
+      }
+      console.log(this.staticData);
+    });
+
+    const script = document.createElement('script');
+    script.src = 'assets/js/chart.js';
+    document.body.appendChild(script);
   }
 
   next(e, id) {

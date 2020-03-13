@@ -8,10 +8,26 @@ $(function staticJS() {
     // - AREA CHART -
     // --------------
 
-    var u_score = [
-        0.50, 0.50, 0.50, 0.50, 0.50, 0.50,
-        0.50, 0.50, 0.50, 0.50, 0.50, 0.50
-    ];
+    var u_score;
+
+    // var quantity = {
+    //     "mod": "avgQuantity",
+    //     "value": {
+    //         "IDPlantation": "1",
+    //         "YEAR": "2020"
+    //     }
+    // };
+
+    // var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         console.log(this.responseText);
+    //         console.log(this.response);
+    //     }
+    // };
+    // xhttp.open("POST", "http://158.108.207.7/rubberProject/demo/ctrl.php");
+    // xhttp.setRequestHeader("Content-type", "application/json");
+    // xhttp.send(quantity);
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
