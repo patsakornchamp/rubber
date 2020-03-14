@@ -8,26 +8,31 @@ $(function staticJS() {
     // - AREA CHART -
     // --------------
 
-    var u_score;
+    var u_score = [];
 
-    // var quantity = {
-    //     "mod": "avgQuantity",
-    //     "value": {
-    //         "IDPlantation": "1",
-    //         "YEAR": "2020"
-    //     }
-    // };
+    var avg;
 
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         console.log(this.responseText);
-    //         console.log(this.response);
-    //     }
-    // };
-    // xhttp.open("POST", "http://158.108.207.7/rubberProject/demo/ctrl.php");
-    // xhttp.setRequestHeader("Content-type", "application/json");
-    // xhttp.send(quantity);
+    var quantity = {
+        "mod": "avgQuantity",
+        "value": {
+            "IDPlantation": "1",
+            "YEAR": "2020"
+        }
+    };
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            for (var i = 0; i < 12; i++) {
+                avg = JSON.parse(this.response);
+                u_score.push(avg[i]["avgQuantity"]);
+            }
+            console.log(u_score);
+        }
+    };
+    xhttp.open("POST", "http://158.108.207.7/rubberProject/demo/ctrl.php");
+    xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(quantity));
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
@@ -48,7 +53,7 @@ $(function staticJS() {
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(220,220,220,1)',
                 data: [
-                    0.25, 0.59, 0.80, 0.81, 0.56, 1.00,
+                    "0.25", "0.59", 0.80, 0.81, 0.56, 1.00,
                     0.40, 0.9, 0.80, 0.70, 0.60, 0.60
                 ]
             },

@@ -4,6 +4,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
+// declare const staticJS: any;
 
 @Component({
   selector: 'app-statistics',
@@ -47,16 +48,18 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       }
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
-      console.log(resposne);
+      // console.log(resposne);
       for(let i=0;i< 12; i++){
         this.staticData.push(resposne[i]['avgQuantity']);
       }
-      console.log(this.staticData);
+      // console.log(this.staticData);
     });
 
     const script = document.createElement('script');
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
+
+    // staticJS();
   }
 
   next(e, id) {
