@@ -29,7 +29,7 @@ export class ManageTreeFarmerComponent implements OnInit {
   namePlantation: any = '';
   equipment: any;
   equipment_Item: any;
-  species :any = ["RRIM600",'RRIT251','RRIT226','BPM24'];
+  species :any ;
   dataSet: any = {
     serialNumber:null,row:null,col:null,species:null,datePlant:null,IDPlantation:null
   };
@@ -43,6 +43,7 @@ export class ManageTreeFarmerComponent implements OnInit {
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
     this.get_equipment();
+    this.get_species();
   }
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
@@ -63,6 +64,16 @@ export class ManageTreeFarmerComponent implements OnInit {
 
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
+    });
+  }
+  get_species() {
+    this.demo = {
+      mod: "get_species"
+    };
+
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.species = resposne;
+      // console.log(this.species);
     });
   }
   getRubberTree(data) {
@@ -111,7 +122,7 @@ export class ManageTreeFarmerComponent implements OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.equipment = resposne;
-      console.log(resposne);
+      // console.log(resposne);
     });
   }
   inserte_rubber() {
