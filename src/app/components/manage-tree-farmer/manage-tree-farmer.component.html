@@ -217,7 +217,7 @@
   </div>
   <div class="row">
     <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
-      <div class="table-responsive" style="text-align:center; height: 500px;">
+      <div class="table-responsive" style="text-align:center; height: 600px;">
         <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
           <thead>
             <tr>
@@ -232,7 +232,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let any of GET_RubberTree;let i = index ">
+            <tr *ngFor="let any of GET_RubberTree | paginate: { itemsPerPage: 10, currentPage: p } ;let i = index ">
               <td style="height: 30px">{{ i+1 }}</td>
               <td>{{ any.serialNumber }}</td>
               <td>{{ any.row }}</td>
@@ -250,6 +250,7 @@
             </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <br>
       </div>
     </div>

@@ -17,6 +17,7 @@ export class ManageTreeFarmerComponent implements OnInit {
     private apiService: ApiService,
     private authenticationService: AuthenticationService) { }
   //ตัวแปล
+  p:number = 1;
   demo: any;
   GET_Plantation: any;
   GET_RubberTree: any;
