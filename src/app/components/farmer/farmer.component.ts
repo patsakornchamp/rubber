@@ -73,6 +73,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
+      console.log(this.GET_Plantation)
     });
   }
   click_Plantation(data) {

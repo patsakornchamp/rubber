@@ -126,12 +126,7 @@ export class ManageTreeFarmerComponent implements OnInit {
     });
   }
   inserte_rubber() {
-    // console.log(this.namePlantation);
-    // return;
-    // let data = {
-    //   userID: this.IDUser,
-    //   equipment_Item: this.equipment_Item
-    // };
+
     if (this.namePlantation != '') {
       Swal.fire({
         title: 'ยืนยันการบันทึก',
