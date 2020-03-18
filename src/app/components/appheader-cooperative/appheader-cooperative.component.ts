@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-appheader-cooperative',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appheader-cooperative.component.css']
 })
 export class AppheaderCooperativeComponent implements OnInit {
+  modalRef: BsModalRef;
 
   constructor(  ) { }
 
@@ -13,5 +15,7 @@ export class AppheaderCooperativeComponent implements OnInit {
   ngOnInit() {
 
   }
+  logout(){
 
+  }
 }

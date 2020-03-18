@@ -18,6 +18,7 @@ export class PageCooperativeManageComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
   demo: any;
   GET_farm: any;
+  searhText:any;
   GET_user_plant: any;
   IDUser: any;
   IDUser2: any;

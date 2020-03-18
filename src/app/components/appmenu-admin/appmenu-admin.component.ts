@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppmenuAdminComponent implements OnInit {
 
   constructor() { }
-
+name:any;
   ngOnInit() {
   }
 

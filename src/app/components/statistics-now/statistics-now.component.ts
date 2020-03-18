@@ -26,7 +26,7 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
   dataUser: any;
   namePlantation: any;
   IDPlantation: any;
-
+  searhText:any;
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];

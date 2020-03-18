@@ -25,6 +25,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   row: any = 0;
   col: any = 0;
   lng_lat: any;
+  searhText:any;
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
   //ละติจูท

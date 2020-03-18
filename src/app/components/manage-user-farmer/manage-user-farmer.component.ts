@@ -12,7 +12,8 @@ import Swal from 'sweetalert2';
 export class ManageUserFarmerComponent implements OnInit {
   modalRef: BsModalRef;
   dataUser: any;
-
+  searhText:any;
+  
   dataUser2: any;
   demo: any;
   statistcs: any;

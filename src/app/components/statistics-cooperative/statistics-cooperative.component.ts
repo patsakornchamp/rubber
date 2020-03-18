@@ -25,6 +25,7 @@ export class StatisticsCooperativeComponent implements OnInit {
   row: any = 0;
   col: any = 0;
   GET_farm:any;
+  searhText:any;
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];

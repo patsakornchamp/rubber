@@ -91,12 +91,7 @@ export class ManageRubberFarmerComponent implements OnInit {
     })
   }
   edit_farm(data) {
-    // this.dataset.IDPlantation = data.IDPlantation
-    // this.dataset.namePlantation = data.namePlantation
-    // this.dataset.addressRubberPlantation= data.addressRubberPlantation
-    // this.dataset.latitude = data.latitude
-    // this.dataset.longitude = data.longitude
-    // this.dataset.detail = data.detail
+
     let markers: marker[] =
       [{
         IDPlantation: data.IDPlantation,

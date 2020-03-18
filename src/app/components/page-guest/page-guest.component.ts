@@ -28,7 +28,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   dataUser: any;
   Plantation: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
   markers: marker[];
-
+  searhText:any;
 
   latitude = 14.020740;
   longitude = 99.991194;

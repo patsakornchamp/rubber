@@ -74,7 +74,7 @@
           </thead>
           <div></div>
           <tbody>
-            <tr *ngFor="let any of GET_farm;let i = index" (click)="edit_farm(any)">
+            <tr *ngFor="let any of GET_farm;let i = index" >
               <td style="height: 30px">{{ i+1 }}</td>
               <td>{{ any.name }}</td>
               <td>{{ any.namePlantation }}</td>

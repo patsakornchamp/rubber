@@ -10,7 +10,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
 
-  PHP_API_SERVER = "http://158.108.207.7/rubberProject/demo1/ctrl.php";
+  PHP_API_SERVER = "http://158.108.207.7/rubberProject/demo/ctrl.php";
   // PHP_API_SERVER = "http://localhost/RubberTree/ctrl.php";
 
 

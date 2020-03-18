@@ -14,6 +14,9 @@ export class AppheaderAdminComponent implements OnInit {
 
   ngOnInit() {
   }
+  name(){
+    
+  }
   logout(){
     this.authService.logout();
     this.router.navigateByUrl('/login');

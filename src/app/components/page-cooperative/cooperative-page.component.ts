@@ -20,7 +20,7 @@ export class CooperativePageComponent implements AfterViewInit, OnInit {
   //ลองติจูท
   lng = 99.991194;
   markers: marker[];
-
+  searhText:any;
   latitude = 14.020740;
   longitude = 99.991194;
   locationChosen = false;

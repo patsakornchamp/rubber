@@ -19,6 +19,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     private authenticationService: AuthenticationService) { }
   /////////////////////////////////////////ตัวแปล
   demo: any;
+  searhText:any;
   GET_Plantation: any;
   Plantation: any; Plantation2: any; IDPlantation: any; addressRubberPlantation: any; addressRubberPlantation2: any;
   IDUser: any;
@@ -99,6 +100,9 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.addressRubberPlantation = data.addressRubberPlantation;
     // this.searchPic_farm();
     this.modalRef.hide();
+  }
+  searchPic(){
+    
   }
   click_Plantation2(data) {
     this.Plantation2 = data.namePlantation;

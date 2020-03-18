@@ -11,5 +11,7 @@ export class AppheaderGuestUserComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  logout(){
+    
+  }
 }
