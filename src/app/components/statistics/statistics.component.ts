@@ -13,11 +13,35 @@ import { Color, Label } from 'ng2-charts';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements AfterViewInit, OnInit {
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
   modalRef: BsModalRef;
+
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [
+      1.00, 1.00, 1.00, 1.00, 1.00, 1.00,
+      1.00, 1.00, 1.00, 1.00, 1.00, 1.00 ], label: 'Year' },
+  ];
+  public lineChartLabels: Label[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  // public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  //   responsive: true,
+  // };
+
+  public lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: 'rgba(0,255,0,0.3)',
+    },
+  ];
+
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  public lineChartPlugins = [];
+
   constructor(private modalService: BsModalService,
     private apiService: ApiService,
     private authenticationService: AuthenticationService) { }
@@ -31,6 +55,8 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   row: any = 0;
   col: any = 0;
   YEAR: any;
+  any_date : any;
+  any_date2 : any;
   staticData: Array<any> = [];
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
@@ -45,26 +71,45 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void { //กราฟ
-    this.demo = {
-      mod: "avgQuantity",
-      value: {
-          "IDPlantation": 1,
-          "YEAR": 2020
-      }
-    };
-    this.apiService.read(this.demo).subscribe((resposne: any) => {
-      // console.log(resposne);
-      for(let i=0;i< 12; i++){
-        this.staticData.push(resposne[i]['avgQuantity']);
-      }
-      // console.log(this.staticData);
-    });
-
-    const script = document.createElement('script');
-    script.src = 'assets/js/chart.js';
-    document.body.appendChild(script);
+    // const script = document.createElement('script');
+    // script.src = 'assets/js/chart.js';
+    // document.body.appendChild(script);
 
     // staticJS();
+  }
+
+  staticGet(){
+    let plan;
+    console.log(this.any_date);
+    for(let i = 0 ;i < this.GET_Plantation.length;i++){
+      if(this.Plantation == this.GET_Plantation[i]['namePlantation']){
+        plan = this.GET_Plantation[i]['IDPlantation'];
+      }
+    } 
+    if(this.any_date != null && plan != null){
+      this.demo = {
+        mod: "avgQuantity",
+        value: {
+            "IDPlantation": plan,
+            "YEAR": this.any_date
+        }
+      };
+      console.log(this.demo);
+      this.apiService.read(this.demo).subscribe((resposne: any) => {
+        // console.log(resposne);
+        this.staticData = []
+        for(let i=0;i< 12; i++){
+          this.staticData.push(resposne[i]['avgQuantity']);
+        }
+        console.log(this.staticData);
+        this.lineChartData = [
+          { 
+            data: this.staticData, label: this.any_date 
+          },
+        ];
+        // console.log(this.staticData);
+      });
+    }
   }
 
   next(e, id) {
@@ -103,16 +148,50 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.IDPlantation = data.IDPlantation;
     this.addressRubberPlantation = data.addressRubberPlantation;
     // this.searchPic_farm();
+    this.staticGet();
     this.modalRef.hide();
   }
   searchPic(){
-    
+    let plan;
+    console.log(this.any_date2);
+    for(let i = 0 ;i < this.GET_Plantation.length;i++){
+      if(this.Plantation2 == this.GET_Plantation[i]['namePlantation']){
+        plan = this.GET_Plantation[i]['IDPlantation'];
+      }
+    } 
+    if(this.any_date2 != null && plan != null){
+      this.demo = {
+        mod: "avgQuantity2",
+        value: {
+            "IDPlantation": plan,
+            "YEAR": this.any_date2,
+            "row": this.row,
+            "col": this.col
+        }
+      };
+      console.log(this.demo);
+      this.apiService.read(this.demo).subscribe((resposne: any) => {
+        // console.log(resposne);
+        this.staticData = []
+        for(let i=0;i< 12; i++){
+          this.staticData.push(resposne[i]['avgQuantity']);
+        }
+        console.log(this.staticData);
+        this.lineChartData = [
+          { 
+            data: this.staticData, label: this.any_date2
+          },
+        ];
+        // console.log(this.staticData);
+      });
+    }
   }
   click_Plantation2(data) {
     this.Plantation2 = data.namePlantation;
     this.IDPlantation = data.IDPlantation;
     this.addressRubberPlantation2 = data.addressRubberPlantation;
     // this.searchPic_tree();
+    this.staticGet();
     this.modalRef.hide();
   }
   searchPic_farm() {
