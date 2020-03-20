@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
-import { Router } from  '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,9 +13,9 @@ import { Router } from  '@angular/router';
 })
 export class ManageRubberAddFarmerComponent implements OnInit {
 
-  constructor(private modalService: BsModalService,    private router: Router, private apiService: ApiService, private authenticationService: AuthenticationService) { }
+  constructor(private modalService: BsModalService, private router: Router, private apiService: ApiService, private authenticationService: AuthenticationService) { }
   //mapสามารถเลือกจุดบนแผนที่ได้
-  zoom: number = 15;
+  zoom: number = 5;
   //ละติจูท
   lat = 14.020740;
   //ลองติจูท
@@ -83,14 +83,19 @@ export class ManageRubberAddFarmerComponent implements OnInit {
             'บันทึกเรียบร้อย', "",
             'success')
         });
-          this.dataset.namePlantation=null
-          this.dataset.addressRubberPlantation=null
-          this.dataset.detail=null
-          this.dataset.mapClick_lat=null
-          this.dataset.mapClick_lng=null
-          this.router.navigateByUrl('/manage-rubber-farmer');
+        this.dataset.namePlantation = null
+        this.dataset.addressRubberPlantation = null
+        this.dataset.detail = null
+        this.dataset.mapClick_lat = null
+        this.dataset.mapClick_lng = null
+        this.router.navigateByUrl('/manage-rubber-farmer');
       }
     })
+  }
+  link(data) {
+    if (data == '01') {
+      this.router.navigate(["/manage-rubber-farmer"]);
+    }
   }
 }
 interface marker {

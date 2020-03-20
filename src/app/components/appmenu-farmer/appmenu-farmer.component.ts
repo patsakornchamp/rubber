@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../_services';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-appmenu-farmer',
@@ -31,11 +32,29 @@ export class AppmenuFarmerComponent implements OnInit {
   }
   Click_ManageRubberfarmer(){
     this.router.navigate(["/manage-rubber-farmer"]);
-
   }
   Click_farmer(){
     this.router.navigate(["/farmer"]);
 
 
   }
+  link(data){
+    if(data == '01'){
+      this.router.navigate(["/farmer"]);
+    }
+    else if(data == '02'){
+      this.router.navigate(["/statistics"]);
+
+    }
+    else if(data == '03'){
+      this.router.navigate(["/manage-rubber-farmer"]);
+    }
+    else if(data == '04'){
+      this.router.navigate(["/manage-tree-farmer"]);
+    }
+    else if(data == '05'){
+      this.router.navigate(["/manage-user-farmer"]);
+    }
+  }
+
 }

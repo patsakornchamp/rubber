@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<aside class="main-sidebar" style="background-color: white;">
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
@@ -8,18 +8,18 @@
         <div class="pull-left info" style="font-size: 18px;">
           <p>{{name}}</p>
 
-          <a href="/page-cooperative"><i class="fa fa-circle text-success"></i>สหกรณ์</a>
+          <a><i class="fa fa-circle text-success"></i>สหกรณ์</a>
 
         </div>
       </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree" style="font-size: 15px;">
-      <li class="header">MANU</li>
-      <li><a href="page-cooperative"><i class="fa fa-book"></i> <span>หน้าแรก</span></a></li>
-      <li><a href="statistics-cooperative"><i class="fa fa-pie-chart"></i> <span>ดูข้อมูลย้อนหลัง</span></a></li>
-      <li><a href="page-cooperative-manage"><i class="fa fa-pencil-square-o"></i> <span>จัดการสวนยางที่ดูแล</span></a></li>
-      <li><a href="page-cooperative-user"><i class="fa fa-user"></i> <span>ข้อมูลผู้ใช้งาน</span></a></li>
+      <li class="header" style="background-color: white;">MANU</li>
+      <li><a (click)="link(01)"><i class="fa fa-book"></i> <span>หน้าแรก</span></a></li>
+      <li><a (click)="link(02)"><i class="fa fa-pie-chart"></i> <span>ดูข้อมูลย้อนหลัง</span></a></li>
+      <li><a (click)="link(03)"><i class="fa fa-pencil-square-o"></i> <span>จัดการสวนยางที่ดูแล</span></a></li>
+      <li><a (click)="link(04)"><i class="fa fa-user"></i> <span>ข้อมูลผู้ใช้งาน</span></a></li>
 
     </ul>
   </section>
