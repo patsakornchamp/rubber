@@ -51,7 +51,7 @@ import { PageGuestUserComponent } from './components/page-guest-user/page-guest-
 import { PageCooperativeManageComponent } from './components/page-cooperative-manage/page-cooperative-manage.component';
 import { StatisticsCooperativeComponent } from './components/statistics-cooperative/statistics-cooperative.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -105,7 +105,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     PaginationModule.forRoot()
     // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
   ],
-  providers: [],
+  providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

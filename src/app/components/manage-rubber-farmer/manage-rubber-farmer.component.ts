@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import { ApiService } from '../../api.sercice';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-rubber-farmer',
@@ -14,7 +15,7 @@ export class ManageRubberFarmerComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private modalService: BsModalService,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService, private router: Router) { }
 
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
@@ -154,6 +155,12 @@ export class ManageRubberFarmerComponent implements OnInit {
     // console.log(e);
   }
   //mapปิด
+  
+  link(data) {
+    if (data == '01') {
+      this.router.navigate(["/manage-rubber-add-farmer"]);
+    }
+  }
 }
 interface marker {
   IDPlantation: number,
