@@ -52,6 +52,7 @@ import { PageCooperativeManageComponent } from './components/page-cooperative-ma
 import { StatisticsCooperativeComponent } from './components/statistics-cooperative/statistics-cooperative.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     // NgxPaginationModule,
     FormsModule,
     Ng2SearchPipeModule,
+    ChartsModule,
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA'

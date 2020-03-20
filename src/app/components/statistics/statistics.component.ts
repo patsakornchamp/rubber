@@ -1,17 +1,21 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
 // declare const staticJS: any;
-
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements AfterViewInit, OnInit {
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
   modalRef: BsModalRef;
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   constructor(private modalService: BsModalService,
