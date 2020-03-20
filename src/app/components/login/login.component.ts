@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
 import { first } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -43,34 +44,37 @@ export class LoginComponent implements OnInit {
 
   loginDB(loginForm) {
     let dataLogin = {
-      mod:"login",
-      value:{
+      mod: "login",
+      value: {
         "username": loginForm.username,
         "password": loginForm.password
       }
     };
     // console.log(dataLogin);
-    this.authenticationService.login(dataLogin)
-            .pipe(first())
-            .subscribe(
-                data => {
-                  if(data[0].statusUser == "1" ){
-                    this.router.navigate(['/farmer']);
-                  }
-                  else if(data[0].statusUser == "2" ){
-                    this.router.navigate(['/page-cooperative']);
+    this.authenticationService.login(dataLogin).pipe(first())
+      .subscribe(
+        data => {
+          // console.log(data[0]);
+          if (data[0] == undefined) {
+            Swal.fire(
+              'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', '',
+              'error')
+          }
+          else {
+            if (data[0].statusUser == "1") {
+              this.router.navigate(['/farmer']);
+            }
+            else if (data[0].statusUser == "2") {
+              this.router.navigate(['/page-cooperative']);
 
-                  } 
-                  else if(data[0].statusUser == "3" ){
-                    this.router.navigate(['/page-guset']);
+            }
+            else if (data[0].statusUser == "3") {
+              this.router.navigate(['/page-guset']);
+            }
+          }
 
-                  }
-                  console.log(data);
-                },
-                error => {
-                  window.alert("รหัสผ่านไม่ถูกต้อง");
-                  console.log(error);
-                });
+
+        });
 
     // this.apiService.read(dataLogin).subscribe((resposne: any) => {
     //   console.log(resposne['statusUser']);
