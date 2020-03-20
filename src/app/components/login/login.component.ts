@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       username: this.Musername,
       password: this.Mpassword
     };
-    console.log(this.loginForm);
+    // console.log(this.loginForm);
     this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return;

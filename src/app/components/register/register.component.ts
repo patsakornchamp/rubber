@@ -45,6 +45,11 @@ export class RegisterComponent implements OnInit {
       event.target.value = event.target.value.replace(/[^0-9]/g, "");
     }
   }
+  link(data) {
+    if (data == '01') {
+      this.router.navigate(['/login']);
+    }
+  }
   get_user_name() {
     this.username = null;
 
@@ -58,17 +63,17 @@ export class RegisterComponent implements OnInit {
     });
   }
   check_username(data) {
-    
+
     for (let i = 0; i < this.GET_user_name.length; i++) {
-        console.log(this.GET_user_name[i]);
-        console.log(data);
+      // console.log(this.GET_user_name[i]);
+      // console.log(data);
       if (this.GET_user_name[i].username == data) {
         Swal.fire(
           'ชื่อผู้ใช้นี้มีคนใช้แล้ว',
           '',
-          'success'
+          'error'
         )
-        this.username=null;
+        this.username = null;
       }
     }
   }
@@ -91,11 +96,27 @@ export class RegisterComponent implements OnInit {
       this.phone == null || this.phone == "" ||
       this.statusUser == null || this.statusUser == ""
     ) {
-      alert('กรูณากรอกข้อมูลให้ครบ')
+      Swal.fire(
+        'กรูณากรอกข้อมูลให้ครบ',
+        '',
+        'error'
+      )
       return;
     }
     else {
       this.register(this.registerForm)
+    }
+  }
+  check_pass() {
+    if (this.Repassword != "" && this.password != "") {
+      if (this.password != this.Repassword) {
+        Swal.fire(
+          'รหัสผ่านไม่ตรงกัน',
+          '',
+          'error'
+        )
+        this.Repassword = "";
+      }
     }
   }
 
