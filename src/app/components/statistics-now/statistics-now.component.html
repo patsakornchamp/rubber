@@ -1,126 +1,137 @@
 <app-appheader-guest-user></app-appheader-guest-user>
 <app-appmenu-guest-user></app-appmenu-guest-user>
 <ng-template #get_user_guest>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">สวนยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">สวนยาง</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-    <div class="col-md-12 " style="margin-top: 20px;">
-      <div class="table-responsive" style="text-align:center; height: 500px;">
-        <table border='1' width='100%' class="table table-hover" id="customers">
-          <thead>
-            <tr>
-              <th>ชื่อแปลง</th>
-              <th>ที่อยู่</th>
-              <th>เบอร์โทรศัพท์</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let any of GET_user_guest|filter:searhText;let i = index" (click)="click_user_guest(any)">
-              <td>{{ any.name }}</td>
-              <td>{{ any.addressUser }}</td>
-              <td>{{ any.phoneNumber }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-      </div>
     </div>
-  </div>
+    <div class="modal-body">
+        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+        <div class="col-md-12 " style="margin-top: 20px;">
+            <div class="table-responsive" style="text-align:center; height: 500px;">
+                <table border='1' width='100%' class="table table-hover" id="customers">
+                    <thead>
+                        <tr>
+                            <th>ชื่อแปลง</th>
+                            <th>ที่อยู่</th>
+                            <th>เบอร์โทรศัพท์</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let any of GET_user_guest|filter:searhText;let i = index" (click)="click_user_guest(any)">
+                            <td>{{ any.name }}</td>
+                            <td>{{ any.addressUser }}</td>
+                            <td>{{ any.phoneNumber }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+    </div>
 </ng-template>
 <ng-template #searchPic_plan_guest>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">สวนยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">สวนยาง</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-    <div class="col-md-12 " style="margin-top: 20px;">
-      <div class="table-responsive" style="text-align:center; height: 500px;">
-        <table border='1' width='100%' class="table table-hover" id="customers">
-          <thead>
-            <tr>
-              <th>ชื่อแปลง</th>
-              <th>ที่อยู่</th>
-              <th>ละติจูด</th>
-              <th>ลองจิจูด</th>
-              <th>รายละเอียดของสวนยาง</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let any of SEARCH_plan_guest|filter:searhText;let i = index" (click)="click_plan_guest(any)">
-              <td>{{ any.namePlantation }}</td>
-              <td>{{ any.addressRubberPlantation }}</td>
-              <td>{{ any.latitude }}</td>
-              <td>{{ any.longitude }}</td>
-              <td>{{ any.detail }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-      </div>
     </div>
-  </div>
+    <div class="modal-body">
+        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+        <div class="col-md-12 " style="margin-top: 20px;">
+            <div class="table-responsive" style="text-align:center; height: 500px;">
+                <table border='1' width='100%' class="table table-hover" id="customers">
+                    <thead>
+                        <tr>
+                            <th>ชื่อแปลง</th>
+                            <th>ที่อยู่</th>
+                            <th>ละติจูด</th>
+                            <th>ลองจิจูด</th>
+                            <th>รายละเอียดของสวนยาง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let any of SEARCH_plan_guest|filter:searhText;let i = index" (click)="click_plan_guest(any)">
+                            <td>{{ any.namePlantation }}</td>
+                            <td>{{ any.addressRubberPlantation }}</td>
+                            <td>{{ any.latitude }}</td>
+                            <td>{{ any.longitude }}</td>
+                            <td>{{ any.detail }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+    </div>
 </ng-template>
 <div class="content-wrapper">
-  <!-- หัวข้อ -->
-  <section class="content-header">
-    <h1>
-      สถิติ
-      <!-- <small>ข้อมูลปัจจุบัน</small> -->
-    </h1>
-  </section>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-        <label>เลือกเจ้าของสวนยาง</label><br>
-        <input type="text" [(ngModel)]="name_user">
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="form-group" style="font-size: 15px;">
-        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(get_user_guest)">
-          <i class="fa fa-search"></i></button>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-        <label>เลือกสวนยาง</label><br>
-        <input type="text" [(ngModel)]="namePlantation">
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="form-group" style="font-size: 15px;">
-        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(searchPic_plan_guest)">
-          <i class="fa fa-search"></i></button>
-      </div>
-    </div>
-  </div>
-  <section class="content">
+    <!-- หัวข้อ -->
+    <section class="content-header">
+        <h1>
+            สถิติ
+            <!-- <small>ข้อมูลปัจจุบัน</small> -->
+        </h1>
+    </section>
     <div class="row">
-      <div class="col-md-11" id="area">
-        <!-- AREA CHART -->
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Area Chart</h3>
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        <div class="col-md-4">
+            <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+                <label>เลือกเจ้าของสวนยาง</label><br>
+                <input type="text" [(ngModel)]="name_user">
             </div>
-          </div>
-          <div class="box-body">
-            <div class="chart" style="font-size: 25px;">
-              <canvas id="areaChart" style="height:250px;"></canvas>
-            </div>
-          </div>
         </div>
-      </div>
+        <div class="col-md-1">
+            <div class="form-group" style="font-size: 15px;">
+                <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(get_user_guest)">
+          <i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+                <label>เลือกสวนยาง</label><br>
+                <input type="text" [(ngModel)]="namePlantation">
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group" style="font-size: 15px;">
+                <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(searchPic_plan_guest)">
+          <i class="fa fa-search"></i></button>
+            </div>
+        </div>
     </div>
-  </section>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>เลือกปี</label>
+                <select class="form-control" [(ngModel)]="any_date" (change)="staticGet()">
+              <option *ngFor="let any of YEAR" value={{any.date}}>{{any.date}}</option>
+            </select>
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-11" id="area">
+                <!-- AREA CHART -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Area Chart</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div style="display: block;">
+                        <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                      </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

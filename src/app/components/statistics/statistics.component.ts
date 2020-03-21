@@ -19,8 +19,8 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
 
   public lineChartData: ChartDataSets[] = [
     { data: [
-      1.00, 1.00, 1.00, 1.00, 1.00, 1.00,
-      1.00, 1.00, 1.00, 1.00, 1.00, 1.00 ], label: 'Year' },
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], label: 'Year' },
   ];
   public lineChartLabels: Label[] = [
     'January', 'February', 'March', 'April', 'May', 'June',

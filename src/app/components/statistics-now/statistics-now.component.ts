@@ -4,6 +4,8 @@ import { TabsetComponent } from 'ngx-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 @Component({
   selector: 'app-statistics-now',
   templateUrl: './statistics-now.component.html',
@@ -12,12 +14,37 @@ import { AuthenticationService } from '../../_services';
 export class StatisticsNowComponent implements AfterViewInit, OnInit {
   modalRef: BsModalRef;
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], label: 'Year' },
+  ];
+  public lineChartLabels: Label[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  // public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  //   responsive: true,
+  // };
+
+  public lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: 'rgba(0,255,0,0.3)',
+    },
+  ];
+
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  public lineChartPlugins = [];
+
   constructor(private modalService: BsModalService,
     private apiService: ApiService,
     private authenticationService: AuthenticationService) { }
   /////////////////////////////////////////ตัวแปล
   demo: any;
-  staticData: Array<any> = [];
   IDUserF: any;
   GET_user_guest: any;
   SEARCH_plan_guest: any;
@@ -27,6 +54,9 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
   namePlantation: any;
   IDPlantation: any;
   searhText:any;
+  YEAR: any;
+  any_date :any;
+  staticData: Array<any> = [];
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -39,26 +69,56 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void { //กราฟ
+    // const script = document.createElement('script');
+    // script.src = 'assets/js/chart.js';
+    // document.body.appendChild(script);
+
+    // staticJS();
+  }
+  staticGet(){
+    let plan;
+    console.log(this.any_date);
+    for(let i = 0 ;i < this.SEARCH_plan_guest.length;i++){
+      if(this.namePlantation == this.SEARCH_plan_guest[i]['namePlantation']){
+        plan = this.SEARCH_plan_guest[i]['IDPlantation'];
+      }
+    } 
+    if(this.any_date != null && plan != null){
+      this.demo = {
+        mod: "avgQuantity",
+        value: {
+            "IDPlantation": plan,
+            "YEAR": this.any_date
+        }
+      };
+      console.log(this.demo);
+      this.apiService.read(this.demo).subscribe((resposne: any) => {
+        // console.log(resposne);
+        this.staticData = []
+        for(let i=0;i< 12; i++){
+          this.staticData.push(resposne[i]['avgQuantity']);
+        }
+        console.log(this.staticData);
+        this.lineChartData = [
+          { 
+            data: this.staticData, label: this.any_date 
+          },
+        ];
+      });
+    }
+  }
+  get_year(idUser) {
+    console.log(idUser);
     this.demo = {
-      mod: "avgQuantity",
+      mod: "get_year",
       value: {
-        "IDPlantation": 1,
-        "YEAR": 2020
+        "IDUser": idUser
       }
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
-      // console.log(resposne);
-      for (let i = 0; i < 12; i++) {
-        this.staticData.push(resposne[i]['avgQuantity']);
-      }
-      // console.log(this.staticData);
+      this.YEAR = resposne;
+      console.log(this.YEAR);
     });
-
-    const script = document.createElement('script');
-    script.src = 'assets/js/chart.js';
-    document.body.appendChild(script);
-
-    // staticJS();
   }
   get_user_guest() {
     this.demo = {
@@ -87,11 +147,26 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
       this.SEARCH_plan_guest = resposne;
       console.log(this.SEARCH_plan_guest);
     });
+    this.lineChartData = [
+      { 
+        data: [
+          0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+          0.00, 0.00, 0.00, 0.00, 0.00, 0.00 
+        ], label: this.any_date 
+      },
+    ];
   }
   click_plan_guest(data) {
     this.namePlantation = data.namePlantation
     this.IDPlantation = data.IDPlantation
     this.search_rubberproduct();
+    for(let i = 0 ;i < this.SEARCH_plan_guest.length;i++){
+      if(this.namePlantation == this.SEARCH_plan_guest[i]['namePlantation']){
+        console.log(this.SEARCH_plan_guest[i]['IDUser']);
+        this.get_year(this.SEARCH_plan_guest[i]['IDUser']);
+      }
+    }
+    this.staticGet()
     this.modalRef.hide();
   }
   search_rubberproduct() {
