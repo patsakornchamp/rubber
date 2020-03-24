@@ -285,7 +285,9 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.IDPlantation = data.IDPlantation;
     this.addressRubberPlantation2 = data.addressRubberPlantation;
     // this.searchPic_tree();
+    this.any_date_cur2 = this.YEAR[0]['date'];
     this.searchPic_cur();
+    this.searchPic();
     this.modalRef.hide();
   }
   searchPic_farm() {
