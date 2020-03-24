@@ -77,7 +77,9 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.get_Plantation();
     this.get_year();
     this.any_date = 'Year';
+    this.any_date2 = 'Year';
     this.any_date_cur = 'Year';
+    this.any_date_cur2 = 'Year';
   }
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
@@ -111,7 +113,6 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       };
       console.log(this.demo);
       this.apiService.read(this.demo).subscribe((resposne: any) => {
-        // console.log(resposne);
         this.staticData = []
         for(let i=0;i< 12; i++){
           this.staticData.push(resposne[i]['avgQuantity']);
@@ -125,7 +126,6 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
             data: this.staticData, label: this.any_date 
           }
         ];
-        // console.log(this.staticData);
       });
     }
   }
@@ -153,7 +153,6 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
         }
         console.log(this.staticData_cur);
         this.lineChartData = [
-          
           { 
             data: this.staticData_cur, label: this.any_date_cur 
           },
@@ -195,6 +194,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       this.YEAR = resposne;
       this.YEAR_cur = resposne;
       this.any_date_cur = this.YEAR[0]['date'];
+      this.any_date_cur2 = this.YEAR[0]['date'];
       console.log(this.YEAR);
     });
   }
@@ -208,6 +208,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.modalRef.hide();
   }
   searchPic(){
+    this.searchPic_cur()
     let plan;
     console.log(this.any_date2);
     for(let i = 0 ;i < this.GET_Plantation.length;i++){
@@ -227,7 +228,6 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
       };
       console.log(this.demo);
       this.apiService.read(this.demo).subscribe((resposne: any) => {
-        // console.log(resposne);
         this.staticData = []
         for(let i=0;i< 12; i++){
           this.staticData.push(resposne[i]['avgQuantity']);
@@ -235,10 +235,48 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
         console.log(this.staticData);
         this.lineChartData = [
           { 
-            data: this.staticData, label: this.any_date2
+            data: this.staticData_cur, label: this.any_date_cur2
           },
+          { 
+            data: this.staticData, label: this.any_date2
+          }
         ];
-        // console.log(this.staticData);
+      });
+    }
+  }
+  searchPic_cur(){
+    let plan;
+    console.log(this.any_date_cur2);
+    for(let i = 0 ;i < this.GET_Plantation.length;i++){
+      if(this.Plantation2 == this.GET_Plantation[i]['namePlantation']){
+        plan = this.GET_Plantation[i]['IDPlantation'];
+      }
+    } 
+    if(this.any_date_cur2 != null && plan != null){
+      this.demo = {
+        mod: "avgQuantity2",
+        value: {
+            "IDPlantation": plan,
+            "YEAR": this.any_date_cur2,
+            "row": this.row,
+            "col": this.col
+        }
+      };
+      console.log(this.demo);
+      this.apiService.read(this.demo).subscribe((resposne: any) => {
+        this.staticData_cur = []
+        for(let i=0;i< 12; i++){
+          this.staticData_cur.push(resposne[i]['avgQuantity']);
+        }
+        console.log(this.staticData_cur);
+        this.lineChartData = [
+          { 
+            data: this.staticData_cur, label: this.any_date_cur2
+          },
+          { 
+            data: this.staticData, label: this.any_date2
+          }
+        ];
       });
     }
   }
@@ -247,7 +285,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     this.IDPlantation = data.IDPlantation;
     this.addressRubberPlantation2 = data.addressRubberPlantation;
     // this.searchPic_tree();
-    this.staticGet();
+    this.searchPic_cur();
     this.modalRef.hide();
   }
   searchPic_farm() {
