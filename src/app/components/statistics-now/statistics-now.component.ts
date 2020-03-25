@@ -16,9 +16,18 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   public lineChartData: ChartDataSets[] = [
-    { data: [
+    { 
+      data: [
       0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
-      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], label: 'Year' },
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], 
+      label: 'Year' 
+    },
+    { 
+      data: [
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], 
+      label: 'Year'
+    }
   ];
   public lineChartLabels: Label[] = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -55,8 +64,11 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
   IDPlantation: any;
   searhText:any;
   YEAR: any;
+  YEAR_cur: any;
   any_date :any;
+  any_date_cur : any;
   staticData: Array<any> = [];
+  staticData_cur: Array<any> = [];
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -101,8 +113,45 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
         console.log(this.staticData);
         this.lineChartData = [
           { 
-            data: this.staticData, label: this.any_date 
+            data: this.staticData_cur, label: this.any_date_cur 
           },
+          { 
+            data: this.staticData, label: this.any_date 
+          }
+        ];
+      });
+    }
+  }
+  staticGet_cur(){
+    let plan;
+    console.log(this.any_date_cur);
+    for(let i = 0 ;i < this.SEARCH_plan_guest.length;i++){
+      if(this.namePlantation == this.SEARCH_plan_guest[i]['namePlantation']){
+        plan = this.SEARCH_plan_guest[i]['IDPlantation'];
+      }
+    }
+    if(this.any_date_cur != null && plan != null){
+      this.demo = {
+        mod: "avgQuantity",
+        value: {
+            "IDPlantation": plan,
+            "YEAR": this.any_date_cur
+        }
+      };
+      console.log(this.demo);
+      this.apiService.read(this.demo).subscribe((resposne: any) => {
+        this.staticData_cur = []
+        for(let i=0;i< 12; i++){
+          this.staticData_cur.push(resposne[i]['avgQuantity']);
+        }
+        console.log(this.staticData_cur);
+        this.lineChartData = [
+          { 
+            data: this.staticData_cur, label: this.any_date_cur 
+          },
+          { 
+            data: this.staticData, label: this.any_date 
+          }
         ];
       });
     }
@@ -117,6 +166,9 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.YEAR = resposne;
+      this.YEAR_cur = resposne
+      this.any_date_cur = this.YEAR[0]['date'];
+      this.staticGet_cur()
       console.log(this.YEAR);
     });
   }
@@ -137,6 +189,10 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
     this.modalRef.hide();
   }
   searchPic_plan_guest() {
+    this.any_date_cur = 'Year';
+    this.any_date = 'Year';
+    this.YEAR = [];
+    this.YEAR_cur = [];
     this.demo = {
       mod: "searchPic_plan_guest",
       item: {
@@ -147,13 +203,21 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
       this.SEARCH_plan_guest = resposne;
       console.log(this.SEARCH_plan_guest);
     });
+    this.staticData_cur = [
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 
+    ]
+    this.staticData = [
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+      0.00, 0.00, 0.00, 0.00, 0.00, 0.00 
+    ]
     this.lineChartData = [
       { 
-        data: [
-          0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
-          0.00, 0.00, 0.00, 0.00, 0.00, 0.00 
-        ], label: this.any_date 
+        data: this.staticData_cur, label: this.any_date_cur 
       },
+      { 
+        data: this.staticData, label: this.any_date 
+      }
     ];
   }
   click_plan_guest(data) {
@@ -166,10 +230,23 @@ export class StatisticsNowComponent implements AfterViewInit, OnInit {
         this.get_year(this.SEARCH_plan_guest[i]['IDUser']);
       }
     }
-    this.staticGet()
+    this.staticGet();
     this.modalRef.hide();
   }
   search_rubberproduct() {
     console.log('รอข้อมูล')
+  }
+  default_static(){
+    this.lineChartData = [
+      { 
+        data: this.staticData_cur, label: this.any_date_cur
+      },
+      { 
+        data: [
+          0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+          0.00, 0.00, 0.00, 0.00, 0.00, 0.00 
+        ], label: this.any_date 
+      }
+    ];
   }
 }

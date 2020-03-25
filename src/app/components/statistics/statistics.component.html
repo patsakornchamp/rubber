@@ -78,17 +78,19 @@
       สถิติ
       <small>ข้อมูลย้อนหลัง</small>
     </h1>
-  </section><br>
-
+  </section>
   <tabset #staticTabs style="font-size:15px;">
     <tab heading="รายแปลง" id="1">
       <div class="row">
         <div class="col-md-3">
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
             <label>เลือกแปลง</label><br>
-            <input type="text" placeholder="เลือกสวนยาง" [(ngModel)]="Plantation" />
-            <label> &nbsp; </label>
-            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
+            <input type="text" [(ngModel)]="Plantation">
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="form-group" style="font-size: 15px;">
+            <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
               <i class="fa fa-search"></i></button>
           </div>
         </div>
@@ -100,7 +102,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label>เลือกปี</label>
-            <select class="form-control" [(ngModel)]="any_date" (change)="staticGet()">
+            <select class="form-control" [(ngModel)]="any_date"  (change)="staticGet()">
               <option *ngFor="let any of YEAR" value={{any.date}}>{{any.date}}</option>
             </select>
           </div>
@@ -130,8 +132,11 @@
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
             <label>เลือกแปลง</label><br>
             <input type="text" [(ngModel)]="Plantation2">
-            <label> &nbsp; </label>
-            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden2)">
+          </div>
+        </div>
+        <div class="col-md-1">
+          <div class="form-group" style="font-size: 15px;">
+            <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden2)">
               <i class="fa fa-search"></i></button>
           </div>
         </div>
@@ -149,14 +154,14 @@
               oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right">
           </div>
         </div>
-        <!-- <div class="col-md-2">
+        <div class="col-md-2">
           <div class="form-group" style="font-size: 15px;">
             <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
               (click)="searchPic()">
               <span class="md-ripple"></span>ค้นหา
             </button>
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="row">
         <div class="col-md-1">
@@ -168,10 +173,6 @@
             <select class="form-control" [(ngModel)]="any_date2">
               <option *ngFor="let any of YEAR" value={{any.date}}>{{any.date}}</option>
             </select>
-            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
-              (click)="searchPic()">
-              <span class="md-ripple"></span>ค้นหา
-            </button>
           </div>
         </div>
       </div>
@@ -192,6 +193,8 @@
           </div>
         </div>
       </div>
+    </tab>
+    <tab heading="" id="3">
     </tab>
   </tabset>
   <!-- กราฟ -->
