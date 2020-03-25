@@ -1,141 +1,131 @@
 <app-appheader-cooperative></app-appheader-cooperative>
 <app-appmenu-cooperative></app-appmenu-cooperative>
 <ng-template #Garden>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">สวนยาง</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ชื่อเกษตกร</th>
+              <th>ที่อยู่แปลง</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_farm|filter:searhText;let i = index" (click)="click_Plantation(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.name }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
     </div>
-    <div class="modal-body">
-        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-        <div class="col-md-12 " style="margin-top: 20px;">
-            <div class="table-responsive" style="text-align:center; height: 500px;">
-                <table border='1' width='100%' class="table table-hover" id="customers">
-                    <thead>
-                        <tr>
-                            <th>ชื่อแปลง</th>
-                            <th>ชื่อเกษตกร</th>
-                            <th>ที่อยู่แปลง</th>
-                            <th>รายละเอียดของสวนยาง</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let any of GET_farm|filter:searhText;let i = index" (click)="click_Plantation(any)">
-                            <td>{{ any.namePlantation }}</td>
-                            <td>{{ any.name }}</td>
-                            <td>{{ any.addressRubberPlantation }}</td>
-                            <td>{{ any.detail }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-    </div>
+  </div>
 </ng-template>
 <ng-template #Garden2>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">สวนยาง</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>ละติจูด</th>
+              <th>ลองจิจูด</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation2(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
     </div>
-    <div class="modal-body">
-        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-        <div class="col-md-12 " style="margin-top: 20px;">
-            <div class="table-responsive" style="text-align:center; height: 500px;">
-                <table border='1' width='100%' class="table table-hover" id="customers">
-                    <thead>
-                        <tr>
-                            <th>ชื่อแปลง</th>
-                            <th>ที่อยู่</th>
-                            <th>ละติจูด</th>
-                            <th>ลองจิจูด</th>
-                            <th>รายละเอียดของสวนยาง</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation2(any)">
-                            <td>{{ any.namePlantation }}</td>
-                            <td>{{ any.addressRubberPlantation }}</td>
-                            <td>{{ any.latitude }}</td>
-                            <td>{{ any.longitude }}</td>
-                            <td>{{ any.detail }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-    </div>
+  </div>
 </ng-template>
 <div class="content-wrapper">
-    <section class="content-header">
-        <h1>
-            สถิติ
-            <small>ข้อมูลย้อนหลัง</small>
-        </h1>
-    </section>
-    <!-- /.content -->
-    <!-- <button class="button" (click)="SelectNext2(0)">ข้อมูลย้อนหลัง</button>
+  <section class="content-header">
+    <h1>
+      สถิติ
+      <small>ข้อมูลย้อนหลัง</small>
+    </h1>
+  </section>
+  <!-- /.content -->
+  <!-- <button class="button" (click)="SelectNext2(0)">ข้อมูลย้อนหลัง</button>
   <button class="button" (click)="SelectNext2(1)">ข้อมูลปัจจุบัน</button>
   <button class="button" (click)="SelectNext2(2)">Basic Title 2</button> -->
-    <tabset #staticTabs style="font-size:15px;">
-        <tab heading="รายแปลง" id="1">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group" style="font-size: 15px;margin-left: 65px;">
-                        <label>เลือกแปลง</label><br>
-                        <input type="text" [(ngModel)]="Plantation">
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group" style="font-size: 15px;">
-                        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
-                        <i class="fa fa-search"></i></button>
-                    </div>
-                </div>
+  <tabset #staticTabs style="font-size:15px;">
+    <tab heading="รายแปลง" id="1">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group" style="font-size: 15px;margin-left: 65px;">
+            <label>เลือกแปลง</label><br>
+            <input type="text" [(ngModel)]="Plantation">
+            <label> &nbsp; </label>
+            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
+              <i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>เลือกปี</label>
+            <select class="form-control" [(ngModel)]="any_date" (change)="staticGet()">
+              <option *ngFor="let any of YEAR" value={{any.date}}>{{any.date}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" style="font-size: 15px;margin-left: 65px;">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <i class="fa  fa-map-marker"></i>
+              <h3 class="box-title">ที่อยู่</h3>
             </div>
-            <div class="row">
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>เลือกปี</label>
-                        <select class="form-control" [(ngModel)]="any_date_cur" (change)="staticGet_cur()">
-                          <option *ngFor="let anyCur of YEAR_cur" value={{anyCur.date}}>{{anyCur.date}}</option>
-                      </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>เลือกปี</label>
-                        <select class="form-control" [(ngModel)]="any_date" (change)="staticGet()">
-                        <option *ngFor="let any of YEAR" value={{any.date}}>{{any.date}}</option>
-                      </select>
-                    </div>
-                </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <blockquote>
+                <p>{{addressRubberPlantation}}</p>
+              </blockquote>
             </div>
-            <div class="row">
-                <div class="col-md-3" style="font-size: 15px;margin-left: 65px;">
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <i class="fa  fa-map-marker"></i>
-                            <h3 class="box-title">ที่อยู่</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <blockquote>
-                                <p>{{addressRubberPlantation}}</p>
-                            </blockquote>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                </div>
-            </div>
-        </tab>
-        <!-- <tab heading="รายต้น" id="2">
+            <!-- /.box-body -->
+          </div>
+        </div>
+      </div>
+    </tab>
+    <!-- <tab heading="รายต้น" id="2">
       <div class="row">
         <div class="col-md-3">
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
@@ -189,26 +179,33 @@
       </div>
     </tab> -->
 
-    </tabset>
-    <!-- กราฟ -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-11" id="area">
-                <!-- AREA CHART -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Area Chart</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                        </div>
-                    </div>
-                    <div style="display: block;">
-                        <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                        </canvas>
-                    </div>
-                </div>
+  </tabset>
+  <!-- กราฟ -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-11" id="area">
+        <!-- AREA CHART -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Area Chart</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
+          </div>
+          <!-- <div class="box-body">
+            <div class="chart" style="font-size: 25px;">
+              <canvas id="areaChart" style="height:250px;"></canvas>
+            </div>
+          </div> -->
+          <div style="display: block;">
+            <canvas baseChart width="400" height="200" [datasets]="lineChartData" [labels]="lineChartLabels"
+              [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+              [plugins]="lineChartPlugins">
+            </canvas>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </div>

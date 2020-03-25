@@ -46,15 +46,12 @@
   </section><br>
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <div class="form-group" style="font-size: 15px;">
         <label>เลือกสวนยาง</label><br>
         <input type="text" [(ngModel)]="Plantation">
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="form-group">
-        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
+        <label> &nbsp; </label>
+        <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
           <i class="fa fa-search"></i></button>
       </div>
     </div>
