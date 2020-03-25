@@ -81,11 +81,8 @@
       <div class="form-group" style="font-size: 15px;margin-left: 65px;">
         <label>เลือกเจ้าของสวนยาง</label><br>
         <input type="text" [(ngModel)]="name_user">
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="form-group" style="font-size: 15px;">
-        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(get_user_guest)">
+        <label> &nbsp; </label>
+        <button type="button" class="btn btn-primary" (click)="openModalWithClass(get_user_guest)">
           <i class="fa fa-search"></i></button>
       </div>
     </div>
@@ -93,11 +90,8 @@
       <div class="form-group" style="font-size: 15px;margin-left: 65px;">
         <label>เลือกสวนยาง</label><br>
         <input type="text" [(ngModel)]="namePlantation">
-      </div>
-    </div>
-    <div class="col-md-1">
-      <div class="form-group" style="font-size: 15px;">
-        <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(searchPic_plan_guest)">
+        <label> &nbsp; </label>
+        <button type="button" class="btn btn-primary" (click)="openModalWithClass(searchPic_plan_guest)">
           <i class="fa fa-search"></i></button>
       </div>
     </div>

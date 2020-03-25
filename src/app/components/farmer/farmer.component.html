@@ -101,18 +101,21 @@
       <tab heading="รายแปลง" id="1">
         <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="form-group" style="font-size: 15px;">
               <label>เลือกแปลง</label><br>
               <input type="text" [(ngModel)]="Plantation">
+              <label> &nbsp; </label>
+              <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
+                <i class="fa fa-search"></i></button>
             </div>
           </div>
-          <div class="col-md-1">
+          <!-- <div class="col-md-1">
             <div class="form-group" style="font-size: 15px;">
               <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
                 <i class="fa fa-search"></i></button>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="row">
           <div class="col-lg-6 col-xs-12">
@@ -120,7 +123,6 @@
             <div class="small-box bg-red" style="height: 150px;">
               <div class="inner">
                 <h3 style="font-size: 60px">{{latex_farm}}<sup style="font-size:40px">กิโลกรัม</sup></h3>
-
                 <p>ปริมาณน้ำยางทั้งหมด</p>
               </div>
               <div class="icon">
@@ -134,18 +136,21 @@
       <tab heading="รายต้น" id="2">
         <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="form-group" style="font-size: 15px;">
               <label>เลือกแปลง</label><br>
               <input type="text" [(ngModel)]="Plantation2">
+              <label> &nbsp; </label>
+              <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden2)">
+                <i class="fa fa-search"></i></button>
             </div>
           </div>
-          <div class="col-md-1">
+          <!-- <div class="col-md-1">
             <div class="form-group" style="font-size: 15px;">
               <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden2)">
                 <i class="fa fa-search"></i></button>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-2">
             <div class="form-group" style="font-size: 15px;">
               <label>กรอกแถว</label><br>
