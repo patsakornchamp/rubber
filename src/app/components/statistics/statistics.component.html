@@ -86,14 +86,17 @@
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
             <label>เลือกแปลง</label><br>
             <input type="text" [(ngModel)]="Plantation">
+            <label> &nbsp; </label>
+            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
+              <i class="fa fa-search"></i></button>
           </div>
         </div>
-        <div class="col-md-1">
+        <!-- <div class="col-md-1">
           <div class="form-group" style="font-size: 15px;">
             <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden)">
               <i class="fa fa-search"></i></button>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col-md-1">
@@ -132,11 +135,8 @@
           <div class="form-group" style="font-size: 15px;margin-left: 65px;">
             <label>เลือกแปลง</label><br>
             <input type="text" [(ngModel)]="Plantation2">
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="form-group" style="font-size: 15px;">
-            <button type="button" class="btn btn-primary" id="search" (click)="openModalWithClass(Garden2)">
+            <label> &nbsp; </label>
+            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden2)">
               <i class="fa fa-search"></i></button>
           </div>
         </div>
@@ -173,6 +173,12 @@
             <select class="form-control" [(ngModel)]="any_date2">
               <option *ngFor="let any of YEAR" value={{any.date}}>{{any.date}}</option>
             </select>
+          </div>
+          <div class="form-group" style="font-size: 15px;">
+            <button _ngcontent-c6="" class="btn btn-oval btn-danger ripple" id="search" type="button"
+              (click)="searchPic()">
+              <span class="md-ripple"></span>ค้นหา
+            </button>
           </div>
         </div>
       </div>
