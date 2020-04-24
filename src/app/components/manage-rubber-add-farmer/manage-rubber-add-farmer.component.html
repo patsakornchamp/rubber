@@ -30,7 +30,7 @@
   <div class="row" id="margin">
     <div class="col-md-12" id="map">
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
-        (mapClick)="mapClick($event)">
+        (mapClick)="mapClick($event)" (mapDblClick)="tese($event)" >
         <agm-marker [latitude]="dataset.mapClick_lat" [longitude]="dataset.mapClick_lng">
           <agm-info-window>
             ละติจูด:{{dataset.mapClick_lat}}<br>
