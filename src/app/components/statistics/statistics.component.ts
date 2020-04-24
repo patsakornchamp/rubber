@@ -95,6 +95,8 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
     // staticJS();
   }
 
+
+
   staticGet(){
     let plan;
     console.log(this.any_date);
