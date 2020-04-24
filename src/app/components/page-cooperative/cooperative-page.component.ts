@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef,TemplateRef } f
 import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
+import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 @Component({
   selector: 'app-cooperative-page',
   templateUrl: './cooperative-page.component.html',
@@ -24,7 +25,7 @@ export class CooperativePageComponent implements AfterViewInit, OnInit {
   latitude = 14.020740;
   longitude = 99.991194;
   locationChosen = false;
-
+  date = new Date();
   demo:any;
   GET_farm:any;
   IDUser: any;

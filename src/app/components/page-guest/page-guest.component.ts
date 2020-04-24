@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, TemplateRef } 
 import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
+import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 
 @Component({
   selector: 'app-page-guest',
@@ -29,7 +30,9 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   Plantation: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
   markers: marker[];
   searhText:any;
-
+  address:any;
+  phone:any;
+  date = new Date();
   latitude = 14.020740;
   longitude = 99.991194;
   locationChosen = false;
@@ -78,20 +81,18 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   }
   searchPic_farm() {
     this.demo = {
-      mod: "searchPic_farm",
+      mod: "searchPic_farm2",
       item: {
-        IDUser: this.IDUser,
-        IDPlantation: this.IDPlantation
+        IDUser: this.IDUserF
       }
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
-      this.latex_farm = resposne[0].sumquantity;
+      this.latex_farm = resposne;
+      console.log( this.latex_farm);
       this.markers = resposne;
-      if (this.latex_farm == null) {
-        this.latex_farm = 0;
-      }
     });
   }
+  
   click_user_guest(data) {
     this.IDUserF = data.IDUser;
     this.name_user = data.name;
@@ -99,13 +100,17 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     this.latex_farm = 0;
     this.searchPic_plan_guest();
     this.modalRef.hide();
-  }
-  click_plan_guest(data) {
-    this.namePlantation = data.namePlantation
-    this.IDPlantation = data.IDPlantation
+    this.address = data.addressUser;
+    this.phone = data.phoneNumber;
     this.searchPic_farm();
-    this.modalRef.hide();
+
   }
+  // click_plan_guest(data) {
+  //   this.namePlantation = data.namePlantation
+  //   this.IDPlantation = data.IDPlantation
+  //   this.searchPic_farm();
+  //   this.modalRef.hide();
+  // }
   clickedMarker(m, i) {
     console.log(m, i);
   }
