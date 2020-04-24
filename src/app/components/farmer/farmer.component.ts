@@ -26,6 +26,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   col: any = 0;
   lng_lat: any;
   searhText:any;
+  date = new Date();
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
   //ละติจูท
@@ -55,6 +56,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
+    console.log(this.date);
     // console.log(this.IDUser)
 
   }
@@ -109,16 +111,15 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       mod: "searchPic_tree",
       item: {
         IDUser: this.IDUser,
-        IDPlantation: this.IDPlantation,
-        row: this.row,
-        col: this.col
+        IDPlantation: this.IDPlantation
       }
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
-      this.latex_tree = resposne[0].sumquantity;
-      if (this.latex_tree == null) {
-        this.latex_tree = 0;
-      }
+      this.latex_tree = resposne;
+console.log(this.latex_tree);
+      // if (this.latex_tree == null) {
+      //   this.latex_tree = 0;
+      // }
     });
   }
   searchPic_map() {
