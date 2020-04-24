@@ -23,7 +23,7 @@ export class ManageRubberAddFarmerComponent implements OnInit {
 
   latitude = 14.020740;
   longitude = 99.991194;
-  locationChosen =  true;
+  locationChosen = false;
   demo: any;
   IDUser: any;
   dataUser: any;
@@ -36,7 +36,6 @@ export class ManageRubberAddFarmerComponent implements OnInit {
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
-    // this.gmap.nativeElement.subscribe(map => { console.log(map)})
   }
   //mapเปิด
   clickedMarker(m, i) {
@@ -54,7 +53,7 @@ export class ManageRubberAddFarmerComponent implements OnInit {
     this.dataset.mapClick_lng = e["coords"].lng;
     // console.log(e["coords"].lat);
     // console.log(e["coords"].lng);
-    console.log(e);
+    // console.log(e);
   }
   //mapปิด
 
@@ -97,9 +96,6 @@ export class ManageRubberAddFarmerComponent implements OnInit {
     if (data == '01') {
       this.router.navigate(["/manage-rubber-farmer"]);
     }
-  }
-  tese(e){
-    console.log(e);
   }
 }
 interface marker {
