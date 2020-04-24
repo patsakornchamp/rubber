@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../_services';
 // declare const staticJS: any;
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -317,4 +318,8 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
 
     });
   }
+
+  // beforeChange() {
+  //   console.log("change");
+  // }
 }
