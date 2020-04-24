@@ -72,6 +72,7 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
   any_date_cur2 : any;
   staticData: Array<any> = [];
   staticData_cur: Array<any> = [];
+  x = true;
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -318,8 +319,25 @@ export class StatisticsComponent implements AfterViewInit, OnInit {
 
     });
   }
-
-  // beforeChange() {
-  //   console.log("change");
-  // }
+  confirmTabSwitch($event) {
+    // console.log($event);
+    // console.log($event[0]['_active']);
+    if($event[0]['_active'] != this.x){
+      this.x = $event[0]['_active'];
+      this.lineChartData = [
+        { 
+          data: [
+            0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+            0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], 
+            label: 'Year'
+        },
+        { 
+          data: [
+            0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+            0.00, 0.00, 0.00, 0.00, 0.00, 0.00 ], 
+            label: 'Year'
+        }
+      ];
+    }
+  }
 }
