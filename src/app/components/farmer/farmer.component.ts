@@ -36,6 +36,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   markers: marker[];
   latitude = 14.020740;
   longitude = 99.991194;
+  p:number = 1;
   locationChosen = false;
 
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;

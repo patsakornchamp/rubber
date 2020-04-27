@@ -37,6 +37,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   longitude = 99.991194;
   locationChosen = false;
   map: google.maps.Map;
+  p: number= 1;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   ngAfterViewInit(): void {
@@ -111,6 +112,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   //   this.searchPic_farm();
   //   this.modalRef.hide();
   // }
+
   clickedMarker(m, i) {
     console.log(m, i);
   }
