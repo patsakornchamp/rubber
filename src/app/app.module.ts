@@ -99,9 +99,7 @@ import { ChartsModule } from 'ng2-charts';
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
       // apiKey:'AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA'
-      apiKey:'AIzaSyAP2xDCx9mUWhgkX6lh8J-vlpWo7LKjL_0'
-      
-
+      apiKey:'AIzaSyBnnXUSmpaCRNkdJknFN4wU1XcDbbg1MsI'
     }),
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),

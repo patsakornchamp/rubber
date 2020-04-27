@@ -20,16 +20,6 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        ที่อยู่:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <textarea [(ngModel)]="markers2[0].addressRubberPlantation" rows="4" cols="50"></textarea>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-md-3" id="map">
         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
           (mapClick)="mapClick($event)">
@@ -42,6 +32,50 @@
             </agm-info-window>
           </agm-marker>
         </agm-map>
+      </div>
+    </div>
+
+    <h5>Address: {{address}}</h5>
+    <div>Latitude: {{latitude}}</div>
+    <div>Longitude: {{longitude}}</div>
+    <div class="row">
+      <div class="col-md-3" style="text-align: right;margin-top: 5px">
+        ที่อยู่:
+      </div>
+      <div class="col-md-4">
+        <div style="display: flex">
+          <textarea [(ngModel)]="markers2[0].addressRubberPlantation" rows="4" cols="50"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="margin">
+      <div class="col-md-3" style="text-align: right;margin-top: 5px">
+        ตำบล:
+      </div>
+      <div class="col-md-4">
+        <div style="display: flex">
+          <input type="text" class="form-control" [(ngModel)]="dataset.tumbol" />
+        </div>
+      </div>
+    </div>
+    <div class="row" id="margin">
+      <div class="col-md-3" style="text-align: right;margin-top: 5px">
+        อำเภอ:
+      </div>
+      <div class="col-md-4">
+        <div style="display: flex">
+          <input type="text" class="form-control" [(ngModel)]="dataset.amphoe" />
+        </div>
+      </div>
+    </div>
+    <div class="row" id="margin">
+      <div class="col-md-3" style="text-align: right;margin-top: 5px">
+        จังหวัด:
+      </div>
+      <div class="col-md-4">
+        <div style="display: flex">
+          <input type="text" class="form-control" [(ngModel)]="dataset.province" />
+        </div>
       </div>
     </div>
     <div class="row">

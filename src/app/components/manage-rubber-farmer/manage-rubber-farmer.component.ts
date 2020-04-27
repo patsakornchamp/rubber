@@ -1,9 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef,NgZone } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import { ApiService } from '../../api.sercice';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'app-manage-rubber-farmer',
@@ -15,7 +16,9 @@ export class ManageRubberFarmerComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private modalService: BsModalService,
-    private authenticationService: AuthenticationService, private router: Router) { }
+    private authenticationService: AuthenticationService, private router: Router,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) { }
 
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
@@ -23,12 +26,17 @@ export class ManageRubberFarmerComponent implements OnInit {
   lat = 10.4782;
   //ลองติจูท
   lng = 99.1423;
+
+  latitude: number;
+  longitude: number;
+  address: string;
+  private geoCoder;
+
   IDUser: any;
   dataUser: any;
   demo: any;
   GET_Plantation: any;
-  latitude = 0;
-  longitude = 0;
+
   dataset = {
     IDPlantation: null, namePlantation: null,
     addressRubberPlantation: null,
@@ -40,6 +48,7 @@ export class ManageRubberFarmerComponent implements OnInit {
   markers2: Array<any>;
   map: google.maps.Map;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+  @ViewChild('search', { static: true })  public searchElementRef: ElementRef;
 
 
   openModalWithClass(template: TemplateRef<any>) {
@@ -51,7 +60,60 @@ export class ManageRubberFarmerComponent implements OnInit {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 5;
+        });
+      });
+    });
   }
+ // Get Current Location Coordinates
+
+  getAddress(latitude, longitude) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      console.log(results);
+      console.log(status);
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 6;
+          this.address = results[0].formatted_address;
+          console.log( results[0].address_components[1].long_name)
+          console.log( results[0].address_components[2].long_name)
+          console.log( results[0].address_components[3].long_name)
+          // this.dataset.tumbol = results[0].address_components[1].long_name;
+          // this.dataset.amphoe = results[0].address_components[2].long_name;
+          // this.dataset.province = results[0].address_components[3].long_name;
+          // var res = this.dataset.tumbol.substring(4, );
+          // var res = this.dataset.amphoe.substring(5, );
+
+          // console.log(res);
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+  }
+
   get_Plantation() {
     this.demo = {
       mod: "getPlantation",
@@ -150,9 +212,9 @@ export class ManageRubberFarmerComponent implements OnInit {
   mapClick(e) {
     this.markers2[0].latitude = e["coords"].lat;
     this.markers2[0].longitude = e["coords"].lng;
-    // console.log(e["coords"].lat);
-    // console.log(e["coords"].lng);
-    // console.log(e);
+    this.latitude=this.markers2[0].latitude;
+    this.longitude=this.markers2[0].longitude;
+    this.getAddress(this.latitude, this.longitude);
   }
   //mapปิด
   
