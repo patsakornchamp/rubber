@@ -93,13 +93,15 @@ import { ChartsModule } from 'ng2-charts';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    // NgxPaginationModule,
     FormsModule,
     Ng2SearchPipeModule,
     ChartsModule,
     ModalModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA'
+      // apiKey:'AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA'
+      apiKey:'AIzaSyAP2xDCx9mUWhgkX6lh8J-vlpWo7LKjL_0'
+      
+
     }),
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),

@@ -1,9 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef,NgZone  } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
 import { ApiService } from '../../api.sercice';
 import { AuthenticationService } from '../../_services';
 import { Router } from '@angular/router';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { Router } from '@angular/router';
 })
 export class ManageRubberAddFarmerComponent implements OnInit {
 
-  constructor(private modalService: BsModalService, private router: Router, private apiService: ApiService, private authenticationService: AuthenticationService) { }
+  constructor(private modalService: BsModalService, private router: Router, private apiService: ApiService, private authenticationService: AuthenticationService, 
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone ) { }
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
   //ละติจูท
@@ -21,40 +24,105 @@ export class ManageRubberAddFarmerComponent implements OnInit {
   //ลองติจูท
   lng = 99.991194;
 
-  latitude = 14.020740;
-  longitude = 99.991194;
+  // latitude = 14.020740;
+  // longitude = 99.991194;
+  latitude: number;
+  longitude: number;
+  address: string;
+  private geoCoder;
+
   locationChosen = false;
   demo: any;
   IDUser: any;
   dataUser: any;
   map: google.maps.Map;
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
+  @ViewChild('search', { static: false })  public searchElementRef: ElementRef;
 
-  dataset: any = { namePlantation: null, addressRubberPlantation: null, mapClick_lat: null, mapClick_lng: null, detail: null };
+  dataset: any = { tumbol:null,amphoe:null,province:null,namePlantation: null, addressRubberPlantation: null, mapClick_lat: null, mapClick_lng: null, detail: null };
 
 
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
+
+     //load Places Autocomplete
+     this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder;
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 5;
+        });
+      });
+    });
   }
+
+  // markerDragEnd($event: MouseEvent) {
+  //   console.log($event);
+  //   this.latitude = $event.coords.lat;
+  //   this.longitude = $event.coords.lng;
+  //   this.getAddress(this.latitude, this.longitude);
+  // }
+  getAddress(latitude, longitude) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      console.log(results);
+      console.log(status);
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 6;
+          this.address = results[0].formatted_address;
+          console.log( results[0].address_components[1].long_name)
+          console.log( results[0].address_components[2].long_name)
+          console.log( results[0].address_components[3].long_name)
+          this.dataset.tumbol = results[0].address_components[1].long_name;
+          this.dataset.amphoe = results[0].address_components[2].long_name;
+          this.dataset.province = results[0].address_components[3].long_name;
+          // var res = this.dataset.tumbol.substring(4, );
+          // var res = this.dataset.amphoe.substring(5, );
+
+          // console.log(res);
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+  }
+
   //mapเปิด
   clickedMarker(m, i) {
     console.log(m, i);
   }
   //ขยับจุดมาค และส่งค่าจุดใหม่กลับมา
-  markerDragEnd(m, e) {
-    console.log(m, e);
-    this.latitude = e.coords.lat;
-    this.longitude = e.coords.lng;
-    console.log(this.latitude);
-  }
+
+  // markerDragEnd(m, e) {
+  //   console.log(m, e);
+  //   this.latitude = e.coords.lat;
+  //   this.longitude = e.coords.lng;
+  //   console.log(this.latitude);
+  // }
   mapClick(e) {
     this.dataset.mapClick_lat = e["coords"].lat;
     this.dataset.mapClick_lng = e["coords"].lng;
-    // console.log(e["coords"].lat);
-    // console.log(e["coords"].lng);
-    // console.log(e);
-  }
+    this.latitude=this.dataset.mapClick_lat;
+    this.longitude=this.dataset.mapClick_lng;
+    this.getAddress(this.latitude, this.longitude);
+    }
   //mapปิด
 
   Add_Farm(e) {
@@ -97,6 +165,11 @@ export class ManageRubberAddFarmerComponent implements OnInit {
       this.router.navigate(["/manage-rubber-farmer"]);
     }
   }
+
+
+
+
+
 }
 interface marker {
   name: string,
