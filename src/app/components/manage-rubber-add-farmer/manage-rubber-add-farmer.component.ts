@@ -87,9 +87,27 @@ export class ManageRubberAddFarmerComponent implements OnInit {
           console.log( results[0].address_components[1].long_name)
           console.log( results[0].address_components[2].long_name)
           console.log( results[0].address_components[3].long_name)
-          this.dataset.tumbol = results[0].address_components[1].long_name;
-          this.dataset.amphoe = results[0].address_components[2].long_name;
-          this.dataset.province = results[0].address_components[3].long_name;
+          for(let i = 0;i < results[0].address_components.length;i++){
+            if(results[0].address_components[i].types[0] == "locality" || results[0].address_components[i].types[0] == "political"){
+              this.dataset.tumbol = results[0].address_components[i].long_name;
+              this.dataset.tumbol = this.dataset.tumbol.replace("ตำบล","");
+              this.dataset.tumbol = this.dataset.tumbol.replace(" ","");
+            }
+            if(results[0].address_components[i].types[0] == "administrative_area_level_2"){
+              this.dataset.amphoe = results[0].address_components[i].long_name;
+              this.dataset.amphoe = this.dataset.amphoe.replace("อำเภอ","");
+              this.dataset.amphoe = this.dataset.amphoe.replace(" ","");
+            }
+            if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
+              this.dataset.province = results[0].address_components[i].long_name;
+              this.dataset.province = this.dataset.province.replace("จังหวัด","");
+              this.dataset.province = this.dataset.province.replace(" ","");
+            }
+          }
+          // this.dataset.tumbol = results[0].address_components[1].long_name;
+          // this.dataset.amphoe = results[0].address_components[2].long_name;
+          // this.dataset.province = results[0].address_components[3].long_name;
+
           // var res = this.dataset.tumbol.substring(4, );
           // var res = this.dataset.amphoe.substring(5, );
 
@@ -132,6 +150,9 @@ export class ManageRubberAddFarmerComponent implements OnInit {
       detail: this.dataset.detail,
       latitude: this.dataset.mapClick_lat,
       longitude: this.dataset.mapClick_lng,
+      SubDistrict: this.dataset.tumbol,
+      district: this.dataset.amphoe,
+      province : this.dataset.province,
       IDUserF: this.IDUser
     };
     Swal.fire({
@@ -154,6 +175,9 @@ export class ManageRubberAddFarmerComponent implements OnInit {
         this.dataset.namePlantation = null
         this.dataset.addressRubberPlantation = null
         this.dataset.detail = null
+        this.dataset.tumbol = null
+        this.dataset.amphoe = null
+        this.dataset.province = null
         this.dataset.mapClick_lat = null
         this.dataset.mapClick_lng = null
         this.router.navigateByUrl('/manage-rubber-farmer');

@@ -42,6 +42,9 @@ export class ManageRubberFarmerComponent implements OnInit {
     addressRubberPlantation: null,
     latitude: null,
     longitude: null,
+    tumbol:null,
+    amphoe:null,
+    province:null,
     detail: null,
   }
   locationChosen = false;
@@ -97,6 +100,23 @@ export class ManageRubberFarmerComponent implements OnInit {
           console.log( results[0].address_components[1].long_name)
           console.log( results[0].address_components[2].long_name)
           console.log( results[0].address_components[3].long_name)
+          for(let i = 0;i < results[0].address_components.length;i++){
+            if(results[0].address_components[i].types[0] == "locality" || results[0].address_components[i].types[0] == "political"){
+              this.dataset.tumbol = results[0].address_components[i].long_name;
+              this.dataset.tumbol = this.dataset.tumbol.replace("ตำบล","");
+              this.dataset.tumbol = this.dataset.tumbol.replace(" ","");
+            }
+            if(results[0].address_components[i].types[0] == "administrative_area_level_2"){
+              this.dataset.amphoe = results[0].address_components[i].long_name;
+              this.dataset.amphoe = this.dataset.amphoe.replace("อำเภอ","");
+              this.dataset.amphoe = this.dataset.amphoe.replace(" ","");
+            }
+            if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
+              this.dataset.province = results[0].address_components[i].long_name;
+              this.dataset.province = this.dataset.province.replace("จังหวัด","");
+              this.dataset.province = this.dataset.province.replace(" ","");
+            }
+          }
           // this.dataset.tumbol = results[0].address_components[1].long_name;
           // this.dataset.amphoe = results[0].address_components[2].long_name;
           // this.dataset.province = results[0].address_components[3].long_name;
@@ -154,7 +174,6 @@ export class ManageRubberFarmerComponent implements OnInit {
     })
   }
   edit_farm(data) {
-
     let markers: marker[] =
       [{
         IDPlantation: data.IDPlantation,
@@ -174,6 +193,9 @@ export class ManageRubberFarmerComponent implements OnInit {
       detail: this.markers2[0].detail,
       latitude: this.markers2[0].latitude,
       longitude: this.markers2[0].longitude,
+      SubDistrict: this.dataset.tumbol,
+      district: this.dataset.amphoe,
+      province : this.dataset.province,
       IDPlantation: this.markers2[0].IDPlantation
     };
     Swal.fire({

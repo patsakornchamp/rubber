@@ -1,174 +1,169 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
 <ng-template #AddFram>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">แก้ไขสวนยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">แก้ไขสวนยาง</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
+    </div>
+    <div class="modal-body">
 
-    <div class="row">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        ชื่อแปลง:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" [(ngModel)]="markers2[0].namePlantation" class="form-control" />
+        <div class="row">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                ชื่อแปลง:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" [(ngModel)]="markers2[0].namePlantation" class="form-control" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3" id="map">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
-          (mapClick)="mapClick($event)">
-          <agm-marker *ngFor="let m of markers2;let i = index" (markerClick)="clickedMarker(m,i)"
-            [latitude]="m.latitude" [longitude]="m.longitude">
-            <agm-info-window>
-              ชื่อแปลง:{{dataset.namePlantation}}<br>
-              ที่อยู่:{{dataset.addressRubberPlantation}}<br>
-              รายละเอียดของสวนยาง:{{dataset.detail}}
-            </agm-info-window>
-          </agm-marker>
-        </agm-map>
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-md-3" id="map">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClick($event)">
+                    <agm-marker *ngFor="let m of markers2;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude" [longitude]="m.longitude">
+                        <agm-info-window>
+                            ชื่อแปลง:{{dataset.namePlantation}}<br> ที่อยู่:{{dataset.addressRubberPlantation}}
+                            <br> รายละเอียดของสวนยาง:{{dataset.detail}}
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
 
-    <h5>Address: {{address}}</h5>
-    <div>Latitude: {{latitude}}</div>
-    <div>Longitude: {{longitude}}</div>
-    <div class="row">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        ที่อยู่:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <textarea [(ngModel)]="markers2[0].addressRubberPlantation" rows="4" cols="50"></textarea>
+        <h5>Address: {{address}}</h5>
+        <div>Latitude: {{latitude}}</div>
+        <div>Longitude: {{longitude}}</div>
+        <div class="row">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                ที่อยู่:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <textarea [(ngModel)]="markers2[0].addressRubberPlantation" rows="4" cols="50"></textarea>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row" id="margin">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        ตำบล:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" class="form-control" [(ngModel)]="dataset.tumbol" />
+        <div class="row" id="margin">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                ตำบล:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" class="form-control" [(ngModel)]="dataset.tumbol" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row" id="margin">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        อำเภอ:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" class="form-control" [(ngModel)]="dataset.amphoe" />
+        <div class="row" id="margin">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                อำเภอ:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" class="form-control" [(ngModel)]="dataset.amphoe" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row" id="margin">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        จังหวัด:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" class="form-control" [(ngModel)]="dataset.province" />
+        <div class="row" id="margin">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                จังหวัด:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" class="form-control" [(ngModel)]="dataset.province" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        ละติจูด:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" class="form-control" [(ngModel)]="markers2[0].latitude" />
+        <div class="row">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                ละติจูด:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" class="form-control" [(ngModel)]="markers2[0].latitude" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        ลองจิจูด:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" class="form-control" [(ngModel)]="markers2[0].longitude" />
+        <div class="row">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                ลองจิจูด:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" class="form-control" [(ngModel)]="markers2[0].longitude" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3" style="text-align: right;margin-top: 5px">
-        รายละเอียดของสวนยาง:
-      </div>
-      <div class="col-md-4">
-        <div style="display: flex">
-          <input type="text" class="form-control" [(ngModel)]="markers2[0].detail" />
+        <div class="row">
+            <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                รายละเอียดของสวนยาง:
+            </div>
+            <div class="col-md-4">
+                <div style="display: flex">
+                    <input type="text" class="form-control" [(ngModel)]="markers2[0].detail" />
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="center" class="btn btn-pill-right btn-success ripple " (click)="updatePlantation()">บันทึก</button>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button id="center" class="btn btn-pill-right btn-success ripple " (click)="updatePlantation()">บันทึก</button>
-      </div>
-    </div>
-  </div>
 </ng-template>
 <div class="content-wrapper">
-  <section class="content-header">
-    <h1>
-      จัดการสวนยาง
-      <small></small>
-    </h1>
-  </section>
-  <div class="row">
-    <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="btn btn-block btn-info btn-lg" (click)="link(01)">
-        <i class="fa fa-plus-circle"></i> เพิ่มสวนยาง
-      </a>
+    <section class="content-header">
+        <h1>
+            จัดการสวนยาง
+            <small></small>
+        </h1>
+    </section>
+    <div class="row">
+        <div class="col-md-2 " style="margin-top: 20px;">
+            <a class="btn btn-block btn-info btn-lg" (click)="link(01)">
+                <i class="fa fa-plus-circle"></i> เพิ่มสวนยาง
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
-      <div class="table-responsive" style="text-align:center; height: 600px;">
-        <table class="font table table-hover" style='border-collapse: collapse;' id="customers">
-          <thead>
-            <tr>
-              <th>ลำดับ</th>
-              <th>ชื่อแปลง</th>
-              <th>ที่อยู่</th>
-              <!-- <th>จำนวนต้นยาง</th> -->
-              <th>ละติจูด</th>
-              <th>ลองจิจูด</th>
-              <th>รายละเอียดของสวนยาง</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <div></div>
-          <tbody>
-            <tr *ngFor="let any of GET_Plantation;let i = index" (click)="edit_farm(any)">
-              <td style="height: 30px">{{ i+1 }}</td>
-              <td>{{ any.namePlantation }}</td>
-              <td>{{ any.addressRubberPlantation }}</td>
-              <!-- <td>{{ any.numtree }}</td> -->
-              <td>{{ any.latitude }}</td>
-              <td>{{ any.longitude }}</td>
-              <td>{{ any.detail }}</td>
-              <td style="border: none;background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal"
-                  (click)="openModalWithClass(AddFram)">แก้ไข</button>
-              </td>
-              <td style="border: none;
+    <div class="row">
+        <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+            <div class="table-responsive" style="text-align:center; height: 600px;">
+                <table class="font table table-hover" style='border-collapse: collapse;' id="customers">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อแปลง</th>
+                            <th>ที่อยู่</th>
+                            <!-- <th>จำนวนต้นยาง</th> -->
+                            <th>ละติจูด</th>
+                            <th>ลองจิจูด</th>
+                            <th>รายละเอียดของสวนยาง</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <div></div>
+                    <tbody>
+                        <tr *ngFor="let any of GET_Plantation;let i = index" (click)="edit_farm(any)">
+                            <td style="height: 30px">{{ i+1 }}</td>
+                            <td>{{ any.namePlantation }}</td>
+                            <td>{{ any.addressRubberPlantation }}</td>
+                            <!-- <td>{{ any.numtree }}</td> -->
+                            <td>{{ any.latitude }}</td>
+                            <td>{{ any.longitude }}</td>
+                            <td>{{ any.detail }}</td>
+                            <td style="border: none;background-color: #ffff; width: 2px; ">
+                                <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal" (click)="openModalWithClass(AddFram)">แก้ไข</button>
+                            </td>
+                            <td style="border: none;
                           background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
-                  (click)="deletePlantation(any.IDPlantation)">ลบ</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal" (click)="deletePlantation(any.IDPlantation)">ลบ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
