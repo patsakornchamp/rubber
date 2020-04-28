@@ -69,7 +69,6 @@
   </div>
 </ng-template> -->
 <div class="content-wrapper">
-  <!-- หัวข้อ -->
   <section class="content-header">
     <h1>
       หน้าแรก
@@ -77,13 +76,29 @@
     </h1>
   </section>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-">
       <div class="form-group" style="font-size: 15px;margin-left: 65px;">
         <label>เลือกเจ้าของสวนยาง</label><br>
         <input type="text" [(ngModel)]="name_user">
         <label> &nbsp; </label>
         <button type="button" class="btn btn-primary" (click)="openModalWithClass(get_user_guest)">
           <i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    <div class="col-md-4" style="font-size: 15px;margin-left: 65px;">
+      <div class="box box-solid">
+        <div class="box-header with-border">
+          <i class="fa  fa-map-marker"></i>
+          <h3 class="box-title">ติดต่อ</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <blockquote>
+            <p>ที่อยู่: {{address}}</p>
+            <p>เบอร์โทรศัพท์: {{phone}}</p>
+          </blockquote>
+        </div>
+        <!-- /.box-body -->
       </div>
     </div>
     <!-- <div class="col-md-4">
@@ -97,59 +112,58 @@
     </div> -->
   </div>
   <div class="row">
-    <div class="col-md-4" style="font-size: 15px;margin-left: 65px;">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <i class="fa  fa-map-marker"></i>
-                <h3 class="box-title">ติดต่อ</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <blockquote>
-                    <p>ที่อยู่:   {{address}}</p>
-                    <p>เบอร์โทรศัพท์:   {{phone}}</p>
-                </blockquote>
-            </div>
-            <!-- /.box-body -->
-        </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1">
+      <div class="form-group" style="font-size: 15px">
+        <button type="button" class="btn btn-primary" (click)="searchPic_farm_ALL()">ดูสวนยางทั้งหมด
+        </button>
+      </div>
     </div>
-</div>
-
+  </div>
   <div id="map">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
       <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude"
-        [longitude]="m.longitude" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
+        [longitude]="m.longitude">
         <!-- markerDraggable ทำให้จุดขยับได้ -->
         <agm-info-window>
           ชื่อแปลง:{{m.namePlantation}}<br>
           ที่อยู่สวน:{{m.addressRubberPlantation}}<br>
-          รายละเอียด:{{m.detail}}<br>
+          <!-- รายละเอียด:{{m.detail}}<br> -->
           ชื่อเจ้าของสวน:{{m.name}}<br>
           เบอร์โทรศัพท์:{{m.phoneNumber}}
         </agm-info-window>
       </agm-marker>
     </agm-map>
   </div>
-  <div class="margin">
-
-    <label style="margin-top: 50px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวันที่ {{date | date:'dd/MM/yyyy'}}</label>
+  <div>
+    <label style="margin-top:-100px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวันที่ {{date | date:'dd/MM/yyyy'}}</label>
     <div class="row">
       <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+        <input type="text" placeholder="Search" [(ngModel)]="searhText2" class="form-control" /><br>
         <div class="table-responsive" style="text-align:center; height: 600px;">
-          <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
+          <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
+            id="customers">
             <thead>
               <tr>
                 <th>ลำดับ</th>
+                <th>ชื่อเจ้าของสวน</th>
                 <th>ชื่อแปลง</th>
                 <th>ที่อยู่สวนยาง</th>
+                <th>ตำบล</th>
+                <th>อำเภอ</th>
+                <th>จังหวัด</th>
                 <th>ปริมาณน้ำยาง(Kg)</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let any of latex_farm | paginate: { itemsPerPage: 20, currentPage: p } ;let i = index ">
+              <tr *ngFor="let any of latex_farm|filter:searhText2 | paginate: { itemsPerPage: 20, currentPage: p } ;let i = index; ">
                 <td style="height: 30px">{{ i+1 }}</td>
+                <td>{{ any.name }}</td>
                 <td>{{ any.namePlantation }}</td>
                 <td>{{ any.addressRubberPlantation }}</td>
+                <td>{{ any.SubDistrict }}</td>
+                <td>{{ any.district }}</td>
+                <td>{{ any.province }}</td>
                 <td>{{ any.quantity }}</td>
               </tr>
             </tbody>
@@ -159,6 +173,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>

@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, TemplateRef } 
 import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
-import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 
 @Component({
   selector: 'app-page-guest',
@@ -14,7 +13,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     private modalService: BsModalService,
     private authenticationService: AuthenticationService) { }
   modalRef: BsModalRef;
-  zoom: number = 15;
+  zoom: number = 5;
   //ละติจูท
   lat = 14.020740;
   //ลองติจูท
@@ -23,6 +22,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   demo: any;
   IDUserF: any;
   GET_user_guest: any;
+  GET_farm_ALL:any;
   SEARCH_plan_guest: any;
   namePlantation: any;
   name_user: any;
@@ -30,6 +30,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
   Plantation: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
   markers: marker[];
   searhText:any;
+  searhText2:any;
   address:any;
   phone:any;
   date = new Date();
@@ -56,6 +57,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_user_guest();
+    this.searchPic_farm_ALL();
   }
   get_user_guest() {
     this.demo = {
@@ -90,7 +92,18 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.latex_farm = resposne;
       console.log( this.latex_farm);
+      // this.markers = resposne;
+    });
+  }
+  searchPic_farm_ALL() {
+    this.demo = {
+      mod: "searchPic_farm_ALL"
+    };
+    this.apiService.read(this.demo).subscribe((resposne: any) => {
+      this.latex_farm = resposne;
       this.markers = resposne;
+      this.name_user = null;
+      console.log(this.latex_farm)
     });
   }
   
