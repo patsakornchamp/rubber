@@ -24,17 +24,17 @@
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClick($event)">
                     <agm-marker *ngFor="let m of markers2;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude" [longitude]="m.longitude">
                         <agm-info-window>
-                            ชื่อแปลง:{{dataset.namePlantation}}<br> ที่อยู่:{{dataset.addressRubberPlantation}}
-                            <br> รายละเอียดของสวนยาง:{{dataset.detail}}
+                            ชื่อแปลง:{{markers2[0].namePlantation}}<br> ที่อยู่:{{markers2[0].addressRubberPlantation}}
+                            <br> รายละเอียดของสวนยาง:{{markers2[0].detail}}
                         </agm-info-window>
                     </agm-marker>
                 </agm-map>
             </div>
         </div>
-
+<!-- 
         <h5>Address: {{address}}</h5>
         <div>Latitude: {{latitude}}</div>
-        <div>Longitude: {{longitude}}</div>
+        <div>Longitude: {{longitude}}</div> -->
         <div class="row">
             <div class="col-md-3" style="text-align: right;margin-top: 5px">
                 ที่อยู่:
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-4">
                 <div style="display: flex">
-                    <input type="text" class="form-control" [(ngModel)]="dataset.tumbol" />
+                    <input type="text" class="form-control" [(ngModel)]="markers2[0].SubDistrict" />
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="col-md-4">
                 <div style="display: flex">
-                    <input type="text" class="form-control" [(ngModel)]="dataset.amphoe" />
+                    <input type="text" class="form-control" [(ngModel)]="markers2[0].district" />
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-4">
                 <div style="display: flex">
-                    <input type="text" class="form-control" [(ngModel)]="dataset.province" />
+                    <input type="text" class="form-control" [(ngModel)]="markers2[0].province" />
                 </div>
             </div>
         </div>
@@ -135,9 +135,9 @@
                             <th>ลำดับ</th>
                             <th>ชื่อแปลง</th>
                             <th>ที่อยู่</th>
-                            <!-- <th>จำนวนต้นยาง</th> -->
-                            <th>ละติจูด</th>
-                            <th>ลองจิจูด</th>
+                            <th>ตำบล</th>
+                            <th>อำเภอ</th>
+                            <th>จังหวัด</th>
                             <th>รายละเอียดของสวนยาง</th>
                             <th></th>
                             <th></th>
@@ -149,9 +149,9 @@
                             <td style="height: 30px">{{ i+1 }}</td>
                             <td>{{ any.namePlantation }}</td>
                             <td>{{ any.addressRubberPlantation }}</td>
-                            <!-- <td>{{ any.numtree }}</td> -->
-                            <td>{{ any.latitude }}</td>
-                            <td>{{ any.longitude }}</td>
+                            <td>{{ any.SubDistrict }}</td>
+                            <td>{{ any.district }}</td>
+                            <td>{{ any.province }}</td>
                             <td>{{ any.detail }}</td>
                             <td style="border: none;background-color: #ffff; width: 2px; ">
                                 <button class="btn btn-pill-right btn-success ripple font" data-dismiss="modal" (click)="openModalWithClass(AddFram)">แก้ไข</button>

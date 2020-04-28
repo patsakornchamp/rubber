@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef,NgZone } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef,NgZone,AfterViewInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import { ApiService } from '../../api.sercice';
@@ -59,6 +59,10 @@ export class ManageRubberFarmerComponent implements OnInit {
       Object.assign({}, { class: 'gray modal-lg' })
     );
   }
+  ngAfterViewInit(): void {
+    this.get_Plantation();
+
+  }
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
@@ -102,19 +106,19 @@ export class ManageRubberFarmerComponent implements OnInit {
           console.log( results[0].address_components[3].long_name)
           for(let i = 0;i < results[0].address_components.length;i++){
             if(results[0].address_components[i].types[0] == "locality" || results[0].address_components[i].types[0] == "political"){
-              this.dataset.tumbol = results[0].address_components[i].long_name;
-              this.dataset.tumbol = this.dataset.tumbol.replace("ตำบล","");
-              this.dataset.tumbol = this.dataset.tumbol.replace(" ","");
+              this.markers2[0].SubDistrict = results[0].address_components[i].long_name;
+              this.markers2[0].SubDistrict =  this.markers2[0].SubDistrict.replace("ตำบล","");
+              this.markers2[0].SubDistrict =  this.markers2[0].SubDistrict.replace(" ","");
             }
             if(results[0].address_components[i].types[0] == "administrative_area_level_2"){
-              this.dataset.amphoe = results[0].address_components[i].long_name;
-              this.dataset.amphoe = this.dataset.amphoe.replace("อำเภอ","");
-              this.dataset.amphoe = this.dataset.amphoe.replace(" ","");
+              this.markers2[0].district = results[0].address_components[i].long_name;
+              this.markers2[0].district = this.markers2[0].district.replace("อำเภอ","");
+              this.markers2[0].district= this.markers2[0].district.replace(" ","");
             }
             if(results[0].address_components[i].types[0] == "administrative_area_level_1"){
-              this.dataset.province = results[0].address_components[i].long_name;
-              this.dataset.province = this.dataset.province.replace("จังหวัด","");
-              this.dataset.province = this.dataset.province.replace(" ","");
+              this.markers2[0].province = results[0].address_components[i].long_name;
+              this.markers2[0].province = this.markers2[0].province.replace("จังหวัด","");
+              this.markers2[0].province = this.markers2[0].province.replace(" ","");
             }
           }
           // this.dataset.tumbol = results[0].address_components[1].long_name;
@@ -144,6 +148,7 @@ export class ManageRubberFarmerComponent implements OnInit {
 
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_Plantation = resposne;
+      console.log(this.GET_Plantation);
     });
   }
   deletePlantation(data) {
@@ -181,7 +186,10 @@ export class ManageRubberFarmerComponent implements OnInit {
         addressRubberPlantation: data.addressRubberPlantation,
         latitude: data.latitude,
         longitude: data.longitude,
-        detail: data.detail
+        detail: data.detail,
+        SubDistrict:data.SubDistrict,
+        district:data.district,
+        province:data.province
       }];
     this.markers2 = markers;
     console.log(this.markers2);
@@ -193,9 +201,9 @@ export class ManageRubberFarmerComponent implements OnInit {
       detail: this.markers2[0].detail,
       latitude: this.markers2[0].latitude,
       longitude: this.markers2[0].longitude,
-      SubDistrict: this.dataset.tumbol,
-      district: this.dataset.amphoe,
-      province : this.dataset.province,
+      SubDistrict: this.markers2[0].SubDistrict,
+      district: this.markers2[0].district,
+      province : this.markers2[0].province,
       IDPlantation: this.markers2[0].IDPlantation
     };
     Swal.fire({
@@ -253,4 +261,7 @@ interface marker {
   latitude: number,
   longitude: number,
   detail: string,
+  SubDistrict:string,
+  district:string,
+  province:string,
 }

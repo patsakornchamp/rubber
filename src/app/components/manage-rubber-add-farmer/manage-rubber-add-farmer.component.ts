@@ -171,6 +171,8 @@ export class ManageRubberAddFarmerComponent implements OnInit {
           Swal.fire(
             'บันทึกเรียบร้อย', "",
             'success')
+            this.router.navigateByUrl('/manage-rubber-farmer');
+
         });
         this.dataset.namePlantation = null
         this.dataset.addressRubberPlantation = null
@@ -180,7 +182,6 @@ export class ManageRubberAddFarmerComponent implements OnInit {
         this.dataset.province = null
         this.dataset.mapClick_lat = null
         this.dataset.mapClick_lng = null
-        this.router.navigateByUrl('/manage-rubber-farmer');
       }
     })
   }
@@ -189,11 +190,6 @@ export class ManageRubberAddFarmerComponent implements OnInit {
       this.router.navigate(["/manage-rubber-farmer"]);
     }
   }
-
-
-
-
-
 }
 interface marker {
   name: string,
