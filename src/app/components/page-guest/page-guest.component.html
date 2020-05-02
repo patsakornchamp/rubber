@@ -111,15 +111,6 @@
       </div>
     </div> -->
   </div>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-1">
-      <div class="form-group" style="font-size: 15px">
-        <button type="button" class="btn btn-primary" (click)="searchPic_farm_ALL()">ดูสวนยางทั้งหมด
-        </button>
-      </div>
-    </div>
-  </div>
   <div id="map">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
       <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude"
@@ -130,13 +121,21 @@
           ที่อยู่สวน:{{m.addressRubberPlantation}}<br>
           <!-- รายละเอียด:{{m.detail}}<br> -->
           ชื่อเจ้าของสวน:{{m.name}}<br>
-          เบอร์โทรศัพท์:{{m.phoneNumber}}
         </agm-info-window>
       </agm-marker>
     </agm-map>
   </div>
   <div>
     <label style="margin-top:-100px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวันที่ {{date | date:'dd/MM/yyyy'}}</label>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-1">
+        <div class="form-group" style="font-size: 15px">
+          <button type="button" class="btn btn-primary" (click)="searchPic_farm_ALL()">ดูน้ำยางของสวนยางทั้งหมด
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
         <input type="text" placeholder="Search" [(ngModel)]="searhText2" class="form-control" /><br>
@@ -146,24 +145,26 @@
             <thead>
               <tr>
                 <th>ลำดับ</th>
-                <th>ชื่อเจ้าของสวน</th>
                 <th>ชื่อแปลง</th>
                 <th>ที่อยู่สวนยาง</th>
                 <th>ตำบล</th>
                 <th>อำเภอ</th>
                 <th>จังหวัด</th>
+                <th>ชื่อเจ้าของสวน</th>
                 <th>ปริมาณน้ำยาง(Kg)</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let any of latex_farm|filter:searhText2 | paginate: { itemsPerPage: 20, currentPage: p } ;let i = index; ">
+              <tr *ngFor="let any of latex_farm|filter:searhText2 | paginate: { itemsPerPage: 20, currentPage: p } ;let i = index; " 
+              tooltip="เบอร์โทรศัพท์:{{any.phoneNumber}}"
+              placement="top">
                 <td style="height: 30px">{{ i+1 }}</td>
-                <td>{{ any.name }}</td>
                 <td>{{ any.namePlantation }}</td>
                 <td>{{ any.addressRubberPlantation }}</td>
                 <td>{{ any.SubDistrict }}</td>
                 <td>{{ any.district }}</td>
                 <td>{{ any.province }}</td>
+                <td>{{ any.name }}</td>
                 <td>{{ any.quantity }}</td>
               </tr>
             </tbody>

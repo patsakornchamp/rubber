@@ -78,8 +78,8 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.SEARCH_plan_guest = resposne;
-      this.markers = this.SEARCH_plan_guest;
-      console.log(this.SEARCH_plan_guest);
+      // this.markers = this.SEARCH_plan_guest;
+      // console.log(this.SEARCH_plan_guest);
     });
   }
   searchPic_farm() {
@@ -91,8 +91,8 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.latex_farm = resposne;
-      console.log( this.latex_farm);
-      // this.markers = resposne;
+      console.log(resposne);
+      this.markers = resposne;
     });
   }
   searchPic_farm_ALL() {
@@ -103,7 +103,8 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
       this.latex_farm = resposne;
       this.markers = resposne;
       this.name_user = null;
-      console.log(this.latex_farm)
+      this.address = null;
+      this.phone = null;
     });
   }
   
@@ -112,7 +113,7 @@ export class PageGuestComponent implements AfterViewInit, OnInit {
     this.name_user = data.name;
     this.namePlantation = null;
     this.latex_farm = 0;
-    this.searchPic_plan_guest();
+    // this.searchPic_plan_guest();
     this.modalRef.hide();
     this.address = data.addressUser;
     this.phone = data.phoneNumber;

@@ -53,6 +53,7 @@ import { StatisticsCooperativeComponent } from './components/statistics-cooperat
 import {NgxPaginationModule} from 'ngx-pagination';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { ChartsModule } from 'ng2-charts';
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TooltipModule.forRoot()
     // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
   ],
   providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
