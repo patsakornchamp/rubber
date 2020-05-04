@@ -71,7 +71,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.demo = {
       mod: "getPlantation",
       value: {
-        "IDUserF": "1"
+        "IDUserF": this.IDUser
       }
     };
 
