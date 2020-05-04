@@ -157,8 +157,10 @@
         </div>
         <div class="row">
           <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+            <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
             <div class="table-responsive" style="text-align:center; height: 600px;">
-              <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
+              <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
+                id="customers">
                 <thead>
                   <tr>
                     <th>ลำดับ</th>
@@ -170,7 +172,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let any of latex_tree | paginate: { itemsPerPage: 20, currentPage: p } ;let i = index ">
+                  <tr
+                    *ngFor="let any of latex_tree | paginate: { itemsPerPage: 20, currentPage: p }|filter:searhText ;let i = index ">
                     <td style="height: 30px">{{ i+1 }}</td>
                     <td>{{ any.row }}</td>
                     <td>{{ any.col }}</td>
@@ -185,11 +188,7 @@
             </div>
           </div>
         </div>
-
       </tab>
     </tabset>
   </div>
-
-
-
 </div>

@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
     for (let i = 0; i < this.GET_user_name.length; i++) {
       // console.log(this.GET_user_name[i]);
       // console.log(data);
-      if (this.GET_user_name[i].username == data) {
+      if (this.GET_user_name[i].row == data) {
         Swal.fire(
           'ชื่อผู้ใช้นี้มีคนใช้แล้ว',
           '',

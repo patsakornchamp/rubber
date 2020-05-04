@@ -17,7 +17,7 @@ export class ManageTreeFarmerComponent implements OnInit {
     private apiService: ApiService,
     private authenticationService: AuthenticationService) { }
   //ตัวแปล
-  p:number = 1;
+  p: number = 1;
   demo: any;
   GET_Plantation: any;
   GET_RubberTree: any;
@@ -29,9 +29,9 @@ export class ManageTreeFarmerComponent implements OnInit {
   namePlantation: any = '';
   equipment: any;
   equipment_Item: any;
-  species :any ;
+  species: any;
   dataSet: any = {
-    serialNumber:null,row:null,col:null,species:null,datePlant:null,IDPlantation:null
+    serialNumber: null, row: null, col: null, species: null, datePlant: null, IDPlantation: null
   };
   data_edit: any = {
     serialNumber: null, row: null, col: null, species: null, datePlant: Date, IDRubber: null
@@ -53,6 +53,35 @@ export class ManageTreeFarmerComponent implements OnInit {
   farmer(data) {
     this.dataSet.Name_farmer = data.name;
     this.modalRef.hide();
+  }
+  check_low_col() {
+    console.log('2222222');
+
+    if (this.namePlantation != '') {
+      for (let i = 0; i < this.GET_RubberTree.length; i++) {
+
+        if (this.GET_RubberTree[i].row == this.dataSet.row) {
+          if (this.GET_RubberTree[i].col == this.dataSet.col) {
+            Swal.fire(
+              'แถว กับ หลัก นี้มีอยู่แล้ว',
+              '',
+              'error'
+            )
+            this.dataSet.row = null;
+            this.dataSet.col = null;
+            return;
+          }
+        }
+
+      }
+      this.inserte_rubber();
+    }
+    else{
+      Swal.fire(
+        'กรุณาเลือกสวนยาง', '',
+        'error')
+    }
+
   }
   get_Plantation() {
     this.demo = {
@@ -99,12 +128,12 @@ export class ManageTreeFarmerComponent implements OnInit {
         'error')
     }
     else {
-    this.demo = {
-      mod: "get_serial",
-      value: {
-        "equipment_Item": this.equipment_Item
-      }
-    };
+      this.demo = {
+        mod: "get_serial",
+        value: {
+          "equipment_Item": this.equipment_Item
+        }
+      };
 
       this.apiService.read(this.demo).subscribe((resposne: any) => {
         this.dataSet.serialNumber = resposne[0].serialNumber;
@@ -126,11 +155,10 @@ export class ManageTreeFarmerComponent implements OnInit {
     });
   }
   inserte_rubber() {
-
     if (this.namePlantation != '') {
       Swal.fire({
         title: 'ยืนยันการบันทึก',
-        text: "ของแปลง  "+this.namePlantation,
+        text: "ของแปลง  " + this.namePlantation,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -153,11 +181,11 @@ export class ManageTreeFarmerComponent implements OnInit {
         }
       })
     }
-    else {
-      Swal.fire(
-        'กรุณาเลือกสวนยาง', '',
-        'error')
-    }
+    // else {
+    //   Swal.fire(
+    //     'กรุณาเลือกสวนยาง', '',
+    //     'error')
+    // }
   }
   deleteDataRubber(data) {
     Swal.fire({
