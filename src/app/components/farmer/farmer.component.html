@@ -173,7 +173,7 @@
                 </thead>
                 <tbody>
                   <tr
-                    *ngFor="let any of latex_tree | paginate: { itemsPerPage: 20, currentPage: p }|filter:searhText ;let i = index ">
+                    *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p };let i = index ">
                     <!-- <td style="height: 30px">{{ i+1 }}</td> -->
                     <td>{{ any.row }}</td>
                     <td>{{ any.col }}</td>
