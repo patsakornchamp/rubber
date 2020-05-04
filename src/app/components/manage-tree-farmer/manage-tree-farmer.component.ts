@@ -154,6 +154,21 @@ export class ManageTreeFarmerComponent implements OnInit {
       // console.log(resposne);
     });
   }
+  // test2(){
+  //   for(let i = 1;i <= 2; i++){
+  //     for(let j = 1;j <= 2;j++)
+  //     {
+  //       this.dataSet.row = i;
+  //       this.dataSet.col = j;
+  //       this.dataSet.serialNumber = 'test'; 
+  //       this.demo = { mod: "inserte_rubber", value: this.dataSet };
+  //       this.apiService.insert(this.demo).subscribe((resposne: any) => {
+  //       });
+  //     }
+
+  //   }
+
+  // }
   inserte_rubber() {
     if (this.namePlantation != '') {
       Swal.fire({
