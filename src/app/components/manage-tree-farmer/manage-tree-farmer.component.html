@@ -1,177 +1,176 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
 <ng-template #Garden>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">สวนยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">สวนยาง</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-    <div class="col-md-12 " style="margin-top: 20px;">
-      <div class="table-responsive" style="text-align:center; height: 500px;">
-        <table border='1' width='100%' class="table table-hover" id="customers">
-          <thead>
-            <tr>
-              <th>ลำดับ</th>
-              <th>ชื่อแปลง</th>
-              <th>ที่อยู่</th>
-              <th>ละติจูด</th>
-              <th>ลองจิจูด</th>
-              <th>รายละเอียดของสวนยาง</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="getRubberTree(any)">
-              <td style="height: 30px">{{ i+1 }}</td>
-              <td>{{ any.namePlantation }}</td>
-              <td>{{ any.addressRubberPlantation }}</td>
-              <td>{{ any.latitude }}</td>
-              <td>{{ any.longitude }}</td>
-              <td>{{ any.detail }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-      </div>
     </div>
-  </div>
+    <div class="modal-body">
+        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+        <div class="col-md-12 " style="margin-top: 20px;">
+            <div class="table-responsive" style="text-align:center; height: 500px;">
+                <table border='1' width='100%' class="table table-hover" id="customers">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อแปลง</th>
+                            <th>ที่อยู่</th>
+                            <th>ละติจูด</th>
+                            <th>ลองจิจูด</th>
+                            <th>รายละเอียดของสวนยาง</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="getRubberTree(any)">
+                            <td style="height: 30px">{{ i+1 }}</td>
+                            <td>{{ any.namePlantation }}</td>
+                            <td>{{ any.addressRubberPlantation }}</td>
+                            <td>{{ any.latitude }}</td>
+                            <td>{{ any.longitude }}</td>
+                            <td>{{ any.detail }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+    </div>
 </ng-template>
 <ng-template #AddTree>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">เพิ่มต้นยาง {{namePlantation}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">เพิ่มต้นยาง {{namePlantation}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
-      <div class="row">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          เลือกอุปกรณ์:
-        </div>
-        <div class="form-group col-md-5">
-          <select class="form-control" [(ngModel)]="equipment_Item">
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
+            <div class="row">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    เลือกอุปกรณ์:
+                </div>
+                <div class="form-group col-md-5">
+                    <select class="form-control" [(ngModel)]="equipment_Item">
             <option *ngFor="let item of equipment">{{item.equipment_Item}}</option>
             <option></option>
           </select>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          IDต้นยาง:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" [(ngModel)]="dataSet.serialNumber" />
-          </div>
-        </div>
-        <div>
-          <button (click)="get_serial()">GET SERAIL</button>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          แถว:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" [(ngModel)]="dataSet.row" />
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          หลัก:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" [(ngModel)]="dataSet.col" />
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          พันธุ์ต้นยาง:
-        </div>
-        <div class="form-group col-md-5">
-          <select class="form-control" [(ngModel)]="dataSet.species">
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    IDต้นยาง:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" [(ngModel)]="dataSet.serialNumber" />
+                    </div>
+                </div>
+                <div>
+                    <button (click)="get_serial()">GET SERAIL</button>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    แถว:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" [(ngModel)]="dataSet.row" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    หลัก:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" [(ngModel)]="dataSet.col" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    พันธุ์ต้นยาง:
+                </div>
+                <div class="form-group col-md-5">
+                    <select class="form-control" [(ngModel)]="dataSet.species">
             <option *ngFor="let item of species">{{item.species}}</option>
             <option></option>
           </select>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    วันที่ปลูก:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" id="14" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YY'}" [(ngModel)]="dataSet.datePlant">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-12">
+                    <button id="center" class="btn btn-pill-right btn-success ripple " (click)="check_low_col()">บันทึก</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          วันที่ปลูก:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" id="14" class="form-control" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YY'}"
-              [(ngModel)]="dataSet.datePlant">
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-12">
-          <button id="center" class="btn btn-pill-right btn-success ripple " (click)="check_low_col()">บันทึก</button>
-        </div>
-      </div>
     </div>
-  </div>
 </ng-template>
 <ng-template #EditTree>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">แก้ไขต้นยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">แก้ไขต้นยาง</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          serialNumber:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" readonly [(ngModel)]="data_edit.serialNumber" />
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          แถว:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" [(ngModel)]="data_edit.row" />
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          หลัก:
-        </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" [(ngModel)]="data_edit.col" />
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          พันธุ์ต้นยาง:
-        </div>
-        <div class="form-group col-md-5">
-          <select class="form-control" [(ngModel)]="data_edit.species">
+    </div>
+    <div class="modal-body">
+        <div class="col-md-12 " style="margin-top: 20px;margin: 20px;">
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    serialNumber:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" readonly [(ngModel)]="data_edit.serialNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    แถว:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" [(ngModel)]="data_edit.row" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    หลัก:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" [(ngModel)]="data_edit.col" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    พันธุ์ต้นยาง:
+                </div>
+                <div class="form-group col-md-5">
+                    <select class="form-control" [(ngModel)]="data_edit.species">
             <option *ngFor="let item of species">{{item.species}}</option>
             <option></option>
           </select>
-        </div>
-      </div>
-      <!-- <div class="row" id="margin">
+                </div>
+            </div>
+            <!-- <div class="row" id="margin">
         <div class="col-md-3" style="text-align: right;margin-top: 5px">
           พันธุ์ต้นยาง:
         </div>
@@ -181,90 +180,85 @@
           </div>
         </div>
       </div> -->
-      <div class="row" id="margin">
-        <div class="col-md-3" style="text-align: right;margin-top: 5px">
-          วันที่ปลูก:
+            <div class="row" id="margin">
+                <div class="col-md-3" style="text-align: right;margin-top: 5px">
+                    วันที่ปลูก:
+                </div>
+                <div class="col-md-5">
+                    <div style="display: flex">
+                        <input type="text" class="form-control" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YY'}" [(ngModel)]="data_edit.datePlant">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="margin">
+                <div class="col-md-12">
+                    <button id="center" class="btn btn-pill-right btn-success ripple " (click)="updateDataRubber()">บันทึก</button>
+                </div>
+            </div>
         </div>
-        <div class="col-md-5">
-          <div style="display: flex">
-            <input type="text" class="form-control" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YY'}"
-              [(ngModel)]="data_edit.datePlant">
-          </div>
-        </div>
-      </div>
-      <div class="row" id="margin">
-        <div class="col-md-12">
-          <button id="center" class="btn btn-pill-right btn-success ripple "
-            (click)="updateDataRubber()">บันทึก</button>
-        </div>
-      </div>
     </div>
-  </div>
 </ng-template>
 <div class="content-wrapper">
-  <section class="content-header">
-    <h1>
-      จัดการต้นยางพารา
-      <small></small>
-    </h1>
-  </section>
-  <div class="row">
-    <div class="col-md-4">
-      <div style="display: flex">
-        <input type="text" placeholder="เลือกสวนยาง" [(ngModel)]="namePlantation" class="form-control" />
-        <label> &nbsp; </label>
-        <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
+    <section class="content-header">
+        <h1>
+            จัดการต้นยางพารา
+            <small></small>
+        </h1>
+    </section>
+    <div class="row">
+        <div class="col-md-4">
+            <div style="display: flex">
+                <input type="text" placeholder="เลือกสวนยาง" [(ngModel)]="namePlantation" class="form-control" />
+                <label> &nbsp; </label>
+                <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
           <i class="fa fa-search"></i></button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2 " style="margin-top: 20px;">
-      <a class="font btn btn-block btn-info btn-lg" (click)="openModalWithClass(AddTree)"
-        tooltip="เลือกสวนยางที่ต้องการเพิ่มก่อน" placement="top">
-        <i class="fa fa-plus-circle "></i> เพิ่มต้นยาง
-      </a>
+    <div class="row">
+        <div class="col-md-2 " style="margin-top: 20px;">
+            <a class="font btn btn-block btn-info btn-lg" (click)="openModalWithClass(AddTree)" tooltip="เลือกสวนยางที่ต้องการเพิ่มก่อน" placement="top">
+                <i class="fa fa-plus-circle "></i> เพิ่มต้นยาง
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
-      <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-      <div class="table-responsive" style="text-align:center; height: 1200px;">
-        <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
-          <thead>
-            <tr>
-              <!-- <th>ลำดับ</th> -->
-              <th>serialNumber</th>
-              <th>แถว</th>
-              <th>หลัก</th>
-              <th>พันธุ์ต้นยาง</th>
-              <th>วันที่ปลูก</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let any of GET_RubberTree | paginate: { itemsPerPage: 20, currentPage: p }|filter:searhText ;let i = index; ">
-              <!-- <td style="height: 30px">{{ i+1 }}</td> -->
-              <td>{{ any.serialNumber }}</td>
-              <td>{{ any.row }}</td>
-              <td>{{ any.col }}</td>
-              <td>{{ any.species }}</td>
-              <td>{{ any.datePlant }}</td>
-              <td style="border: none; background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
-                  (click)="openModalWithClass(EditTree);Click_Edit(any)">แก้ไข</button>
-              </td>
-              <td style="border: none; background-color: #ffff; width: 2px; ">
-                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal"
-                  (click)="deleteDataRubber(any.IDRubber)">ลบ</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        <br>
-      </div>
+    <div class="row">
+        <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+            <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+            <div class="table-responsive" style="text-align:center; height: 1200px;">
+                <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
+                    <thead>
+                        <tr>
+                            <!-- <th>ลำดับ</th> -->
+                            <th>serialNumber</th>
+                            <th>แถว</th>
+                            <th>หลัก</th>
+                            <th>พันธุ์ต้นยาง</th>
+                            <th>วันที่ปลูก</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let any of GET_RubberTree | paginate: { itemsPerPage: 20, currentPage: p }|filter:searhText ;let i = index; ">
+                            <!-- <td style="height: 30px">{{ i+1 }}</td> -->
+                            <td>{{ any.serialNumber }}</td>
+                            <td>{{ any.row }}</td>
+                            <td>{{ any.col }}</td>
+                            <td>{{ any.species }}</td>
+                            <td>{{ any.datePlant }}</td>
+                            <td style="border: none; background-color: #ffff; width: 2px; ">
+                                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal" (click)="openModalWithClass(EditTree);Click_Edit(any)">แก้ไข</button>
+                            </td>
+                            <td style="border: none; background-color: #ffff; width: 2px; ">
+                                <button class="btn btn-pill-right btn-danger ripple font" data-dismiss="modal" (click)="deleteDataRubber(any.IDRubber)">ลบ</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <br>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
