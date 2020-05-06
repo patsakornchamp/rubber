@@ -258,6 +258,44 @@
                 </table>
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 <br>
+
+
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="serialNumber">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> serialNumber </th>
+                        <td mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="row">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> row </th>
+                        <td mat-cell *matCellDef="let element"> {{element.row}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="col">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> col </th>
+                        <td mat-cell *matCellDef="let element"> {{element.col}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="species">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> species </th>
+                        <td mat-cell *matCellDef="let element"> {{element.species}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="datePlant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> datePlant </th>
+                        <td mat-cell *matCellDef="let element"> {{element.datePlant}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+
             </div>
         </div>
     </div>
