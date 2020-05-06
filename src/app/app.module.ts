@@ -50,7 +50,7 @@ import { PageGuestComponent } from './components/page-guest/page-guest.component
 import { PageGuestUserComponent } from './components/page-guest-user/page-guest-user.component';
 import { PageCooperativeManageComponent } from './components/page-cooperative-manage/page-cooperative-manage.component';
 import { StatisticsCooperativeComponent } from './components/statistics-cooperative/statistics-cooperative.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
