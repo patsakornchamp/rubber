@@ -54,8 +54,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
 import { DataTablesModule } from 'angular-datatables';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,9 +109,8 @@ import { DataTablesModule } from 'angular-datatables';
     BrowserAnimationsModule,
     PaginationModule.forRoot(),
     TooltipModule.forRoot(),
-    DataTablesModule,
     // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
-  
+    DataTablesModule
   ],
   providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

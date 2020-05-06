@@ -3,7 +3,6 @@ import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 
-
 import { Marker } from '@agm/core';
 @Component({
   selector: 'app-farmer',
@@ -39,7 +38,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   longitude = 99.991194;
   p:number = 1;
   locationChosen = false;
-  
 
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
