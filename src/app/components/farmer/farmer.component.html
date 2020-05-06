@@ -2,143 +2,145 @@
 <app-appmenu-farmer></app-appmenu-farmer>
 
 <ng-template #Garden>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">สวนยาง</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>ละติจูด</th>
+              <th>ลองจิจูด</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
     </div>
-    <div class="modal-body">
-        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-        <div class="col-md-12 " style="margin-top: 20px;">
-            <div class="table-responsive" style="text-align:center; height: 500px;">
-                <table border='1' width='100%' class="table table-hover" id="customers">
-                    <thead>
-                        <tr>
-                            <th>ชื่อแปลง</th>
-                            <th>ที่อยู่</th>
-                            <th>ละติจูด</th>
-                            <th>ลองจิจูด</th>
-                            <th>รายละเอียดของสวนยาง</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation(any)">
-                            <td>{{ any.namePlantation }}</td>
-                            <td>{{ any.addressRubberPlantation }}</td>
-                            <td>{{ any.latitude }}</td>
-                            <td>{{ any.longitude }}</td>
-                            <td>{{ any.detail }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-    </div>
+  </div>
 </ng-template>
 <ng-template #Garden2>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">สวนยาง</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">สวนยาง</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+    <div class="col-md-12 " style="margin-top: 20px;">
+      <div class="table-responsive" style="text-align:center; height: 500px;">
+        <table border='1' width='100%' class="table table-hover" id="customers">
+          <thead>
+            <tr>
+              <th>ชื่อแปลง</th>
+              <th>ที่อยู่</th>
+              <th>ละติจูด</th>
+              <th>ลองจิจูด</th>
+              <th>รายละเอียดของสวนยาง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation2(any)">
+              <td>{{ any.namePlantation }}</td>
+              <td>{{ any.addressRubberPlantation }}</td>
+              <td>{{ any.latitude }}</td>
+              <td>{{ any.longitude }}</td>
+              <td>{{ any.detail }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </div>
     </div>
-    <div class="modal-body">
-        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-        <div class="col-md-12 " style="margin-top: 20px;">
-            <div class="table-responsive" style="text-align:center; height: 500px;">
-                <table border='1' width='100%' class="table table-hover" id="customers">
-                    <thead>
-                        <tr>
-                            <th>ชื่อแปลง</th>
-                            <th>ที่อยู่</th>
-                            <th>ละติจูด</th>
-                            <th>ลองจิจูด</th>
-                            <th>รายละเอียดของสวนยาง</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let any of GET_Plantation|filter:searhText;let i = index" (click)="click_Plantation2(any)">
-                            <td>{{ any.namePlantation }}</td>
-                            <td>{{ any.addressRubberPlantation }}</td>
-                            <td>{{ any.latitude }}</td>
-                            <td>{{ any.longitude }}</td>
-                            <td>{{ any.detail }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-    </div>
+  </div>
 </ng-template>
 <div class="content-wrapper">
-    <section class="content-header">
-        <h1>
-            หน้าแรก
-            <small></small>
-        </h1>
-    </section>
-    <!-- <div #mapContainer id="map"></div> -->
-    <div id="map">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
-            <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude" [longitude]="m.longitude" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
-                <!-- markerDraggable ทำให้จุดขยับได้ -->
-                <agm-info-window>
-                    ชื่อแปลง:{{m.namePlantation}}<br> ที่อยู่:{{m.addressRubberPlantation}}
-                    <br> รายละเอียด:{{m.detail}}
-                </agm-info-window>
-            </agm-marker>
-        </agm-map>
-    </div>
-    <div class="margin">
-        <label style="margin-top: 50px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวันที่ {{date  | date:'dd/MM/yyyy'}}
+  <section class="content-header">
+    <h1>
+      หน้าแรก
+      <small></small>
+    </h1>
+  </section>
+  <!-- <div #mapContainer id="map"></div> -->
+  <div id="map">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+      <agm-marker *ngFor="let m of markers;let i = index" (markerClick)="clickedMarker(m,i)" [latitude]="m.latitude"
+        [longitude]="m.longitude" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m,$event)">
+        <!-- markerDraggable ทำให้จุดขยับได้ -->
+        <agm-info-window>
+          ชื่อแปลง:{{m.namePlantation}}<br> ที่อยู่:{{m.addressRubberPlantation}}
+          <br> รายละเอียด:{{m.detail}}
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+
+  <div class="margin">
+    <label style="margin-top: 50px;font-size: 20px;">ข้อมูลน้ำยางพาราประจำวันที่ {{date  | date:'dd/MM/yyyy'}}
     </label>
 
-        <tabset #staticTabs style="font-size:15px;">
-            <tab heading="รายแปลง" id="1">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">
-                        <div class="form-group" style="font-size: 15px;">
-                            <label>เลือกแปลง</label><br>
-                            <input type="text" [(ngModel)]="Plantation">
-                            <label> &nbsp; </label>
-                            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
+    <tabset #staticTabs style="font-size:15px;">
+      <tab heading="รายแปลง" id="1">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
+            <div class="form-group" style="font-size: 15px;">
+              <label>เลือกแปลง</label><br>
+              <input type="text" [(ngModel)]="Plantation">
+              <label> &nbsp; </label>
+              <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden)">
                 <i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-xs-12">
-                        <!-- small box -->
-                        <div class="small-box bg-red" style="height: 150px;">
-                            <div class="inner">
-                                <h3 style="font-size: 60px">{{latex_farm}}<sup style="font-size:40px">กิโลกรัม</sup></h3>
-                                <p>ปริมาณน้ำยางทั้งหมด</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
-            </tab>
-            <tab heading="รายต้น" id="2">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">
-                        <div class="form-group" style="font-size: 15px;">
-                            <label>เลือกแปลง</label><br>
-                            <input type="text" [(ngModel)]="Plantation2">
-                            <label> &nbsp; </label>
-                            <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden2)">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-red" style="height: 150px;">
+              <div class="inner">
+                <h3 style="font-size: 60px">{{latex_farm}}<sup style="font-size:40px">กิโลกรัม</sup></h3>
+                <p>ปริมาณน้ำยางทั้งหมด</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph" style="font-size: 100px;"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+      </tab>
+      <tab heading="รายต้น" id="2">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
+            <div class="form-group" style="font-size: 15px;">
+              <label>เลือกแปลง</label><br>
+              <input type="text" [(ngModel)]="Plantation2">
+              <label> &nbsp; </label>
+              <button type="button" class="btn btn-primary" (click)="openModalWithClass(Garden2)">
                 <i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-2">
+            </div>
+          </div>
+          <!-- <div class="col-md-2">
             <div class="form-group" style="font-size: 15px;">
               <label>กรอกแถว</label><br>
               <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="001"
@@ -152,39 +154,42 @@
                 oninput="this.value=this.value.replace(/[^0-9]/g,'');" style="text-align:right">
             </div>
           </div> -->
-                </div>
-                <div class="row">
-                    <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
-                        <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
-                        <div class="table-responsive" style="text-align:center; height: 1000px;">
-                            <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;' id="customers">
-                                <thead>
-                                    <tr>
-                                        <!-- <th>ลำดับ</th> -->
-                                        <th>แถว</th>
-                                        <th>หลัก</th>
-                                        <th>พันธุ์ต้นยาง</th>
-                                        <th>วันที่ปลูก</th>
-                                        <th>ปริมาณน้ำยาง(Kg)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p };let i = index ">
-                                        <!-- <td style="height: 30px">{{ i+1 }}</td> -->
-                                        <td>{{ any.row }}</td>
-                                        <td>{{ any.col }}</td>
-                                        <td>{{ any.species }}</td>
-                                        <td>{{ any.datePlant }}</td>
-                                        <td>{{ any.quantity }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </tab>
-        </tabset>
-    </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
+            <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+            <div class="table-responsive" style="text-align:center; height: 1000px;">
+              <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
+                id="customers">
+                <thead>
+                  <tr>
+                    <!-- <th>ลำดับ</th> -->
+                    <th>แถว</th>
+                    <th>หลัก</th>
+                    <th>พันธุ์ต้นยาง</th>
+                    <th>วันที่ปลูก</th>
+                    <th>ปริมาณน้ำยาง(Kg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p };let i = index ">
+                    <!-- <td style="height: 30px">{{ i+1 }}</td> -->
+                    <td>{{ any.row }}</td>
+                    <td>{{ any.col }}</td>
+                    <td>{{ any.species }}</td>
+                    <td>{{ any.datePlant }}</td>
+                    <td>{{ any.quantity }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              <br>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+
 </div>
