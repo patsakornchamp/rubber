@@ -55,6 +55,7 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
+import { DataTablesModule } from 'angular-datatables';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,8 +107,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
     PaginationModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    DataTablesModule,
     // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX423Bi4KNkkZlMKX6vY1DNGg0q6PHnAA&callback=initMap" async defer></script>
+  
   ],
   providers: [{provide : LocationStrategy , useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
