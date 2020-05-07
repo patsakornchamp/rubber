@@ -226,8 +226,8 @@
         <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
             <!-- <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br> -->
             <div class="table-responsive" style="text-align:center; height: 1200px;">
-
-                <input matInput (keyup)="applyFilter($event);chack()" class="form-control" placeholder="Search">
+     
+                    <input matInput  (keyup)="applyFilter($event)"  class="form-control"  placeholder="Search">
 
 
                 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" id="customers">
