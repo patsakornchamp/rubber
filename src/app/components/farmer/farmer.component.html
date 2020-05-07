@@ -1,6 +1,5 @@
 <app-appheader-farmer></app-appheader-farmer>
 <app-appmenu-farmer></app-appmenu-farmer>
-
 <ng-template #Garden>
   <div class="modal-header">
     <h4 class="modal-title pull-left">สวนยาง</h4>
@@ -158,7 +157,7 @@
           <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
             <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
             <div class="table-responsive" style="text-align:center; height: 1000px;">
-              <table border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
+              <table datatable border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
                 id="customers">
                 <thead>
                   <tr>
@@ -171,8 +170,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p };let i = index ">
+                  <tr *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p };let i = index ">
                     <!-- <td style="height: 30px">{{ i+1 }}</td> -->
                     <td>{{ any.row }}</td>
                     <td>{{ any.col }}</td>
@@ -190,6 +188,5 @@
       </tab>
     </tabset>
   </div>
-
 
 </div>

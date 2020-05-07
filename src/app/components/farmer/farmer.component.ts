@@ -3,7 +3,6 @@ import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 
-import { Marker } from '@agm/core';
 @Component({
   selector: 'app-farmer',
   templateUrl: './farmer.component.html',
