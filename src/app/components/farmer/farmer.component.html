@@ -156,9 +156,9 @@
                     <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
                         <!-- <input type="text" placeholder="Search" [(ngModel)]="searhText2" (keyup)="chack()" class="form-control" /><br> -->
                         <div class="table-responsive" style="text-align:center; height: 1000px;">
-                                <!-- <mat-label>Search</mat-label> -->
-                                <input matInput [(ngModel)]="searhText2" (keyup)="applyFilter($event);chack()" class="form-control"  placeholder="Search">
-                               
+                            <!-- <mat-label>Search</mat-label> -->
+                            <input matInput [(ngModel)]="searhText2" (keyup)="applyFilter($event);chack()" class="form-control" placeholder="Search">
+
 
                             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" id="customers">
                                 <!-- Position Column -->

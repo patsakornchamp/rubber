@@ -76,7 +76,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.latex_tree=[];
     this.Plantation2='';
     // console.log(this.IDUser)
-
+    ELEMENT_DATA = [];
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
