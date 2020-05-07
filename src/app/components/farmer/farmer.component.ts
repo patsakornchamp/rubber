@@ -4,6 +4,13 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
 import Swal from 'sweetalert2';
 
+
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+
+let ELEMENT_DATA;
+
 @Component({
   selector: 'app-farmer',
   templateUrl: './farmer.component.html',
@@ -11,7 +18,15 @@ import Swal from 'sweetalert2';
 })
 
 export class FarmerComponent implements AfterViewInit, OnInit {
+  displayedColumns: string[] = ['row', 'col', 'species', 'datePlant', 'quantity'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+
   modalRef: BsModalRef;
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor(
     private apiService: ApiService,
     private modalService: BsModalService,
@@ -64,7 +79,15 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.Plantation2='';
     // console.log(this.IDUser)
 
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
       Object.assign({}, { class: 'gray modal-lg' })
@@ -138,6 +161,15 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.latex_tree = resposne;
+      
+    
+      ELEMENT_DATA = this.latex_tree;
+      this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      console.log(ELEMENT_DATA)
+
+
 
       for(let i = 0;i <=  this.latex_tree.length;i++){
       //   this.latex_tree[i].sum = i;

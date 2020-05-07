@@ -141,8 +141,8 @@ export class ManageTreeFarmerComponent implements OnInit {
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.GET_RubberTree)
       console.log(ELEMENT_DATA)
+      console.log(this.GET_RubberTree)
       this.modalRef.hide();
     });
   }
