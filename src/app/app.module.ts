@@ -57,7 +57,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { DataTablesModule } from 'angular-datatables';
 import { MatSortModule,MatButtonModule,MatFormFieldModule,MatInputModule } from '@angular/material'
 import { MatTableModule } from '@angular/material/table';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -104,6 +104,7 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatTableModule,
     MatInputModule,
+    MatPaginatorModule,
     Ng2SearchPipeModule,
     ChartsModule,
     ModalModule.forRoot(),

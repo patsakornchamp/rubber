@@ -6,29 +6,9 @@ import Swal from 'sweetalert2';
 
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 let ELEMENT_DATA;
-
-// export interface PeriodicElement {
-//   row: string;
-//   serialNumber: number;
-//   col: number;
-//   species: string;
-//   datePlant: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {serialNumber: 1, row: 'Hydrogen', col: 1.0079, species: 'H', datePlant: 'lolo'},
-//   {serialNumber: 2, row: 'Helium', col: 4.0026, species: 'He', datePlant: 'lolo'},
-//   {serialNumber: 3, row: 'Lithium', col: 6.941, species: 'Li', datePlant: 'lolo'},
-//   {serialNumber: 4, row: 'Beryllium', col: 9.0122, species: 'Be', datePlant: 'lolo'},
-//   {serialNumber: 5, row: 'Boron', col: 10.811, species: 'B', datePlant: 'lolo'},
-//   {serialNumber: 6, row: 'Carbon', col: 12.0107, species: 'C', datePlant: 'lolo'},
-//   {serialNumber: 7, row: 'Nitrogen', col: 14.0067, species: 'N', datePlant: 'lolo'},
-//   {serialNumber: 8, row: 'Oxygen', col: 15.9994, species: 'O', datePlant: 'lolo'},
-//   {serialNumber: 9, row: 'Fluorine', col: 18.9984, species: 'F', datePlant: 'lolo'},
-//   {serialNumber: 10, row: 'Neon', col: 20.1797, species: 'Ne', datePlant: 'lolo'},
-// ];
 
 @Component({
   selector: 'app-manage-tree-farmer',
@@ -43,6 +23,7 @@ export class ManageTreeFarmerComponent implements OnInit {
   searhText: any;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private modalService: BsModalService,
     private service: ApiService,
@@ -72,11 +53,16 @@ export class ManageTreeFarmerComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
     this.get_equipment();
     this.get_species();
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
@@ -154,6 +140,7 @@ export class ManageTreeFarmerComponent implements OnInit {
       ELEMENT_DATA = this.GET_RubberTree;
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
       console.log(this.GET_RubberTree)
       console.log(ELEMENT_DATA)
       this.modalRef.hide();

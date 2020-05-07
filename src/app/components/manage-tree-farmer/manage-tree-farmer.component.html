@@ -228,6 +228,11 @@
             <div class="table-responsive" style="text-align:center; height: 1200px;">
 
                 <br>
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+                </mat-form-field>
+
                 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" id="customers">
                     <!-- Position Column -->
                     <ng-container matColumnDef="serialNumber">
@@ -262,6 +267,8 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
             </div>
         </div>
     </div>
