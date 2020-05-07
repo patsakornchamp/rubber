@@ -37,7 +37,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   longitude = 99.991194;
   p:number = 1;
   locationChosen = false;
-
+   sum:any; 
   @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
 
   map: google.maps.Map;
@@ -50,13 +50,14 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.searchPic_map()
 
   }
+  test:any = {sum:'',ded:''};
   Plantation: any; Plantation2: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
   dataset: any = {}
   ngOnInit() {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
-    console.log(this.date);
+    console.log(this.test);
     // console.log(this.IDUser)
 
   }
@@ -106,6 +107,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
       }
     });
   }
+  aa :any
   searchPic_tree() {
     this.demo = {
       mod: "searchPic_tree",
@@ -114,12 +116,17 @@ export class FarmerComponent implements AfterViewInit, OnInit {
         IDPlantation: this.IDPlantation
       }
     };
+
+  
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.latex_tree = resposne;
-console.log(this.latex_tree);
-      // if (this.latex_tree == null) {
-      //   this.latex_tree = 0;
-      // }
+
+      for(let i = 0;i <=  this.latex_tree.length;i++){
+      //   this.latex_tree[i].sum = i;
+
+      this.aa.push(this.latex_tree[i])
+      }
+      console.log(this.aa);
     });
   }
   searchPic_map() {

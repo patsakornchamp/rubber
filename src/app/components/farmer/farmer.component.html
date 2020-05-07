@@ -157,11 +157,11 @@
           <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
             <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
             <div class="table-responsive" style="text-align:center; height: 1000px;">
-              <table datatable border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
+              <table  border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
                 id="customers">
                 <thead>
                   <tr>
-                    <!-- <th>ลำดับ</th> -->
+                    <th>ลำดับ</th>
                     <th>แถว</th>
                     <th>หลัก</th>
                     <th>พันธุ์ต้นยาง</th>
@@ -170,8 +170,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p };let i = index ">
-                    <!-- <td style="height: 30px">{{ i+1 }}</td> -->
+                  <tr *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p } let i = index;">
+                    
+                    <td style="height: 30px" >{{i+1}}</td>
                     <td>{{ any.row }}</td>
                     <td>{{ any.col }}</td>
                     <td>{{ any.species }}</td>
