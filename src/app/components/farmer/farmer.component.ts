@@ -74,7 +74,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
     this.latex_tree=[];
-    // this.Plantation2='';
+    this.Plantation2='';
     // console.log(this.IDUser)
 
     this.dataSource.sort = this.sort;
