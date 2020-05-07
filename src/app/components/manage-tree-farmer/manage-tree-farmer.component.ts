@@ -1,13 +1,8 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice'
 import { AuthenticationService } from '../../_services';
 import Swal from 'sweetalert2';
-
-// import {MatSort} from '@angular/material/sort';
-// import {MatTableDataSource} from '@angular/material/table';
-
-// let ELEMENT_DATA;
 
 @Component({
   selector: 'app-manage-tree-farmer',
@@ -15,15 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manage-tree-farmer.component.css']
 })
 export class ManageTreeFarmerComponent implements OnInit {
-
-  // displayedColumns: string[] = ['serialNumber', 'row', 'col', 'species' , 'datePlant'];
-  // dataSource = new MatTableDataSource(ELEMENT_DATA);
-
   modalRef: BsModalRef;
   searhText: any;
-  
-  // @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   constructor(private modalService: BsModalService,
     private service: ApiService,
     private apiService: ApiService,
@@ -51,9 +39,6 @@ export class ManageTreeFarmerComponent implements OnInit {
 
 
   ngOnInit() {
-
-    // this.dataSource.sort = this.sort;
-
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
@@ -133,7 +118,6 @@ export class ManageTreeFarmerComponent implements OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_RubberTree = resposne;
-      // ELEMENT_DATA = this.GET_RubberTree
       this.modalRef.hide();
     });
   }
