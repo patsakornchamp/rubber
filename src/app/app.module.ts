@@ -55,6 +55,8 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { DataTablesModule } from 'angular-datatables';
+import { MatSortModule,MatButtonModule,MatFormFieldModule,MatInputModule } from '@angular/material'
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -97,6 +99,11 @@ import { DataTablesModule } from 'angular-datatables';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSortModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule,
     Ng2SearchPipeModule,
     ChartsModule,
     ModalModule.forRoot(),
