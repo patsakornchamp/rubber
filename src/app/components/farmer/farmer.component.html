@@ -3,7 +3,7 @@
 <ng-template #Garden>
   <div class="modal-header">
     <h4 class="modal-title pull-left">สวนยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="undefined()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -39,7 +39,7 @@
 <ng-template #Garden2>
   <div class="modal-header">
     <h4 class="modal-title pull-left">สวนยาง</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="undefined()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -155,7 +155,7 @@
         </div>
         <div class="row">
           <div class="col-md-10 " style="margin-top: 20px;margin-left: 40px;">
-            <input type="text" placeholder="Search" [(ngModel)]="searhText" class="form-control" /><br>
+            <input type="text" placeholder="Search" [(ngModel)]="searhText2"  (keyup)="chack()" class="form-control" /><br>
             <div class="table-responsive" style="text-align:center; height: 1000px;">
               <table  border='2' width='100%' class="font table table-hover" style='border-collapse: collapse;'
                 id="customers">
@@ -170,7 +170,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let any of latex_tree |filter:searhText | paginate: { itemsPerPage: 20, currentPage: p } let i = index;">
+                  <tr *ngFor="let any of latex_tree |filter:searhText2 | paginate: { itemsPerPage: 20, currentPage: p } let i = index;">
                     
                     <td style="height: 30px" >{{i+1}}</td>
                     <td>{{ any.row }}</td>

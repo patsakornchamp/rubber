@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, TemplateRef } 
 import { ApiService } from '../../api.sercice';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthenticationService } from '../../_services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-farmer',
@@ -25,6 +26,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   col: any = 0;
   lng_lat: any;
   searhText:any;
+  searhText2:any;
   date = new Date();
   //mapสามารถเลือกจุดบนแผนที่ได้
   zoom: number = 5;
@@ -48,7 +50,6 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     script.src = 'assets/js/chart.js';
     document.body.appendChild(script);
     this.searchPic_map()
-
   }
   test:any = {sum:'',ded:''};
   Plantation: any; Plantation2: any; IDPlantation: any; latex_farm: any = 0; latex_tree: any = 0;
@@ -58,6 +59,9 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
     console.log(this.test);
+    this.p=1;
+    this.latex_tree=[];
+    this.Plantation2='';
     // console.log(this.IDUser)
 
   }
@@ -85,6 +89,20 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.IDPlantation = data.IDPlantation;
     this.searchPic_farm();
     this.modalRef.hide();
+  }
+  undefined(){
+    this.searhText = '';
+    this.searhText2 = '';
+    this.modalRef.hide();
+
+  }
+  chack(){
+    if(this.Plantation2 == ''){
+      Swal.fire(
+        'กรุณาเลือกแปลง', '',
+        'error')
+        this.searhText2 = '';
+    }
   }
   click_Plantation2(data) {
     this.Plantation2 = data.namePlantation;
