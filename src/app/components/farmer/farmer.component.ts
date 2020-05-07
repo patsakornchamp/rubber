@@ -73,10 +73,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation()
-    console.log(this.test);
-    this.p=1;
     this.latex_tree=[];
-    this.Plantation2='';
+    // this.Plantation2='';
     // console.log(this.IDUser)
 
     this.dataSource.sort = this.sort;
@@ -120,6 +118,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
   }
   chack(){
+    console.log('sssssssssssssssssssssss');
     if(this.Plantation2 == ''){
       Swal.fire(
         'กรุณาเลือกแปลง', '',
@@ -161,8 +160,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
   
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.latex_tree = resposne;
-      
-    
+
       ELEMENT_DATA = this.latex_tree;
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);
       this.dataSource.sort = this.sort;
@@ -171,12 +169,8 @@ export class FarmerComponent implements AfterViewInit, OnInit {
 
 
 
-      for(let i = 0;i <=  this.latex_tree.length;i++){
-      //   this.latex_tree[i].sum = i;
-
-      this.aa.push(this.latex_tree[i])
-      }
-      console.log(this.aa);
+      // for(let i = 0;i <=  this.latex_tree.length;i++){
+      // }
     });
   }
   searchPic_map() {
