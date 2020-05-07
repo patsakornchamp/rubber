@@ -1,8 +1,34 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../api.sercice'
 import { AuthenticationService } from '../../_services';
 import Swal from 'sweetalert2';
+
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
+let ELEMENT_DATA;
+
+// export interface PeriodicElement {
+//   row: string;
+//   serialNumber: number;
+//   col: number;
+//   species: string;
+//   datePlant: string;
+// }
+
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   {serialNumber: 1, row: 'Hydrogen', col: 1.0079, species: 'H', datePlant: 'lolo'},
+//   {serialNumber: 2, row: 'Helium', col: 4.0026, species: 'He', datePlant: 'lolo'},
+//   {serialNumber: 3, row: 'Lithium', col: 6.941, species: 'Li', datePlant: 'lolo'},
+//   {serialNumber: 4, row: 'Beryllium', col: 9.0122, species: 'Be', datePlant: 'lolo'},
+//   {serialNumber: 5, row: 'Boron', col: 10.811, species: 'B', datePlant: 'lolo'},
+//   {serialNumber: 6, row: 'Carbon', col: 12.0107, species: 'C', datePlant: 'lolo'},
+//   {serialNumber: 7, row: 'Nitrogen', col: 14.0067, species: 'N', datePlant: 'lolo'},
+//   {serialNumber: 8, row: 'Oxygen', col: 15.9994, species: 'O', datePlant: 'lolo'},
+//   {serialNumber: 9, row: 'Fluorine', col: 18.9984, species: 'F', datePlant: 'lolo'},
+//   {serialNumber: 10, row: 'Neon', col: 20.1797, species: 'Ne', datePlant: 'lolo'},
+// ];
 
 @Component({
   selector: 'app-manage-tree-farmer',
@@ -10,8 +36,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manage-tree-farmer.component.css']
 })
 export class ManageTreeFarmerComponent implements OnInit {
+  displayedColumns: string[] = ['serialNumber', 'row', 'col', 'species', 'datePlant',];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
   modalRef: BsModalRef;
   searhText: any;
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(private modalService: BsModalService,
     private service: ApiService,
     private apiService: ApiService,
@@ -39,6 +71,7 @@ export class ManageTreeFarmerComponent implements OnInit {
 
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
     this.dataUser = this.authenticationService.currentUserValue;
     this.IDUser = this.dataUser[0]['IDUser'];
     this.get_Plantation();
@@ -118,6 +151,11 @@ export class ManageTreeFarmerComponent implements OnInit {
     };
     this.apiService.read(this.demo).subscribe((resposne: any) => {
       this.GET_RubberTree = resposne;
+      ELEMENT_DATA = this.GET_RubberTree;
+      this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+      this.dataSource.sort = this.sort;
+      console.log(this.GET_RubberTree)
+      console.log(ELEMENT_DATA)
       this.modalRef.hide();
     });
   }
