@@ -112,7 +112,7 @@ export class FarmerComponent implements AfterViewInit, OnInit {
     this.searchPic_farm();
     this.modalRef.hide();
   }
-  UF(){
+  undefined(){
     this.searhText = '';
     this.searhText2 = '';
     this.modalRef.hide();
